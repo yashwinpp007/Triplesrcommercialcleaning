@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { site } from "@/config/site";
 import type { Service } from "@/content/services";
 import { img } from "@/lib/images";
-import { Arrow, Phone, serviceIcons } from "./Icons";
+import { Arrow, Check, Phone, serviceIcons } from "./Icons";
 import { Reveal } from "./Reveal";
 import { JsonLd } from "./JsonLd";
 
@@ -46,15 +46,34 @@ export function Breadcrumbs({ items }: { items: { name: string; href: string }[]
 
 export function CtaBand({ title = "Ready for a cleaner, healthier workplace?", text = "Get a free, no-obligation quote. We'll reply within one business day." }: { title?: string; text?: string }) {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-br from-navy via-navy-2 to-teal py-16 text-white">
-      <div className="container-x flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+    <section className="relative isolate overflow-hidden bg-gradient-to-br from-navy via-navy-2 to-teal text-white">
+      <div aria-hidden className="pointer-events-none absolute -left-24 top-0 -z-10 h-72 w-72 rounded-full bg-green-bright/20 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -right-20 bottom-0 -z-10 h-72 w-72 rounded-full bg-teal/40 blur-3xl" />
+      <div className="container-x grid items-center gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-16">
         <Reveal>
-          <h2 className="max-w-xl text-3xl font-extrabold !text-white sm:text-4xl">{title}</h2>
-          <p className="mt-2 max-w-xl text-white/85">{text}</p>
+          <p className="eyebrow !text-green-bright">Free quote</p>
+          <h2 className="mt-2 max-w-xl text-3xl font-extrabold !text-white sm:text-4xl">{title}</h2>
+          <p className="mt-3 max-w-xl text-lg text-white/85">{text}</p>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <Link href="/get-a-quote" className="btn btn-primary">Get a Free Quote <Arrow className="h-5 w-5" /></Link>
+            <a href={`tel:${site.phoneTel}`} className="btn btn-ghost"><Phone className="h-5 w-5" /> {site.phoneDisplay}</a>
+          </div>
         </Reveal>
-        <Reveal delay={0.1} className="flex flex-wrap gap-3">
-          <Link href="/get-a-quote" className="btn btn-primary">Get a Free Quote <Arrow className="h-5 w-5" /></Link>
-          <a href={`tel:${site.phoneTel}`} className="btn btn-ghost"><Phone className="h-5 w-5" /> {site.phoneDisplay}</a>
+        <Reveal delay={0.12} className="relative mx-auto w-full max-w-lg lg:max-w-none">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border border-white/25 shadow-[0_40px_80px_-30px_rgba(0,0,0,.7)] ring-1 ring-white/10">
+            <Image
+              src="/images/quote-team-member.webp"
+              alt="Triple SR team member in uniform holding a tablet, ready to discuss your quote, with Sydney Harbour views behind"
+              fill
+              sizes="(max-width: 1024px) 90vw, 42vw"
+              className="object-cover object-top"
+            />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy/70 to-transparent p-4 pt-12" />
+          </div>
+          <div className="absolute -bottom-4 left-4 flex items-center gap-3 rounded-2xl border border-white/25 bg-white/15 px-4 py-3 shadow-2xl backdrop-blur-md sm:left-6">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-green text-white"><Check className="h-5 w-5" /></span>
+            <span className="text-sm font-bold leading-tight text-white">Free on-site quote<span className="block text-xs font-medium text-white/80">Reply within one business day</span></span>
+          </div>
         </Reveal>
       </div>
     </section>
