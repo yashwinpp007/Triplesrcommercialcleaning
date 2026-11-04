@@ -1,0 +1,6 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "triplesr-dev", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "triplesr-website", "run", "dev", "--", "-p", "3100"], "port": 3100 }
+  ]
+}

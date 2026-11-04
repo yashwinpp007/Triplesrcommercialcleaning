@@ -1,0 +1,152 @@
+{
+  "_meta": {
+    "source": "Google Business Profile: Triple SR Cleaning Services Pty Ltd",
+    "profileUrl": "https://www.google.com/search?q=triple+sr+services#lrd=0x4ff9a269be8bed0f:0x36e7f556a36a4983,1,,,,",
+    "retrievedOn": "2026-11-04",
+    "aggregate": { "rating": 4.6, "reviewCount": 36 },
+    "notes": [
+      "Text is verbatim from Google (typos and punctuation unchanged). Do not edit.",
+      "'postedRelative' is as shown on 2026-11-04; use Google's own relative wording or drop dates, do not invent exact dates.",
+      "Selected: 15 five-star reviews, ordered by relevance to a commercial site. Star count inferred from the 'Highest rating' sort order and, for Shahriare Parvez, an explicit 5-star display.",
+      "Most reviews are from residential, apartment or end-of-lease jobs. Only the first two mention offices. Show the Google attribution and do not label residential reviews as hospital/school/etc. work.",
+      "Never display a 5.0 aggregate; the verified aggregate is 4.6 from 36 reviews."
+    ]
+  },
+  "reviews": [
+    {
+      "id": 1,
+      "name": "sarah berle",
+      "localGuide": false,
+      "postedRelative": "2 months ago",
+      "text": "The team did an incredible job when my office needed cleaning. They were all lovely and communicated very clearly with me. I would definitely book them again!",
+      "ownerReply": "Thank you so much sarah",
+      "suggestedPages": ["home", "regular-office-cleaning"]
+    },
+    {
+      "id": 2,
+      "name": "George F",
+      "localGuide": false,
+      "postedRelative": "a month ago",
+      "text": "Brian regularly cleans my office space on a weekly basis. Happy with service & quality of clean",
+      "ownerReply": "Thank you so much",
+      "suggestedPages": ["home", "regular-office-cleaning"]
+    },
+    {
+      "id": 3,
+      "name": "Shahriare Parvez",
+      "localGuide": true,
+      "postedRelative": "2 months ago",
+      "text": "Absolutely fantastic service from Triple SR Cleaning! The team was professional, friendly, punctual, and paid great attention to detail. They did an excellent job and left everything looking spotless and fresh.\n\nI’m genuinely impressed with the quality of their work and the customer service. Highly recommended to anyone looking for a reliable and professional cleaning service. I would definitely use Triple SR Cleaning again! 👌",
+      "ownerReply": "Thank you so much",
+      "suggestedPages": ["home", "reviews"]
+    },
+    {
+      "id": 4,
+      "name": "Reet Kaur",
+      "localGuide": false,
+      "postedRelative": "a year ago",
+      "text": "I recently used triple sr cleaning for my end-of-lease clean, and they were absolutely fantastic. The team arrived on time, worked efficiently, and left the place spotless — even the oven and windows looked brand new! The real estate agent was very impressed and I got my full bond back without any issues. Great value for money and very professional service. Highly recommended for anyone moving out!",
+      "ownerReply": "Thanks reet for your recommendation.",
+      "suggestedPages": ["commercial-end-of-lease-cleaning", "reviews"]
+    },
+    {
+      "id": 5,
+      "name": "Vishanth",
+      "localGuide": false,
+      "postedRelative": "a year ago",
+      "text": "Absolutely Exceptional Service!\nI recently had the pleasure of working with Triple SR Services, and I can confidently say they exceeded all expectations. From start to finish, the team was professional, reliable, and incredibly efficient. Their attention to detail and commitment to quality really stood out — nothing was too much trouble, and every request was handled with care and precision.",
+      "ownerReply": "Thank u so much",
+      "suggestedPages": ["home", "about"]
+    },
+    {
+      "id": 6,
+      "name": "Brennen Brixen",
+      "localGuide": false,
+      "postedRelative": "6 months ago",
+      "text": "Fantastic service provided, extremely punctual and efficient. Got the job done twice as fast and twice as cheap as the other companies out there.",
+      "ownerReply": "Thank you so much",
+      "suggestedPages": ["home", "services"]
+    },
+    {
+      "id": 7,
+      "name": "Haren Jayasinghe",
+      "localGuide": false,
+      "postedRelative": "2 weeks ago",
+      "text": "Brayan and his team did an amazing job! They were punctual, finished the job on time and did an exceptional job cleaning the kitchen and bathrooms, which were my main priorities. The price was reasonable and the overall service was excellent. Highly recommend them!",
+      "ownerReply": "Thank you so much sir",
+      "suggestedPages": ["home", "reviews"]
+    },
+    {
+      "id": 8,
+      "name": "Sérgio Dias",
+      "localGuide": false,
+      "postedRelative": "3 weeks ago",
+      "text": "Very efficient and incredible work, from general cleaning, to carpet, to blinds and appliances. The team was very nice and even adjusted their schedule to accomodate my time constraints.",
+      "ownerReply": "Thank you sir",
+      "suggestedPages": ["home", "services"]
+    },
+    {
+      "id": 9,
+      "name": "Allan Magaoay",
+      "localGuide": false,
+      "postedRelative": "9 months ago",
+      "text": "Triple SR Cleaning Service did an marvelous job, they were punctual on time, friendly and also felt safe to leave the property in their hands and in the end we got it back brand new spick and span - Strongly recommended❤️",
+      "ownerReply": "Thank you for your appreciation",
+      "suggestedPages": ["home", "about"]
+    },
+    {
+      "id": 10,
+      "name": "Gerico Ramos",
+      "localGuide": false,
+      "postedRelative": "2 months ago",
+      "text": "Absolutely fantastic cleaning service! They did an excellent job and left everything spotless. Very professional, thorough, and friendly. I’m extremely happy with the results and would highly recommend their service to anyone looking for a reliable and high-quality cleaner.",
+      "ownerReply": "Thank you so much for the appreciation.",
+      "suggestedPages": ["home", "reviews"]
+    },
+    {
+      "id": 11,
+      "name": "GJ Kiruba",
+      "localGuide": true,
+      "postedRelative": "2 months ago",
+      "text": "Highly recommended Triple SR Cleaning Services. Very good service and communication.",
+      "ownerReply": "Thank you so much",
+      "suggestedPages": ["home", "contact"]
+    },
+    {
+      "id": 12,
+      "name": "Basem Ibrahim",
+      "localGuide": true,
+      "postedRelative": "9 months ago",
+      "text": "Got a team of cleaners over to make the house spotless and shiny - did a great job, would definitely use again - highly recommend!",
+      "ownerReply": "Thank you. You are the best customer.",
+      "suggestedPages": ["home", "reviews"]
+    },
+    {
+      "id": 13,
+      "name": "anoushka towler",
+      "localGuide": true,
+      "postedRelative": "2 months ago",
+      "text": "Amazing service Brian is Fantastic! I did my end of tenancy clean, Thank you so much",
+      "ownerReply": "Thank you for the review 💜",
+      "suggestedPages": ["commercial-end-of-lease-cleaning", "reviews"]
+    },
+    {
+      "id": 14,
+      "name": "Vimeth Jayawickrama",
+      "localGuide": false,
+      "postedRelative": "7 months ago",
+      "text": "I recently hired Triple SR Cleaning to clean my apartment, and I’m extremely happy with the results. The team was very professional, punctual, and paid great attention to detail. They left the entire apartment spotless from the floors to the kitchen and bathroom everything looked fresh and perfectly cleaned.\n\nWhat impressed me the most was how thorough they were and how friendly the cleaners were throughout the process. You can really tell they care about doing a high-quality job.\n\nI would highly recommend Triple SR Cleaning to anyone looking for reliable and professional cleaning services. I will definitely be using them again!",
+      "ownerReply": "Thank you for your review",
+      "suggestedPages": ["reviews"]
+    },
+    {
+      "id": 15,
+      "name": "Shivir Pokharel",
+      "localGuide": false,
+      "postedRelative": "a week ago",
+      "text": "Very good service and very professional and courteous",
+      "ownerReply": "Thank you so much sir",
+      "suggestedPages": ["home", "reviews"]
+    }
+  ]
+}
