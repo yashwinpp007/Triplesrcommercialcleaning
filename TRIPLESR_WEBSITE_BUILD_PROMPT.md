@@ -163,9 +163,11 @@ Source: the Google Business Profile for "Triple SR Services" (search link suppli
 https://www.google.com/search?q=triple+sr+services#lrd=0x4ff9a269be8bed0f:0x36e7f556a36a4983,1,,,,
 ```
 
+**Pre-collected reviews (use these):** the client's 15 selected five-star reviews are already saved, verbatim, in **`reviews.json`** in the project root (retrieved 2026-11-04). Copy it to `src/content/reviews.json` and build from it. It includes each reviewer's name, Local Guide status, relative date, owner reply and suggested pages. The profile's verified aggregate is **4.6 from 36 Google reviews**: if you show an aggregate, use exactly that, never 5.0, and make it a config value. Most of the 15 are residential, apartment or end-of-lease jobs; only two mention offices. Do not present any review as being for a sector it doesn't mention (hospital, school, warehouse, etc.), and use the end-of-lease reviews only on the end-of-lease page and general pages.
+
 **Rules:**
-- Collect **every 5-star review** from that profile: reviewer name (as shown), review text, relative date, and any owner reply. Copy the text **verbatim**. **Never invent, paraphrase, embellish, merge or fabricate reviews or ratings.**
-- If you cannot access the page (login wall, consent wall, blocking), do **not** make anything up. Instead: (a) build the reviews system fully with a typed data file `src/content/reviews.json`, (b) leave it populated only with whatever you could verifiably retrieve, (c) document in the README exactly how to paste in the remaining reviews, and tell me what is missing.
+- Display only the reviews in `reviews.json` (all 5-star). Copy the text **verbatim**, including typos. **Never invent, paraphrase, embellish, merge or fabricate reviews or ratings.** Show Google's relative dates as given or omit dates; never invent exact dates.
+- Build the reviews system so more reviews can be added by editing the JSON file only. If you can re-verify the profile, do so; if you cannot (login wall, consent wall, blocking), keep using the file as is and document in the README how to add or update reviews.
 - Alternative supported path: integrate the **Google Places API (Place Details → reviews)** server-side, cached at build time/ISR, with the API key in an environment variable. Note the API returns a limited number of reviews, so the JSON file remains the source for the full set.
 - Show the **true aggregate** rating and review count only if you verified them from the profile. Otherwise show the individual reviews without an aggregate.
 - Attribute clearly: "Reviews from Google" with the Google logo/wording used per Google's branding guidance and a link to the profile and a **"Leave us a review"** button.
@@ -173,8 +175,8 @@ https://www.google.com/search?q=triple+sr+services#lrd=0x4ff9a269be8bed0f:0x36e7
 
 **UI:**
 - Home: animated review marquee/carousel (pause on hover/focus, keyboard navigable, no auto-advance under reduced motion) + big trust strip.
-- `/reviews`: masonry grid, all reviews, filter by service keyword if mentioned.
-- Put 1–2 relevant reviews on each service page when they mention that sector.
+- `/reviews`: masonry grid of all 15 reviews, with the Google attribution, the 4.6 / 36 aggregate and the "Leave us a review" button.
+- Use each review's `suggestedPages` to place reviews (e.g. the two office reviews on Regular Office Cleaning; the end-of-lease reviews on Commercial End of Lease). For service pages with no matching review, show a general review or none; do not force a mismatch.
 
 ---
 
@@ -480,7 +482,7 @@ Implement **all** of the following. Document each control and where it lives in 
 - [ ] Logo used correctly; palette derived from it; favicons and OG image generated.
 - [ ] Real photos/videos used, curated, EXIF-stripped, optimised; no identifiable children/patients/clients published.
 - [ ] Before/after slider working with mouse, touch and keyboard.
-- [ ] All verifiable 5-star Google reviews displayed verbatim (or clear documentation of any that could not be retrieved); no fabricated reviews or ratings.
+- [ ] The 15 reviews from `reviews.json` displayed verbatim with Google attribution; aggregate shown only as 4.6 from 36 (if shown); no fabricated reviews or ratings; no review shown against a sector it doesn't mention.
 - [ ] Contact details, hours, socials correct everywhere; live open/closed badge in `Australia/Sydney` time.
 - [ ] Multi-step quote form works end to end: validation, Turnstile, rate limit, internal + customer emails, stored lead, thank-you page, tracked events.
 - [ ] Every control in section 10 implemented and documented in `SECURITY.md`, with test results.
