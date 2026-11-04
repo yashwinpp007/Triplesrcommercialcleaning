@@ -109,7 +109,7 @@ export function HeroSlideshow() {
   return (
     <section
       ref={heroRef}
-      className="relative isolate flex min-h-[40rem] items-center overflow-hidden bg-navy text-white lg:min-h-[calc(100svh-4.5rem)] lg:max-h-[58rem]"
+      className="relative isolate flex min-h-[40rem] items-center overflow-hidden bg-navy text-white lg:min-h-[calc(100svh-5rem)] lg:max-h-[58rem]"
       aria-roledescription="carousel"
       aria-label="Triple SR featured work"
       onPointerMove={onMove}

@@ -65,9 +65,9 @@ export function Header() {
           scrolled ? "glass shadow-[0_8px_30px_-18px_rgba(11,42,91,.45)]" : "bg-white/70 backdrop-blur-md"
         }`}
       >
-        <div className="container-x flex items-center justify-between gap-4 py-2.5">
+        <div className="container-x flex items-center justify-between gap-4 py-2">
           <Link href="/" aria-label={`${site.name} home`} className="shrink-0">
-            <Image src="/logo.png" alt={site.name} width={900} height={547} priority className={`w-auto transition-all duration-300 ${scrolled ? "h-11" : "h-14"}`} />
+            <Image src="/logo-horizontal.png" alt={site.name} width={1200} height={341} priority className={`w-auto transition-all duration-300 ${scrolled ? "h-10 sm:h-11 xl:h-12" : "h-12 lg:h-14 xl:h-16"}`} />
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
@@ -128,7 +128,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <div className="hidden xl:block"><OpenBadge /></div>
+            <div className="hidden 2xl:block"><OpenBadge /></div>
             <a
               href={`tel:${site.phoneTel}`}
               onClick={() => track("phone_click", { location: "header" })}
@@ -163,7 +163,7 @@ export function Header() {
             transition={{ type: "tween", duration: 0.28 }}
           >
             <div className="container-x flex items-center justify-between py-3">
-              <Image src="/logo.png" alt={site.name} width={900} height={547} className="h-12 w-auto" />
+              <Image src="/logo-horizontal.png" alt={site.name} width={1200} height={341} className="h-12 w-auto" />
               <button className="grid h-11 w-11 place-items-center rounded-full hover:bg-soft" aria-label="Close menu" onClick={() => setOpen(false)}>
                 <Close className="h-6 w-6 text-navy" />
               </button>

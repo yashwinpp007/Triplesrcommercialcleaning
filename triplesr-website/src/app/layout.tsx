@@ -38,7 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     name: site.name,
     url: site.url,
     image: `${site.url}/images/office-city-views.webp`,
-    logo: `${site.url}/logo.png`,
+    logo: `${site.url}/logo-horizontal.png`,
     telephone: site.phoneTel,
     email: site.email,
     priceRange: "$$",
@@ -57,7 +57,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className="flex min-h-screen flex-col">
         <JsonLd data={orgLd} />
         <Header />
-        <main id="main" className="flex-1 pt-[4.5rem]">{children}</main>
+        <main id="main" className="flex-1 pt-20">{children}</main>
         <Footer />
         <MobileBar />
         <ConsentBanner />

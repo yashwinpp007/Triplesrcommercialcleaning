@@ -12,7 +12,7 @@ export function Footer() {
       <div className="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.1fr]">
         <div>
           <div className="inline-block rounded-2xl bg-white p-3">
-            <Image src="/logo.png" alt={site.name} width={900} height={547} className="h-20 w-auto" />
+            <Image src="/logo-horizontal.png" alt={site.name} width={1200} height={341} className="h-16 w-auto sm:h-20" />
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/80">Triple SR Commercial Cleaning provides reliable, tailored commercial cleaning for offices, schools, care facilities and industrial sites across Sydney, with the CBD as our focus. Free on-site quotes.</p>
           {site.confirmed.abn && <p className="mt-3 text-xs text-white/70">ABN {site.confirmed.abn}</p>}
