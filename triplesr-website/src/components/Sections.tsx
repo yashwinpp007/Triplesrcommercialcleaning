@@ -47,14 +47,14 @@ export function Breadcrumbs({ items }: { items: { name: string; href: string }[]
 export function CtaBand({ title = "Ready for a cleaner, healthier workplace?", text = "Get a free, no-obligation quote. We'll reply within one business day." }: { title?: string; text?: string }) {
   return (
     <section className="relative isolate overflow-hidden bg-gradient-to-br from-navy via-navy-2 to-teal py-8 text-white">
-      {/* Photo fills the right side of the band (faded behind the text on small screens), so the band keeps its height */}
-      <div className="absolute inset-y-0 right-0 -z-10 w-full opacity-25 lg:w-[46%] lg:opacity-100 lg:[mask-image:linear-gradient(to_right,transparent_0%,#000_38%)]" aria-hidden={false}>
+      {/* Full photo at the band's height and its natural proportions (nothing cropped), so the band keeps its size */}
+      <div className="absolute inset-y-0 right-0 -z-10 aspect-[1316/800] opacity-30 lg:opacity-100 [mask-image:linear-gradient(to_right,transparent_0%,#000_14%)]">
         <Image
           src="/images/quote-team-member.webp"
           alt="Triple SR team member in uniform holding a tablet, ready to discuss your quote, with Sydney Harbour views behind"
           fill
-          sizes="(max-width: 1024px) 100vw, 46vw"
-          className="object-cover object-[50%_12%]"
+          sizes="(max-width: 1024px) 60vw, 420px"
+          className="object-cover"
         />
       </div>
       <div className="container-x">
