@@ -18,7 +18,7 @@ const items = [
   { slug: "office-workstations", cat: "Offices" }, { slug: "office-glass-partitions", cat: "Offices" }, { slug: "team-office-vacuuming", cat: "Our team" },
   { slug: "team-kitchen-mopping", cat: "Our team" }, { slug: "team-corridor-vacuuming", cat: "Our team" }, { slug: "glass-door-vacuum-city", cat: "Our team" },
   { slug: "restroom-vanity", cat: "Restrooms" }, { slug: "restroom-floor-scrubber", cat: "Restrooms" }, { slug: "restroom-cubicle", cat: "Restrooms" },
-  { slug: "classroom-clean", cat: "Education" }, { slug: "classroom-wipe-down", cat: "Education" }, { slug: "classroom-vacuum", cat: "Education" },
+  { slug: "classroom-clean", cat: "Education" }, { slug: "classroom-wipe-down", cat: "Education" }, { slug: "classroom-desk-spray", cat: "Education" },
   { slug: "hall-floor-polished", cat: "Education" }, { slug: "classroom-whiteboard", cat: "Education" }, { slug: "pressure-washing-concrete", cat: "Industrial" },
   { slug: "industrial-window-cleaning", cat: "Windows" }, { slug: "window-cleaning-1", cat: "Windows" }, { slug: "window-cleaning-2", cat: "Windows" },
   { slug: "blinds-window-cleaning", cat: "Windows" }, { slug: "stairs-mopping", cat: "Floors" }, { slug: "tile-floor-after-2", cat: "Floors" },

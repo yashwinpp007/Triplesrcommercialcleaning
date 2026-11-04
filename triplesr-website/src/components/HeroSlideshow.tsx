@@ -27,7 +27,7 @@ const slides = [
     trust: ["Checklist-led handover", "Weekday and weekend slots", "Clear written quotes"],
   },
   {
-    bg: "classroom-clean", card: "classroom-vacuum", tag: "Schools & childcare", line: "Classrooms, halls and amenities cleaned after hours.", href: "/services/school-cleaning", service: "school-cleaning",
+    bg: "classroom-clean", card: "classroom-desk-spray", tag: "Schools & childcare", line: "Classrooms, halls and amenities cleaned after hours.", href: "/services/school-cleaning", service: "school-cleaning",
     h1a: "Clean classrooms.", h1b: "Healthier learning.",
     sub: "Reliable after-hours cleaning for schools and childcare centres, with child-friendly product options and room-by-room checklists.",
     cta2: "School Cleaning", cta2Href: "/services/school-cleaning",

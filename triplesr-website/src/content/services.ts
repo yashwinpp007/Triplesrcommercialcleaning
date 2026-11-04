@@ -199,7 +199,7 @@ export const services: Service[] = [
     icon: "child",
     summary: "Hygienic, child-friendly cleaning for childcare centres, kindergartens and early learning.",
     hero: "classroom-clean",
-    gallery: ["classroom-wipe-down", "classroom-desk-spray", "classroom-vacuum", "classroom-mural-wipe"],
+    gallery: ["classroom-wipe-down", "classroom-desk-spray", "classroom-whiteboard", "classroom-mural-wipe"],
     intro:
       "Young children touch everything, so surfaces, floors and toys need regular attention. We clean childcare and early learning centres after hours with products suited to children's environments, so rooms are fresh when families arrive.",
     forWho: ["Long day care and preschools", "Early learning and kindergarten centres", "Out-of-school-hours care", "Tutoring and learning centres"],
