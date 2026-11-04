@@ -117,3 +117,6 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 .hero-progress { animation-name: hero-progress; animation-timing-function: linear; animation-fill-mode: both; }
 @keyframes hero-ring { from { stroke-dashoffset: 163.4; } to { stroke-dashoffset: 0; } }
 .hero-ring { animation-name: hero-ring; animation-timing-function: linear; animation-fill-mode: both; }
+
+@keyframes map-dash { to { stroke-dashoffset: -22; } }
+.map-route { animation: map-dash 1.4s linear infinite; }
