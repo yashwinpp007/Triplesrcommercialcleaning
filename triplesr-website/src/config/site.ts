@@ -24,6 +24,8 @@ export const site = {
   hoursText: [{ days: "Monday – Sunday", time: "Open 24 hours" }],
   // Fill these in only when confirmed by the client; the UI hides anything left empty.
   confirmed: { abn: "", insurance: false, policeChecked: false, yearsInBusiness: "20+" },
+  // Quote form submissions are forwarded to this Formspree form (override with FORMSPREE_ENDPOINT)
+  formspreeEndpoint: "https://formspree.io/f/xzeeyapo",
   responseSla: "We reply to every quote request within one business day.",
 };
 

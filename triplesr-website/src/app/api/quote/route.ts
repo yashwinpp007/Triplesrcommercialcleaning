@@ -55,6 +55,20 @@ async function verifyTurnstile(token: string, ip: string) {
   }
 }
 
+// Forward the enquiry to Formspree (JSON/AJAX mode). Done server-side so spam traps, rate limits and validation apply first.
+async function sendToFormspree(fields: Record<string, string>, replyTo: string, subject: string) {
+  const endpoint = process.env.FORMSPREE_ENDPOINT ?? site.formspreeEndpoint;
+  if (!endpoint) return false;
+  const res = await fetch(endpoint, {
+    method: "POST",
+    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    body: JSON.stringify({ ...fields, email: replyTo, _subject: subject }),
+    signal: AbortSignal.timeout(10_000),
+  });
+  if (!res.ok) console.error("formspree rejected submission", res.status);
+  return res.ok;
+}
+
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 async function sendEmail(to: string, subject: string, html: string, replyTo?: string) {
@@ -118,28 +132,48 @@ export async function POST(req: Request) {
     message: d.message, source: d.source, ipHash,
   };
 
-  // 7. Persist first so no lead is lost if email fails (local file; use a DB on serverless hosts)
+  // 7. Persist first so no lead is lost if email fails (local file; serverless hosts have no durable disk,
+  //    so there the notification email below is what keeps the lead)
+  let stored = false;
   try {
-    const dir = path.join(process.cwd(), "data");
+    const dir = process.env.LEAD_DATA_DIR ?? path.join(process.cwd(), "data");
     await mkdir(dir, { recursive: true });
     await appendFile(path.join(dir, "leads.jsonl"), JSON.stringify(lead) + "\n", { mode: 0o600 });
+    stored = true;
   } catch {
     console.error("lead storage failed");
   }
 
-  // 8. Notify the business + auto-reply to the customer (best effort)
+  // 8. Notify the business via Formspree, plus optional Resend email and customer auto-reply (best effort)
+  let notified = false;
+  const subject = `New quote request: ${service} (${d.suburb})`;
   try {
-    const rows = Object.entries({
-      Service: service, Suburb: d.suburb, Size: d.size, Floors: d.floors || "-", Frequency: d.frequency,
-      "Contact via": d.contactMethod, Name: d.name, Business: d.business || "-", Phone: d.phone, Email: d.email,
-      Message: d.message || "-", "Came from": d.source || "-",
-    }).map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0"><b>${k}</b></td><td>${esc(String(v))}</td></tr>`).join("");
-    await sendEmail(
-      process.env.LEAD_NOTIFY_EMAIL ?? site.email,
-      `New quote request: ${service} (${d.suburb})`,
-      `<h2>New quote request</h2><table>${rows}</table><p><a href="tel:${esc(d.phone)}">Call ${esc(d.phone)}</a></p>`,
+    notified = await sendToFormspree(
+      {
+        name: d.name, phone: d.phone, business: d.business || "-", service, suburb: d.suburb, size: d.size, floors: d.floors || "-",
+        frequency: d.frequency, contact_method: d.contactMethod, message: d.message || "-", came_from: d.source || "-",
+      },
       d.email,
+      subject,
     );
+  } catch {
+    console.error("formspree request failed");
+  }
+  try {
+    if (!notified) {
+      const rows = Object.entries({
+        Service: service, Suburb: d.suburb, Size: d.size, Floors: d.floors || "-", Frequency: d.frequency,
+        "Contact via": d.contactMethod, Name: d.name, Business: d.business || "-", Phone: d.phone, Email: d.email,
+        Message: d.message || "-", "Came from": d.source || "-",
+      }).map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0"><b>${k}</b></td><td>${esc(String(v))}</td></tr>`).join("");
+      notified = await sendEmail(
+        process.env.LEAD_NOTIFY_EMAIL ?? site.email,
+        subject,
+        `<h2>New quote request</h2><table>${rows}</table><p><a href="tel:${esc(d.phone)}">Call ${esc(d.phone)}</a></p>`,
+        d.email,
+      );
+    }
+    // Customer confirmation only sends when Resend is configured with a verified domain
     await sendEmail(
       d.email,
       `We've received your quote request – ${site.name}`,
@@ -147,6 +181,13 @@ export async function POST(req: Request) {
     );
   } catch {
     console.error("lead email failed");
+  }
+
+  // Never tell a customer it worked if neither the business email nor storage succeeded
+  if (!stored && !notified) {
+    console.error("lead lost: neither storage nor notification succeeded");
+    seenKeys.delete(d.idempotencyKey); // allow a retry
+    return fail(503, `We couldn't send your request just now. Please call ${site.phoneDisplay} or email ${site.email}.`);
   }
 
   return NextResponse.json({ ok: true });

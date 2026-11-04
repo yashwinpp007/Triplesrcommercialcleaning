@@ -19,7 +19,7 @@ export default function Privacy() {
         <h2 className={h}>How we use it</h2>
         <p>To reply to your enquiry, prepare quotes, deliver services, and keep business records. We do not sell your information.</p>
         <h2 className={h}>Who we share it with</h2>
-        <p>Service providers that help us run the website and email (for example, our email delivery provider and hosting provider), and bot-protection services. They may process data on our behalf. Some providers may store data outside Australia.</p>
+        <p>Service providers that help us run the website and email (for example, Formspree, which receives your quote request on our behalf, our email delivery provider and our hosting provider), and bot-protection services. They may process data on our behalf. Some providers may store data outside Australia.</p>
         <h2 className={h}>Cookies and analytics</h2>
         <p>We use essential cookies only by default. Analytics or marketing tags load only if you choose to allow them in the cookie banner.</p>
         <h2 className={h}>Storage and retention</h2>
