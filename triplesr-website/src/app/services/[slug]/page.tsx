@@ -8,6 +8,8 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { Breadcrumbs, CtaBand, SectionHead, ServiceCard } from "@/components/Sections";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { PhotoSlideshow } from "@/components/PhotoSlideshow";
+import { ServiceStory } from "@/components/ServiceStory";
+import { stories } from "@/content/service-stories";
 import { Reveal } from "@/components/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { Arrow, Check, Phone } from "@/components/Icons";
@@ -64,6 +66,8 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
       <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "Services", href: "/services" }, { name: s.title, href: `/services/${s.slug}` }]} />
+
+      {stories[s.slug] && <ServiceStory items={stories[s.slug]} />}
 
       <section className="py-14">
         <div className="container-x grid gap-12 lg:grid-cols-[1.5fr_1fr]">
