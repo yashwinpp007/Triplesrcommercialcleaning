@@ -5,8 +5,9 @@ import { serviceBySlug, services } from "@/content/services";
 import { site } from "@/config/site";
 import { Faq } from "@/components/Faq";
 import { QuoteForm } from "@/components/QuoteForm";
-import { Breadcrumbs, CtaBand, Photo, SectionHead, ServiceCard } from "@/components/Sections";
+import { Breadcrumbs, CtaBand, SectionHead, ServiceCard } from "@/components/Sections";
 import { ReviewsSection } from "@/components/ReviewsSection";
+import { PhotoSlideshow } from "@/components/PhotoSlideshow";
 import { Reveal } from "@/components/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { Arrow, Check, Phone } from "@/components/Icons";
@@ -100,10 +101,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
       <section className="bg-soft py-16">
         <div className="container-x">
           <SectionHead eyebrow="From our jobs" title={`${s.title} in action`} />
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {s.gallery.slice(0, 4).map((g, i) => (
-              <Reveal key={g} delay={i * 0.06}><Photo slug={g} className="aspect-[3/4]" sizes="(max-width: 768px) 50vw, 25vw" /></Reveal>
-            ))}
+          <div className="mt-8">
+            <PhotoSlideshow slugs={s.gallery.slice(0, 4)} label={`${s.title} in action`} />
+            <p className="mt-3 text-sm text-muted">Tap a photo to view the slideshow.</p>
           </div>
           {s.video && (
             <Reveal className="mt-8 max-w-sm">
