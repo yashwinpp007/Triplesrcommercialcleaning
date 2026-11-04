@@ -39,9 +39,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <section className="relative isolate overflow-hidden bg-navy text-white">
-        <Image src={hero.src} alt="" fill priority sizes="100vw" className="-z-20 object-cover opacity-45" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/85 to-navy/30" />
-        <div className="container-x grid gap-8 py-14 sm:py-20 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+        {/* Soft blurred backdrop of the same photo; the sharp photo is the framed card on the right */}
+        <Image src={hero.src} alt="" fill priority sizes="100vw" className="-z-20 scale-110 object-cover opacity-30 blur-2xl" aria-hidden />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/80 to-navy/40" />
+        <div className="container-x grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.1fr_0.9fr]">
           <Reveal>
             <p className="eyebrow !text-green-bright">{s.group}</p>
             <h1 className="mt-3 text-4xl font-extrabold !text-white sm:text-5xl">{s.h1}</h1>
@@ -50,6 +51,15 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <a href="#quote" className="btn btn-primary">Get a Free Quote <Arrow className="h-5 w-5" /></a>
               <a href={`tel:${site.phoneTel}`} className="btn btn-ghost"><Phone className="h-5 w-5" /> {site.phoneDisplay}</a>
             </div>
+          </Reveal>
+          <Reveal delay={0.12} className="relative">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border border-white/25 bg-navy-2 shadow-[0_40px_80px_-30px_rgba(0,0,0,.8)] ring-1 ring-white/10">
+              <Image src={hero.src} alt={hero.alt} fill priority sizes="(max-width: 1024px) 92vw, 45vw" className="object-cover object-[50%_35%]" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-navy/55 to-transparent" />
+            </div>
+            <span className="absolute -bottom-4 left-5 rounded-2xl border border-white/25 bg-white/15 px-4 py-2.5 text-sm font-bold text-white shadow-2xl backdrop-blur-md">
+              {s.title} <span className="font-medium text-white/80">· Triple SR</span>
+            </span>
           </Reveal>
         </div>
       </section>
