@@ -9,6 +9,9 @@ export const site = {
   email: "triplesrservicespty@gmail.com",
   phoneDisplay: "0427 724 809",
   phoneTel: "+61427724809",
+  // WhatsApp click-to-chat (international format, digits only) and the pre-filled opening message
+  whatsappNumber: "61427724809",
+  whatsappMessage: "Hi Triple SR Commercial Cleaning, I'd like a free quote for commercial cleaning.",
   social: {
     instagram: "https://www.instagram.com/triplesr_solutions?utm_source=qr",
     facebook:

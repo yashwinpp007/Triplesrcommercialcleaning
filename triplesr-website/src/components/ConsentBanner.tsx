@@ -20,7 +20,7 @@ export function ConsentBanner() {
     setShow(false);
   };
   return (
-    <div role="dialog" aria-label="Cookie preferences" className="fixed bottom-24 left-3 right-3 z-50 max-w-md rounded-2xl border border-line bg-white p-4 shadow-2xl sm:left-6 lg:bottom-6">
+    <div role="dialog" aria-label="Cookie preferences" className="fixed bottom-44 left-3 right-3 z-50 max-w-md rounded-2xl border border-line bg-white p-4 shadow-2xl sm:left-6 lg:bottom-6 lg:left-24">
       <p className="text-sm text-ink">
         We use essential cookies to run this site. With your permission we'd also use analytics to improve it. See our <Link href="/privacy-policy" className="font-bold text-teal underline">Privacy Policy</Link>.
       </p>

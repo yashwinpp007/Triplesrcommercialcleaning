@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileBar } from "@/components/MobileBar";
+import { FloatingContact } from "@/components/FloatingContact";
 import { ConsentBanner } from "@/components/ConsentBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/config/site";
@@ -60,6 +61,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <main id="main" className="flex-1 pt-20">{children}</main>
         <Footer />
         <MobileBar />
+        <FloatingContact />
         <ConsentBanner />
       </body>
     </html>
