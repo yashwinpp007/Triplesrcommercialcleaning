@@ -142,24 +142,9 @@ export default function Home() {
           <Reveal className="mb-10 max-w-2xl">
             <p className="eyebrow">Our service areas</p>
             <h2 id="map-heading" className="mt-2 text-3xl font-extrabold sm:text-4xl">Proudly servicing businesses across Sydney</h2>
-            <p className="mt-3 text-lg text-muted">Based in Blacktown, with the Sydney CBD as our focus. Tap a region for the suburbs we cover.</p>
+            <p className="mt-3 text-lg text-muted">Based in Blacktown, with the Sydney CBD as our focus. Explore the map or check your suburb.</p>
           </Reveal>
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {regions.map((r, i) => (
-              <Reveal as="li" key={r.slug} delay={(i % 4) * 0.05}>
-                <Link href={`/areas/${r.slug}`} className="card-lift block h-full rounded-2xl border border-line bg-white p-4">
-                  <span className="flex items-center justify-between gap-2">
-                    <span className="font-display text-base font-extrabold text-navy">{r.name}</span>
-                    {r.primary && <span className="rounded-full bg-green px-2 py-0.5 text-[10px] font-bold uppercase text-white">Focus</span>}
-                    {r.home && <span className="rounded-full bg-navy px-2 py-0.5 text-[10px] font-bold uppercase text-white">Base</span>}
-                  </span>
-                  <span className="mt-1.5 block text-sm text-muted">{r.suburbs.slice(0, 4).join(" · ")}</span>
-                </Link>
-              </Reveal>
-            ))}
-          </ul>
-          <Reveal className="mt-14">
-            <h3 className="mb-6 text-2xl font-extrabold">Explore the map</h3>
+          <Reveal>
             <SydneyMap />
           </Reveal>
         </div>
