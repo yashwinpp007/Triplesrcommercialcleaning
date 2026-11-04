@@ -35,7 +35,7 @@ export const site = {
     { days: "Sunday", time: "Closed" },
   ],
   // Fill these in only when confirmed by the client; the UI hides anything left empty.
-  confirmed: { abn: "", insurance: false, policeChecked: false, yearsInBusiness: "" },
+  confirmed: { abn: "", insurance: false, policeChecked: false, yearsInBusiness: "20+" },
   responseSla: "We reply to every quote request within one business day.",
 };
 

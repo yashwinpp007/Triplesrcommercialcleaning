@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { site } from "@/config/site";
 import { homeFaqs } from "@/lib/faqs";
 import { Faq } from "@/components/Faq";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -8,7 +7,6 @@ import { BeforeAfter } from "@/components/BeforeAfter";
 import { SydneyMap } from "@/components/SydneyMap";
 import { CountUp } from "@/components/CountUp";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
-import { regions } from "@/content/areas";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { CtaBand, Photo, SectionHead } from "@/components/Sections";
 import { ServicesShowcase } from "@/components/ServicesShowcase";
@@ -31,11 +29,12 @@ const why = [
   { icon: Clock, t: "Responsive customer support", d: "One phone number, one email and a reply to every enquiry within one business day." },
 ];
 
+// Figures supplied by the business owner
 const stats = [
-  { to: site.googleRating.value, decimals: 1, label: "Google rating", sub: `from ${site.googleRating.count} reviews` },
-  { to: site.googleRating.count, decimals: 0, label: "Google reviews", sub: "read word for word" },
-  { to: 10, decimals: 0, label: "Specialist services", sub: "offices to factories" },
-  { to: regions.length, decimals: 0, label: "Sydney regions", sub: "CBD to Western Sydney" },
+  { to: 20, label: "Years Experience" },
+  { to: 120, label: "Expert Team" },
+  { to: 200, label: "Happy Clients" },
+  { to: 500, label: "Cleaning Completed" },
 ];
 
 export default function Home() {
@@ -51,9 +50,8 @@ export default function Home() {
             <Reveal key={st.label} delay={i * 0.07} className={`px-2 sm:px-6 ${i > 0 ? "lg:border-l lg:border-line" : ""}`}>
               <dt className="sr-only">{st.label}</dt>
               <dd>
-                <span className="block font-display text-4xl font-extrabold text-navy sm:text-5xl"><CountUp to={st.to} decimals={st.decimals} /></span>
-                <span className="mt-1 block font-bold text-navy">{st.label}</span>
-                <span className="block text-sm text-muted">{st.sub}</span>
+                <span className="block font-display text-4xl font-extrabold text-navy sm:text-5xl"><CountUp to={st.to} suffix="+" /></span>
+                <span className="mt-1 block text-lg font-bold text-navy">{st.label}</span>
               </dd>
             </Reveal>
           ))}
