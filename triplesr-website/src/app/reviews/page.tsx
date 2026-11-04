@@ -5,6 +5,7 @@ import { Faq } from "@/components/Faq";
 import { Breadcrumbs, CtaBand, PageHero } from "@/components/Sections";
 import { GoogleAttribution, RatingSummary, ReviewCard, reviews } from "@/components/Reviews";
 import { Reveal } from "@/components/Reveal";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Google Reviews | Triple SR Commercial Cleaning",
@@ -20,7 +21,10 @@ export default function ReviewsPage() {
       <section className="py-14">
         <div className="container-x">
           <div className="flex flex-wrap items-center justify-between gap-6 rounded-3xl bg-soft p-6">
-            <RatingSummary />
+            <div className="flex flex-wrap items-center gap-6">
+              <Image src="/google-reviews.webp" alt="Google Reviews five-star rating badge" width={900} height={370} className="h-14 w-auto" />
+              <RatingSummary />
+            </div>
             <a href={site.googleProfile} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Leave us a review</a>
           </div>
           <ul className="mt-10 columns-1 gap-5 md:columns-2 lg:columns-3">

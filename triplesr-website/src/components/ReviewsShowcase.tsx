@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -47,8 +48,10 @@ export function ReviewsShowcase() {
       <div className="relative isolate flex flex-col justify-between overflow-hidden rounded-[2rem] bg-gradient-to-br from-navy via-navy-2 to-teal p-7 text-white shadow-2xl">
         <div aria-hidden className="absolute -right-10 -top-10 -z-10 h-48 w-48 rounded-full bg-green-bright/25 blur-3xl" />
         <div>
-          <p className="eyebrow !text-green-bright">Rated on Google</p>
-          <div className="mt-3 flex items-end gap-3">
+          <div className="inline-block rounded-2xl bg-white p-3 shadow-lg">
+            <Image src="/google-reviews.webp" alt="Google Reviews five-star rating badge" width={900} height={370} className="h-12 w-auto sm:h-14" />
+          </div>
+          <div className="mt-5 flex items-end gap-3">
             <span className="font-display text-6xl font-extrabold leading-none text-white">{site.googleRating.value}</span>
             <span className="pb-1 text-white/70">/ 5</span>
           </div>
