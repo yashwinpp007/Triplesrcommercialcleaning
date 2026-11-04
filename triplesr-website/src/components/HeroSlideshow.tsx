@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import { site } from "@/config/site";
 import { img } from "@/lib/images";
 import { Arrow, Check } from "./Icons";
@@ -12,13 +12,55 @@ import { OpenBadge } from "./OpenBadge";
 const INTERVAL = 7000;
 
 const slides = [
-  { bg: "office-city-views", card: "team-office-vacuuming", tag: "Sydney CBD offices", line: "After-hours office cleaning for CBD towers and workplaces.", href: "/services/regular-office-cleaning" },
-  { bg: "office-open-plan", card: "glass-door-vacuum-city", tag: "Commercial end of lease", line: "Detailed handover cleans, ready for the final inspection.", href: "/services/commercial-end-of-lease-cleaning" },
-  { bg: "classroom-clean", card: "classroom-vacuum", tag: "Schools & childcare", line: "Classrooms, halls and amenities cleaned after hours.", href: "/services/school-cleaning" },
-  { bg: "hall-floor-polished", card: "stairs-mopping", tag: "Floor care", line: "Polished, gleaming floors across commercial sites.", href: "/services" },
-  { bg: "pressure-washing-concrete", card: "industrial-carpet-extraction", tag: "Warehouse & industrial", line: "Heavy-duty cleaning for warehouses, factories and workshops.", href: "/services/warehouse-cleaning" },
-  { bg: "industrial-window-cleaning", card: "window-cleaning-1", tag: "Window cleaning", line: "Streak-free glass for offices, shopfronts and schools.", href: "/services/regular-window-cleaning" },
+  {
+    bg: "office-city-views", card: "team-office-vacuuming", tag: "Sydney CBD offices", line: "After-hours office cleaning for CBD towers and workplaces.", href: "/services/regular-office-cleaning", service: "regular-office-cleaning",
+    h1a: "A cleaner workplace.", h1b: "A higher standard.",
+    sub: "Professional commercial cleaning across Sydney, with the CBD as our focus. Reliable teams, tailored cleaning programs and a free on-site quote.",
+    cta2: "Explore Our Services", cta2Href: "/services",
+    trust: ["Free on-site quotes", "After-hours cleaning", "Consistent, uniformed teams"],
+  },
+  {
+    bg: "office-open-plan", card: "glass-door-vacuum-city", tag: "Commercial end of lease", line: "Detailed handover cleans, ready for the final inspection.", href: "/services/commercial-end-of-lease-cleaning", service: "commercial-end-of-lease-cleaning",
+    h1a: "Hand back your lease", h1b: "with confidence.",
+    sub: "Detailed commercial end of lease cleaning across Sydney, built around your checklist and ready for the final inspection.",
+    cta2: "End of Lease Cleaning", cta2Href: "/services/commercial-end-of-lease-cleaning",
+    trust: ["Checklist-led handover", "Weekday and weekend slots", "Clear written quotes"],
+  },
+  {
+    bg: "classroom-clean", card: "classroom-vacuum", tag: "Schools & childcare", line: "Classrooms, halls and amenities cleaned after hours.", href: "/services/school-cleaning", service: "school-cleaning",
+    h1a: "Clean classrooms.", h1b: "Healthier learning.",
+    sub: "Reliable after-hours cleaning for schools and childcare centres, with child-friendly product options and room-by-room checklists.",
+    cta2: "School Cleaning", cta2Href: "/services/school-cleaning",
+    trust: ["After-hours cleaning", "Child-friendly product options", "Holiday deep cleans"],
+  },
+  {
+    bg: "hall-floor-polished", card: "stairs-mopping", tag: "Floor care", line: "Polished, gleaming floors across commercial sites.", href: "/services", service: "regular-office-cleaning",
+    h1a: "Floors that", h1b: "shine back.",
+    sub: "Floor care that brings tiles, vinyl and concrete back to a clean, even finish, from daily mopping to scrubbing and polishing.",
+    cta2: "Explore Our Services", cta2Href: "/services",
+    trust: ["Scrubbing and polishing", "Strip and seal options", "Tidy, safe wet-floor work"],
+  },
+  {
+    bg: "pressure-washing-concrete", card: "industrial-carpet-extraction", tag: "Warehouse & industrial", line: "Heavy-duty cleaning for warehouses, factories and workshops.", href: "/services/warehouse-cleaning", service: "warehouse-cleaning",
+    h1a: "Built for tough sites.", h1b: "Cleaned to schedule.",
+    sub: "Warehouse, factory and industrial cleaning across Western Sydney and beyond, planned around your operations.",
+    cta2: "Warehouse Cleaning", cta2Href: "/services/warehouse-cleaning",
+    trust: ["Pressure washing and scrubbing", "Out-of-hours schedules", "Western Sydney is home base"],
+  },
+  {
+    bg: "industrial-window-cleaning", card: "window-cleaning-1", tag: "Window cleaning", line: "Streak-free glass for offices, shopfronts and schools.", href: "/services/regular-window-cleaning", service: "regular-window-cleaning",
+    h1a: "Crystal-clear glass,", h1b: "every single visit.",
+    sub: "Streak-free commercial window cleaning for offices, shopfronts and schools, on a regular schedule that suits you.",
+    cta2: "Window Cleaning", cta2Href: "/services/regular-window-cleaning",
+    trust: ["Interior and exterior glass", "Regular schedules", "Safe-access practices"],
+  },
 ] as const;
+
+const item = (reduce: boolean | null) => ({
+  hidden: reduce ? { opacity: 1 } : { opacity: 0, y: 26 },
+  show: { opacity: 1, y: 0, transition: { duration: reduce ? 0 : 0.7, ease: [0.2, 0.8, 0.2, 1] as [number, number, number, number] } },
+  out: { opacity: 0, y: reduce ? 0 : -14, transition: { duration: reduce ? 0 : 0.25 } },
+});
 
 export function HeroSlideshow() {
   const reduce = useReducedMotion();
@@ -101,43 +143,32 @@ export function HeroSlideshow() {
       <div aria-hidden className="sparkle absolute right-[42%] top-28 -z-10 hidden h-5 w-5 text-white lg:block"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12Z" /></svg></div>
 
       <div className="container-x grid gap-10 pb-36 pt-16 sm:pt-20 lg:grid-cols-[1.25fr_0.75fr] lg:items-center lg:pb-40">
-        {/* Copy */}
-        <div>
+        {/* Copy: changes with every slide */}
+        <div className="min-h-[26rem] sm:min-h-[27rem]">
           <div className="mb-5 flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur">Triple SR Commercial Cleaning</span>
             <OpenBadge tone="dark" />
           </div>
-          <motion.h1
-            initial={reduce ? false : { opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
-            className="max-w-3xl text-balance text-5xl font-extrabold leading-[1.02] !text-white sm:text-6xl lg:text-7xl"
-          >
-            A cleaner workplace. <span className="block bg-gradient-to-r from-green-bright to-[#7fe0d4] bg-clip-text text-transparent">A higher standard.</span>
-          </motion.h1>
-          <motion.p
-            initial={reduce ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.2, 0.8, 0.2, 1] }}
-            className="mt-6 max-w-xl text-lg text-white/90 sm:text-xl"
-          >
-            Professional commercial cleaning across Sydney, with the CBD as our focus. Reliable teams, tailored cleaning programs and a free on-site quote.
-          </motion.p>
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-          >
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/get-a-quote" className="btn btn-primary px-8">Get a Free Quote <Arrow className="h-5 w-5" /></Link>
-              <Link href="/services" className="btn btn-ghost px-8">Explore Our Services</Link>
-            </div>
-            <ul className="mt-8 hidden flex-wrap gap-x-7 gap-y-2 text-sm font-semibold text-white/90 sm:flex">
-              {["Free on-site quotes", "Tailored cleaning programs", "Reliable, consistent service"].map((t) => (
-                <li key={t} className="flex items-center gap-2"><Check className="h-5 w-5 text-green-bright" /> {t}</li>
-              ))}
-            </ul>
-          </motion.div>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div key={i} initial="hidden" animate="show" exit="out" variants={{ hidden: {}, show: { transition: { staggerChildren: reduce ? 0 : 0.09 } }, out: { transition: { staggerChildren: 0 } } }}>
+              <motion.p variants={item(reduce)} className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-green-bright">
+                <span className="h-px w-8 bg-green-bright" /> {s.tag}
+              </motion.p>
+              <motion.h1 variants={item(reduce)} className="max-w-3xl text-balance text-5xl font-extrabold leading-[1.08] !text-white sm:text-6xl lg:text-7xl">
+                {s.h1a} <span className="block bg-gradient-to-r from-green-bright to-[#7fe0d4] bg-clip-text pb-[0.14em] text-transparent">{s.h1b}</span>
+              </motion.h1>
+              <motion.p variants={item(reduce)} className="mt-4 max-w-xl text-lg text-white/90 sm:text-xl">{s.sub}</motion.p>
+              <motion.div variants={item(reduce)} className="mt-8 flex flex-wrap gap-3">
+                <Link href={`/get-a-quote?service=${s.service}`} className="btn btn-primary px-8">Get a Free Quote <Arrow className="h-5 w-5" /></Link>
+                <Link href={s.cta2Href} className="btn btn-ghost px-8">{s.cta2}</Link>
+              </motion.div>
+              <motion.ul variants={item(reduce)} className="mt-8 hidden flex-wrap gap-x-7 gap-y-2 text-sm font-semibold text-white/90 sm:flex">
+                {s.trust.map((t) => (
+                  <li key={t} className="flex items-center gap-2"><Check className="h-5 w-5 text-green-bright" /> {t}</li>
+                ))}
+              </motion.ul>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Floating portrait card (desktop) */}
