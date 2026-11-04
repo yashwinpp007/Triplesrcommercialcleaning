@@ -16,6 +16,7 @@ const links = [
   { href: "/areas", label: "Areas" },
   { href: "/gallery", label: "Gallery" },
   { href: "/reviews", label: "Reviews" },
+  { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
 

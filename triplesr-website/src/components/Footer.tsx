@@ -32,7 +32,7 @@ export function Footer() {
         <div>
           <h2 className="mb-3 font-display text-lg font-bold !text-white">Company</h2>
           <ul className="space-y-2 text-sm text-white/80">
-            {[["/about", "About us"], ["/areas", "Areas we service"], ["/areas/sydney-cbd", "Sydney CBD cleaning"], ["/gallery", "Gallery"], ["/reviews", "Google reviews"], ["/faq", "FAQ"], ["/contact", "Contact"], ["/get-a-quote", "Get a free quote"], ["/privacy-policy", "Privacy policy"], ["/terms", "Terms"]].map(([h, l]) => (
+            {[["/about", "About us"], ["/areas", "Areas we service"], ["/areas/sydney-cbd", "Sydney CBD cleaning"], ["/gallery", "Gallery"], ["/reviews", "Google reviews"], ["/blog", "Blog"], ["/faq", "FAQ"], ["/contact", "Contact"], ["/get-a-quote", "Get a free quote"], ["/privacy-policy", "Privacy policy"], ["/terms", "Terms"]].map(([h, l]) => (
               <li key={h}><Link className="hover:text-white hover:underline" href={h}>{l}</Link></li>
             ))}
           </ul>

@@ -92,3 +92,10 @@ export function regionFaqs(r: Region): Faq[] {
 }
 
 export const regionList = regions;
+
+export const blogFaqs: Faq[] = [
+  { q: "What does the Triple SR blog cover?", a: "Practical commercial cleaning advice for Sydney businesses: checklists, how to prepare for cleans, what affects cost and how to choose a cleaner." },
+  { q: "How often do you publish new articles?", a: "We add new guides regularly, so check back or follow us on Instagram and Facebook for updates." },
+  { q: "Can I ask for an article on a specific cleaning topic?", a: "Yes. Email triplesrservicespty@gmail.com or call 0427 724 809 with the topic you'd like us to cover." },
+  { q: "Is the advice on the blog specific to Sydney?", a: "It's written for Sydney and NSW businesses, but most of the cleaning guidance applies to any commercial premises." },
+];
