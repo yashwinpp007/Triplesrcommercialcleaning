@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/config/site";
-import { services } from "@/content/services";
 import { img } from "@/lib/images";
 import { homeFaqs } from "@/lib/faqs";
 import { Faq } from "@/components/Faq";
@@ -11,7 +10,8 @@ import { QuickQuote } from "@/components/QuickQuote";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SydneyMap } from "@/components/SydneyMap";
 import { GoogleAttribution, RatingSummary, ReviewsMarquee } from "@/components/Reviews";
-import { CtaBand, Photo, SectionHead, ServiceCard } from "@/components/Sections";
+import { CtaBand, Photo, SectionHead } from "@/components/Sections";
+import { ServicesShowcase } from "@/components/ServicesShowcase";
 import { Reveal } from "@/components/Reveal";
 import { Arrow, Calendar, Check, Clock, Phone, Shield, Sparkles, Users } from "@/components/Icons";
 import { OpenBadge } from "@/components/OpenBadge";
@@ -89,12 +89,18 @@ export default function Home() {
       </section>
 
       {/* SERVICES */}
-      <section className="bg-soft py-20">
-        <div className="container-x">
-          <SectionHead eyebrow="Our services" title="Cleaning for every kind of commercial space" text="Ten specialist services, each with its own checklist, equipment and approach." />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((s, i) => <ServiceCard key={s.slug} s={s} i={i} />)}
-          </div>
+      <section className="relative overflow-hidden bg-soft py-16 sm:py-20" aria-labelledby="services-heading">
+        <div aria-hidden className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-teal/10 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -left-32 bottom-0 h-80 w-80 rounded-full bg-green-bright/10 blur-3xl" />
+        <div className="container-x relative">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
+            <div className="max-w-xl">
+              <p className="eyebrow">Our services</p>
+              <h2 id="services-heading" className="mt-2 text-3xl font-extrabold sm:text-4xl">Cleaning for every kind of commercial space</h2>
+            </div>
+            <p className="max-w-sm text-muted">Ten specialist services, each with its own checklist, equipment and approach.</p>
+          </Reveal>
+          <div className="mt-8"><ServicesShowcase /></div>
         </div>
       </section>
 

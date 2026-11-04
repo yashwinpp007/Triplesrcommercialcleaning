@@ -30,7 +30,7 @@ export default function ServicesPage() {
           ))}
         </div>
       </section>
-      <section className="bg-soft py-16">
+      <section id="guide" className="bg-soft py-16">
         <div className="container-x">
           <SectionHead eyebrow="Which service do I need?" title="Quick guide to similar services" />
           <div className="mt-8 grid gap-5 md:grid-cols-3">

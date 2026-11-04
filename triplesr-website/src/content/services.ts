@@ -322,7 +322,7 @@ export const services: Service[] = [
     group: "Industrial & Logistics",
     icon: "gear",
     summary: "Heavy-duty cleaning for workshops, plants and industrial sites, from degreasing to deep clean.",
-    hero: "pressure-washing-concrete",
+    hero: "industrial-carpet-extraction",
     gallery: ["industrial-window-cleaning", "stairs-mopping", "restroom-floor-scrubber"],
     intro:
       "Industrial sites deal with oil, grease, dust and heavy foot and vehicle traffic. We use scrubbing and pressure-washing equipment to restore floors, equipment surrounds and amenities, with safety front of mind.",
