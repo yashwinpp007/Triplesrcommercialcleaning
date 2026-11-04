@@ -71,12 +71,12 @@ export function Header() {
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
-            <div className="relative" onMouseEnter={() => setMega(true)} onMouseLeave={() => setMega(false)}>
+            <div onMouseEnter={() => setMega(true)} onMouseLeave={() => setMega(false)}>
               <button
                 className="flex items-center gap-1 rounded-full px-4 py-2 font-semibold text-navy hover:bg-soft"
                 aria-expanded={mega}
                 aria-haspopup="true"
-                onClick={() => setMega((m) => !m)}
+                onClick={() => setMega(true)}
               >
                 Services <Chevron className={`h-4 w-4 transition-transform ${mega ? "rotate-180" : ""}`} />
               </button>
@@ -87,9 +87,9 @@ export function Header() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 8 }}
                     transition={{ duration: 0.18 }}
-                    className="absolute left-1/2 top-full w-[52rem] -translate-x-1/2 pt-3"
+                    className="absolute inset-x-0 top-full flex justify-center px-4 pt-1"
                   >
-                    <div className="grid grid-cols-4 gap-6 rounded-3xl border border-line bg-white p-6 shadow-2xl">
+                    <div className="grid w-[52rem] max-w-full grid-cols-4 gap-6 rounded-3xl border border-line bg-white p-6 shadow-2xl">
                       {serviceGroups.map((g) => (
                         <div key={g}>
                           <p className="eyebrow mb-3">{g}</p>
