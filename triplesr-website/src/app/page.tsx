@@ -9,7 +9,8 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { QuickQuote } from "@/components/QuickQuote";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SydneyMap } from "@/components/SydneyMap";
-import { GoogleAttribution, RatingSummary, ReviewsMarquee } from "@/components/Reviews";
+import { GoogleAttribution, RatingSummary } from "@/components/Reviews";
+import { ReviewsShowcase } from "@/components/ReviewsShowcase";
 import { CtaBand, Photo, SectionHead } from "@/components/Sections";
 import { ServicesShowcase } from "@/components/ServicesShowcase";
 import { Reveal } from "@/components/Reveal";
@@ -166,15 +167,18 @@ export default function Home() {
       </section>
 
       {/* REVIEWS */}
-      <section className="bg-soft py-20">
-        <div className="container-x">
-          <div className="flex flex-wrap items-end justify-between gap-6">
-            <SectionHead eyebrow="Google reviews" title="What our customers say" />
-            <RatingSummary />
-          </div>
+      <section className="relative overflow-hidden bg-soft py-16 sm:py-20" aria-labelledby="reviews-heading">
+        <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-teal/10 blur-3xl" />
+        <div className="container-x relative">
+          <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-4">
+            <div className="max-w-xl">
+              <p className="eyebrow">Google reviews</p>
+              <h2 id="reviews-heading" className="mt-2 text-3xl font-extrabold sm:text-4xl">What our customers say</h2>
+            </div>
+            <GoogleAttribution />
+          </Reveal>
+          <Reveal delay={0.08}><ReviewsShowcase /></Reveal>
         </div>
-        <div className="mt-10"><ReviewsMarquee /></div>
-        <div className="container-x mt-8"><GoogleAttribution /></div>
       </section>
 
       {/* MAP */}
