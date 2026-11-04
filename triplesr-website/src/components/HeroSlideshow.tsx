@@ -41,7 +41,7 @@ const slides = [
     trust: ["Scrubbing and polishing", "Strip and seal options", "Tidy, safe wet-floor work"],
   },
   {
-    bg: "pressure-washing-concrete", card: "industrial-carpet-extraction", tag: "Warehouse & industrial", line: "Heavy-duty cleaning for warehouses, factories and workshops.", href: "/services/warehouse-cleaning", service: "warehouse-cleaning",
+    bg: "pressure-washing-concrete", card: "pressure-washing-detail", tag: "Warehouse & industrial", line: "Heavy-duty cleaning for warehouses, factories and workshops.", href: "/services/warehouse-cleaning", service: "warehouse-cleaning",
     h1a: "Built for tough sites.", h1b: "Cleaned to schedule.",
     sub: "Warehouse, factory and industrial cleaning across Western Sydney and beyond, planned around your operations.",
     cta2: "Warehouse Cleaning", cta2Href: "/services/warehouse-cleaning",

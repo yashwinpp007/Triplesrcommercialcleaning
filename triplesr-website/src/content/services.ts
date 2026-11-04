@@ -322,7 +322,7 @@ export const services: Service[] = [
     group: "Industrial & Logistics",
     icon: "gear",
     summary: "Heavy-duty cleaning for workshops, plants and industrial sites, from degreasing to deep clean.",
-    hero: "industrial-carpet-extraction",
+    hero: "pressure-washing-detail",
     gallery: ["industrial-window-cleaning", "stairs-mopping", "restroom-floor-scrubber"],
     intro:
       "Industrial sites deal with oil, grease, dust and heavy foot and vehicle traffic. We use scrubbing and pressure-washing equipment to restore floors, equipment surrounds and amenities, with safety front of mind.",
@@ -353,7 +353,6 @@ export const services: Service[] = [
     ],
     related: ["factory-cleaning", "warehouse-cleaning", "commercial-end-of-lease-cleaning"],
     compare: { text: "Cleaning a production line or manufacturing site? See factory cleaning.", to: "/services/factory-cleaning" },
-    video: { src: "/video/clip-5.mp4", poster: "/video/clip-5-poster.webp" },
     metaTitle: "Industrial Cleaning Services Sydney | Triple SR Commercial Cleaning",
     metaDescription: "Heavy-duty industrial cleaning across Sydney and Western Sydney: degreasing, pressure washing and site maintenance. Free quote.",
     reviewIds: [],
