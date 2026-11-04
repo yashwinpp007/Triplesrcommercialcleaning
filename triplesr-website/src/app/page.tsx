@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/config/site";
-import { img } from "@/lib/images";
 import { homeFaqs } from "@/lib/faqs";
 import { Faq } from "@/components/Faq";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -16,7 +14,7 @@ import { CtaBand, Photo, SectionHead } from "@/components/Sections";
 import { ServicesShowcase } from "@/components/ServicesShowcase";
 import { Reveal } from "@/components/Reveal";
 import { Arrow, Calendar, Check, Clock, Shield, Sparkles, Users } from "@/components/Icons";
-import { OpenBadge } from "@/components/OpenBadge";
+import { HeroSlideshow } from "@/components/HeroSlideshow";
 
 export const metadata: Metadata = {
   title: "Commercial Cleaning Sydney CBD & Greater Sydney | Triple SR Commercial Cleaning",
@@ -41,48 +39,10 @@ const stats = [
 ];
 
 export default function Home() {
-  const hero = img("office-city-views");
   return (
     <>
       {/* HERO */}
-      <section className="relative isolate flex min-h-[34rem] items-center overflow-hidden bg-navy text-white lg:min-h-[40rem]">
-        <Image src={hero.src} alt="" fill priority fetchPriority="high" sizes="100vw" className="-z-20 scale-105 object-cover" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/85 to-navy/30" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
-        <div aria-hidden className="sparkle absolute right-[18%] top-28 -z-10 hidden h-6 w-6 text-white lg:block"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12Z" /></svg></div>
-        <div className="container-x py-16 sm:py-20">
-          <Reveal>
-            <div className="mb-5 flex flex-wrap items-center gap-3">
-              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur">Triple SR Commercial Cleaning</span>
-              <OpenBadge tone="dark" />
-            </div>
-            <h1 className="max-w-3xl text-balance text-5xl font-extrabold leading-[1.02] !text-white sm:text-6xl lg:text-7xl">
-              A cleaner workplace. <span className="bg-gradient-to-r from-green-bright to-[#7fe0d4] bg-clip-text text-transparent">A higher standard.</span>
-            </h1>
-            <p className="mt-6 max-w-xl text-lg text-white/90 sm:text-xl">
-              Professional commercial cleaning across Sydney, with the CBD as our focus. Reliable teams, tailored cleaning programs and a free on-site quote.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link href="/get-a-quote" className="btn btn-primary px-8">Get a Free Quote <Arrow className="h-5 w-5" /></Link>
-              <Link href="/services" className="btn btn-ghost px-8">Explore Our Services</Link>
-            </div>
-            <ul className="mt-9 flex flex-wrap gap-x-7 gap-y-2 text-sm font-semibold text-white/90">
-              {["Free on-site quotes", "Tailored cleaning programs", "Reliable, consistent service"].map((t) => (
-                <li key={t} className="flex items-center gap-2"><Check className="h-5 w-5 text-green-bright" /> {t}</li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-        <Reveal delay={0.35} className="absolute bottom-6 right-6 hidden rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-md lg:block">
-          <a href={site.googleProfile} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4">
-            <span className="font-display text-4xl font-extrabold text-white">{site.googleRating.value}</span>
-            <span>
-              <span className="flex gap-0.5 text-amber-400" aria-hidden>{"★★★★★"}</span>
-              <span className="text-sm text-white/85">{site.googleRating.count} Google reviews</span>
-            </span>
-          </a>
-        </Reveal>
-      </section>
+      <HeroSlideshow />
 
       {/* STATS */}
       <section aria-label="At a glance" className="border-b border-line bg-white">

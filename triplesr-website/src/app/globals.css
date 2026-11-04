@@ -110,3 +110,8 @@ details[open] .faq-chevron { transform: rotate(180deg); }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .marquee-track { animation: none; overflow-x: auto; }
 }
+
+@keyframes kenburns { from { transform: scale(1.14) translate3d(1.2%, 0.8%, 0); } to { transform: scale(1) translate3d(0, 0, 0); } }
+.hero-kenburns { animation: kenburns 9s ease-out both; will-change: transform; }
+@keyframes hero-progress { from { width: 0; } to { width: 100%; } }
+.hero-progress { animation-name: hero-progress; animation-timing-function: linear; animation-fill-mode: both; }
