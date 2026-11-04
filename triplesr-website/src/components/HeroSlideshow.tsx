@@ -62,6 +62,38 @@ const item = (reduce: boolean | null) => ({
   out: { opacity: 0, y: reduce ? 0 : -14, transition: { duration: reduce ? 0 : 0.25 } },
 });
 
+type Slide = (typeof slides)[number];
+
+// One slide's text. The live copy animates in; the invisible copies of every slide are stacked in the same
+// grid cell so the block always reserves the height of the tallest slide (no layout shift between slides).
+function SlideCopy({ s, live, reduce }: { s: Slide; live: boolean; reduce: boolean | null }) {
+  const P = live ? motion.p : "p";
+  const H = live ? motion.h1 : "div";
+  const D = live ? motion.div : "div";
+  const U = live ? motion.ul : "ul";
+  const v = live ? { variants: item(reduce) } : {};
+  return (
+    <>
+      <P {...v} className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-green-bright">
+        <span className="h-px w-8 bg-green-bright" /> {s.tag}
+      </P>
+      <H {...v} className="max-w-3xl text-balance text-5xl font-extrabold leading-[1.08] !text-white sm:text-6xl lg:text-7xl">
+        {s.h1a} <span className="block bg-gradient-to-r from-green-bright to-[#7fe0d4] bg-clip-text pb-[0.14em] text-transparent">{s.h1b}</span>
+      </H>
+      <P {...v} className="mt-4 max-w-xl text-lg text-white/90 sm:text-xl">{s.sub}</P>
+      <D {...v} className="mt-8 flex flex-wrap gap-3">
+        <Link href={`/get-a-quote?service=${s.service}`} className="btn btn-primary px-8" tabIndex={live ? undefined : -1}>Get a Free Quote <Arrow className="h-5 w-5" /></Link>
+        <Link href={s.cta2Href} className="btn btn-ghost px-8" tabIndex={live ? undefined : -1}>{s.cta2}</Link>
+      </D>
+      <U {...v} className="mt-8 hidden flex-wrap gap-x-7 gap-y-2 text-sm font-semibold text-white/90 sm:flex">
+        {s.trust.map((t) => (
+          <li key={t} className="flex items-center gap-2"><Check className="h-5 w-5 text-green-bright" /> {t}</li>
+        ))}
+      </U>
+    </>
+  );
+}
+
 export function HeroSlideshow() {
   const reduce = useReducedMotion();
   const [i, setI] = useState(0);
@@ -144,32 +176,26 @@ export function HeroSlideshow() {
       <div aria-hidden className="sparkle absolute right-[42%] top-28 -z-10 hidden h-5 w-5 text-white lg:block"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12Z" /></svg></div>
 
       <div className="container-x grid gap-10 pb-16 pt-20 sm:pt-24 lg:grid-cols-[1.25fr_0.75fr] lg:items-center lg:pb-20">
-        {/* Copy: changes with every slide */}
-        <div className="min-h-[26rem] sm:min-h-[27rem]">
+        {/* Copy: changes with every slide; the grid reserves the tallest slide's height */}
+        <div>
           <div className="mb-5 flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur">Triple SR Commercial Cleaning</span>
             <OpenBadge tone="dark" />
           </div>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div key={i} initial="hidden" animate="show" exit="out" variants={{ hidden: {}, show: { transition: { staggerChildren: reduce ? 0 : 0.09 } }, out: { transition: { staggerChildren: 0 } } }}>
-              <motion.p variants={item(reduce)} className="mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.16em] text-green-bright">
-                <span className="h-px w-8 bg-green-bright" /> {s.tag}
-              </motion.p>
-              <motion.h1 variants={item(reduce)} className="max-w-3xl text-balance text-5xl font-extrabold leading-[1.08] !text-white sm:text-6xl lg:text-7xl">
-                {s.h1a} <span className="block bg-gradient-to-r from-green-bright to-[#7fe0d4] bg-clip-text pb-[0.14em] text-transparent">{s.h1b}</span>
-              </motion.h1>
-              <motion.p variants={item(reduce)} className="mt-4 max-w-xl text-lg text-white/90 sm:text-xl">{s.sub}</motion.p>
-              <motion.div variants={item(reduce)} className="mt-8 flex flex-wrap gap-3">
-                <Link href={`/get-a-quote?service=${s.service}`} className="btn btn-primary px-8">Get a Free Quote <Arrow className="h-5 w-5" /></Link>
-                <Link href={s.cta2Href} className="btn btn-ghost px-8">{s.cta2}</Link>
-              </motion.div>
-              <motion.ul variants={item(reduce)} className="mt-8 hidden flex-wrap gap-x-7 gap-y-2 text-sm font-semibold text-white/90 sm:flex">
-                {s.trust.map((t) => (
-                  <li key={t} className="flex items-center gap-2"><Check className="h-5 w-5 text-green-bright" /> {t}</li>
-                ))}
-              </motion.ul>
-            </motion.div>
-          </AnimatePresence>
+          <div className="grid">
+            {slides.map((sl) => (
+              <div key={sl.bg} aria-hidden inert className="pointer-events-none invisible select-none [grid-area:1/1]">
+                <SlideCopy s={sl} live={false} reduce={reduce} />
+              </div>
+            ))}
+            <div className="[grid-area:1/1]">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div key={i} initial="hidden" animate="show" exit="out" variants={{ hidden: {}, show: { transition: { staggerChildren: reduce ? 0 : 0.09 } }, out: { transition: { staggerChildren: 0 } } }}>
+                  <SlideCopy s={s} live reduce={reduce} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
 
         {/* Floating portrait card (desktop) */}
