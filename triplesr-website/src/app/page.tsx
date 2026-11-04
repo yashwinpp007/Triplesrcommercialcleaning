@@ -15,9 +15,11 @@ import { Arrow, Calendar, Check, Clock, Shield, Sparkles, Users } from "@/compon
 import { HeroSlideshow } from "@/components/HeroSlideshow";
 
 export const metadata: Metadata = {
-  title: "Commercial Cleaning Sydney CBD & Greater Sydney | Triple SR Commercial Cleaning",
-  description: "Commercial cleaning across Sydney CBD and Greater Sydney: offices, schools, childcare, aged care, warehouses, industrial and windows. Free on-site quotes. Call 0427 724 809.",
+  title: "Best Commercial Cleaning Sydney | Triple SR",
+  description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809.",
   alternates: { canonical: "/" },
+  openGraph: { title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809.", url: "/" },
+  twitter: { card: "summary_large_image", title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809." },
 };
 
 const why = [
