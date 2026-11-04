@@ -12,15 +12,15 @@ export function Faq({ items, title = "Frequently asked questions" }: { items: Fa
       <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.6fr]">
         <Reveal>
           <p className="eyebrow">FAQ</p>
-          <h2 id="faq-heading" className="mt-2 text-3xl font-extrabold sm:text-4xl">{title}</h2>
+          <h2 id="faq-heading" className="mt-2 text-4xl font-extrabold sm:text-5xl">{title}</h2>
           <p className="mt-3 text-muted">Still have a question? Call <a className="font-bold text-teal" href={`tel:${site.phoneTel}`}>{site.phoneDisplay}</a> or <Link className="font-bold text-teal underline" href="/get-a-quote">get a free quote</Link>.</p>
         </Reveal>
         <div className="space-y-3">
           {items.map((f, i) => (
             <Reveal key={f.q} delay={i * 0.04}>
-              <details className="group rounded-2xl border border-line bg-white p-5 open:border-teal open:shadow-lg">
+              <details className="group rounded-2xl border border-line bg-white p-5 transition-shadow hover:shadow-md open:border-teal open:shadow-lg sm:p-6">
                 <summary className="flex items-center justify-between gap-4 text-left font-bold text-navy">
-                  <h3 className="text-base font-bold sm:text-lg">{f.q}</h3>
+                  <h3 className="text-base font-bold sm:text-xl">{f.q}</h3>
                   <Chevron className="faq-chevron h-5 w-5 shrink-0 text-teal transition-transform" />
                 </summary>
                 <p className="mt-3 text-muted">{f.a}</p>

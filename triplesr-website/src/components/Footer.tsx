@@ -2,18 +2,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/config/site";
 import { services } from "@/content/services";
+import { regions } from "@/content/areas";
 import { Facebook, Instagram, Mail, Phone, Pin } from "./Icons";
 import { OpenBadge } from "./OpenBadge";
 
 export function Footer() {
   return (
     <footer className="bg-navy pb-28 text-white lg:pb-0">
-      <div className="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.1fr]">
         <div>
           <div className="inline-block rounded-2xl bg-white p-3">
-            <Image src="/logo.png" alt={site.name} width={900} height={547} className="h-16 w-auto" />
+            <Image src="/logo.png" alt={site.name} width={900} height={547} className="h-20 w-auto" />
           </div>
-          <p className="mt-4 max-w-xs text-sm text-white/80">{site.tagline} Free on-site quotes and reliable, uniformed teams.</p>
+          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/80">Triple SR Commercial Cleaning provides reliable, tailored commercial cleaning for offices, schools, care facilities and industrial sites across Sydney, with the CBD as our focus. Free on-site quotes.</p>
+          {site.confirmed.abn && <p className="mt-3 text-xs text-white/70">ABN {site.confirmed.abn}</p>}
           <div className="mt-4 flex gap-3">
             <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Triple SR on Instagram" className="grid h-11 w-11 place-items-center rounded-full bg-white/10 hover:bg-white/20"><Instagram className="h-5 w-5" /></a>
             <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Triple SR on Facebook" className="grid h-11 w-11 place-items-center rounded-full bg-white/10 hover:bg-white/20"><Facebook className="h-5 w-5" /></a>
@@ -33,6 +35,15 @@ export function Footer() {
             {[["/about", "About us"], ["/areas", "Areas we service"], ["/areas/sydney-cbd", "Sydney CBD cleaning"], ["/gallery", "Gallery"], ["/reviews", "Google reviews"], ["/faq", "FAQ"], ["/contact", "Contact"], ["/get-a-quote", "Get a free quote"], ["/privacy-policy", "Privacy policy"], ["/terms", "Terms"]].map(([h, l]) => (
               <li key={h}><Link className="hover:text-white hover:underline" href={h}>{l}</Link></li>
             ))}
+          </ul>
+        </div>
+        <div>
+          <h2 className="mb-3 font-display text-lg font-bold !text-white">Areas we service</h2>
+          <ul className="space-y-2 text-sm text-white/80">
+            {regions.slice(0, 8).map((r) => (
+              <li key={r.slug}><Link className="hover:text-white hover:underline" href={`/areas/${r.slug}`}>{r.name.replace(" (Blacktown base)", "")}</Link></li>
+            ))}
+            <li><Link className="font-bold text-green-bright hover:underline" href="/areas">All areas →</Link></li>
           </ul>
         </div>
         <div>

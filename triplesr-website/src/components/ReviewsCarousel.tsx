@@ -6,7 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { reviews as all, Stars, type ReviewT } from "./Reviews";
 import { Arrow } from "./Icons";
 
-const INTERVAL = 5500;
+const INTERVAL = 8000;
 
 function usePerView() {
   const [n, setN] = useState(1);

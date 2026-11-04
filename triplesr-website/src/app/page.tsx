@@ -6,15 +6,16 @@ import { img } from "@/lib/images";
 import { homeFaqs } from "@/lib/faqs";
 import { Faq } from "@/components/Faq";
 import { QuoteForm } from "@/components/QuoteForm";
-import { QuickQuote } from "@/components/QuickQuote";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SydneyMap } from "@/components/SydneyMap";
-import { RatingSummary } from "@/components/Reviews";
+import { CountUp } from "@/components/CountUp";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
+import { regions } from "@/content/areas";
 import { ReviewsSection } from "@/components/ReviewsSection";
 import { CtaBand, Photo, SectionHead } from "@/components/Sections";
 import { ServicesShowcase } from "@/components/ServicesShowcase";
 import { Reveal } from "@/components/Reveal";
-import { Arrow, Calendar, Check, Clock, Phone, Shield, Sparkles, Users } from "@/components/Icons";
+import { Arrow, Calendar, Check, Clock, Shield, Sparkles, Users } from "@/components/Icons";
 import { OpenBadge } from "@/components/OpenBadge";
 
 export const metadata: Metadata = {
@@ -24,19 +25,19 @@ export const metadata: Metadata = {
 };
 
 const why = [
-  { icon: Users, t: "Uniformed, consistent teams", d: "The same Triple SR team on your site, in uniform, who learn your space and your standards." },
-  { icon: Calendar, t: "Flexible, after-hours schedules", d: "Daily, weekly or one-off cleans, with evening, early-morning and weekend options." },
-  { icon: Shield, t: "Free on-site quotes", d: "We inspect your premises and send a clear written quote with no obligation." },
-  { icon: Sparkles, t: "Checklists, not guesswork", d: "A site-specific checklist so everyone knows exactly what's cleaned and how often." },
-  { icon: Clock, t: "Quick to respond", d: "One phone number, one email and a reply to every enquiry within one business day." },
-  { icon: Check, t: "Rated 4.6 on Google", d: "Customer reviews on our Google profile, with the real text shown on this site." },
+  { icon: Check, t: "Consistent cleaning standards", d: "A written, site-specific checklist so every visit meets the same standard." },
+  { icon: Users, t: "Uniformed, regular teams", d: "The same Triple SR team on your site, who learn your space and your standards." },
+  { icon: Calendar, t: "Flexible cleaning schedules", d: "Daily, weekly or one-off cleans, with evening, early-morning and weekend options." },
+  { icon: Sparkles, t: "Tailored cleaning solutions", d: "Scope, products and equipment matched to your site, from offices to factories." },
+  { icon: Shield, t: "Inspections and follow-up", d: "We inspect early cleans closely and put any issue right quickly." },
+  { icon: Clock, t: "Responsive customer support", d: "One phone number, one email and a reply to every enquiry within one business day." },
 ];
 
-const steps = [
-  ["Request a quote", "Send the form or call us. It takes about a minute."],
-  ["Free site inspection", "We look at your space, access and needs."],
-  ["Tailored plan and price", "A clear written scope, schedule and quote."],
-  ["We clean, you relax", "A consistent team delivers to your checklist."],
+const stats = [
+  { to: site.googleRating.value, decimals: 1, label: "Google rating", sub: `from ${site.googleRating.count} reviews` },
+  { to: site.googleRating.count, decimals: 0, label: "Google reviews", sub: "read word for word" },
+  { to: 10, decimals: 0, label: "Specialist services", sub: "offices to factories" },
+  { to: regions.length, decimals: 0, label: "Sydney regions", sub: "CBD to Western Sydney" },
 ];
 
 export default function Home() {
@@ -44,49 +45,59 @@ export default function Home() {
   return (
     <>
       {/* HERO */}
-      <section className="relative isolate overflow-hidden bg-navy text-white">
-        <Image src={hero.src} alt="" fill priority fetchPriority="high" sizes="100vw" className="-z-20 object-cover" />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/85 to-navy/35" />
-        <div aria-hidden className="sparkle absolute right-[18%] top-24 -z-10 hidden h-6 w-6 text-white lg:block"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12Z" /></svg></div>
-        <div className="container-x grid gap-10 py-14 sm:py-20 lg:grid-cols-[1.35fr_1fr] lg:items-center lg:py-24">
-          <div>
-            <Reveal>
-              <div className="mb-4 flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur">Sydney CBD &amp; Greater Sydney</span>
-                <OpenBadge tone="dark" />
-              </div>
-              <h1 className="text-4xl font-extrabold leading-[1.05] !text-white sm:text-5xl lg:text-6xl">
-                Commercial cleaning across Sydney, <span className="bg-gradient-to-r from-green-bright to-[#7fe0d4] bg-clip-text text-transparent">done properly.</span>
-              </h1>
-              <p className="mt-5 max-w-xl text-lg text-white/90">
-                Offices, schools, childcare, aged care, warehouses and industrial sites. Uniformed teams, flexible after-hours schedules and free on-site quotes, with the Sydney CBD as our primary focus.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/get-a-quote" className="btn btn-primary">Get a Free Quote <Arrow className="h-5 w-5" /></Link>
-                <a href={`tel:${site.phoneTel}`} className="btn btn-ghost"><Phone className="h-5 w-5" /> Call {site.phoneDisplay}</a>
-              </div>
-              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-white/90">
-                {["Free on-site quotes", "After-hours cleaning", "Uniformed, consistent teams"].map((t) => (
-                  <li key={t} className="flex items-center gap-2"><Check className="h-5 w-5 text-green-bright" /> {t}</li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-          <Reveal delay={0.15}><QuickQuote /></Reveal>
+      <section className="relative isolate flex min-h-[34rem] items-center overflow-hidden bg-navy text-white lg:min-h-[40rem]">
+        <Image src={hero.src} alt="" fill priority fetchPriority="high" sizes="100vw" className="-z-20 scale-105 object-cover" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-navy via-navy/85 to-navy/30" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
+        <div aria-hidden className="sparkle absolute right-[18%] top-28 -z-10 hidden h-6 w-6 text-white lg:block"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12Z" /></svg></div>
+        <div className="container-x py-16 sm:py-20">
+          <Reveal>
+            <div className="mb-5 flex flex-wrap items-center gap-3">
+              <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur">Triple SR Commercial Cleaning</span>
+              <OpenBadge tone="dark" />
+            </div>
+            <h1 className="max-w-3xl text-balance text-5xl font-extrabold leading-[1.02] !text-white sm:text-6xl lg:text-7xl">
+              A cleaner workplace. <span className="bg-gradient-to-r from-green-bright to-[#7fe0d4] bg-clip-text text-transparent">A higher standard.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg text-white/90 sm:text-xl">
+              Professional commercial cleaning across Sydney, with the CBD as our focus. Reliable teams, tailored cleaning programs and a free on-site quote.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <Link href="/get-a-quote" className="btn btn-primary px-8">Get a Free Quote <Arrow className="h-5 w-5" /></Link>
+              <Link href="/services" className="btn btn-ghost px-8">Explore Our Services</Link>
+            </div>
+            <ul className="mt-9 flex flex-wrap gap-x-7 gap-y-2 text-sm font-semibold text-white/90">
+              {["Free on-site quotes", "Tailored cleaning programs", "Reliable, consistent service"].map((t) => (
+                <li key={t} className="flex items-center gap-2"><Check className="h-5 w-5 text-green-bright" /> {t}</li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
+        <Reveal delay={0.35} className="absolute bottom-6 right-6 hidden rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-md lg:block">
+          <a href={site.googleProfile} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4">
+            <span className="font-display text-4xl font-extrabold text-white">{site.googleRating.value}</span>
+            <span>
+              <span className="flex gap-0.5 text-amber-400" aria-hidden>{"★★★★★"}</span>
+              <span className="text-sm text-white/85">{site.googleRating.count} Google reviews</span>
+            </span>
+          </a>
+        </Reveal>
       </section>
 
-      {/* TRUST STRIP */}
-      <section aria-label="Trust" className="border-b border-line bg-white">
-        <div className="container-x grid gap-4 py-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="flex items-center gap-3"><RatingSummary /></div>
-          {[["Local business", "Based in Blacktown, NSW"], ["Free quotes", "On-site, no obligation"], ["Sydney-wide", "CBD to Western Sydney"]].map(([a, b]) => (
-            <div key={a} className="flex items-center gap-3 border-l-0 sm:border-l sm:border-line sm:pl-6">
-              <Check className="h-8 w-8 rounded-full bg-teal-soft p-1.5 text-teal" />
-              <div><p className="font-bold text-navy">{a}</p><p className="text-sm text-muted">{b}</p></div>
-            </div>
+      {/* STATS */}
+      <section aria-label="At a glance" className="border-b border-line bg-white">
+        <dl className="container-x grid grid-cols-2 gap-y-6 py-7 lg:grid-cols-4">
+          {stats.map((st, i) => (
+            <Reveal key={st.label} delay={i * 0.07} className={`px-2 sm:px-6 ${i > 0 ? "lg:border-l lg:border-line" : ""}`}>
+              <dt className="sr-only">{st.label}</dt>
+              <dd>
+                <span className="block font-display text-4xl font-extrabold text-navy sm:text-5xl"><CountUp to={st.to} decimals={st.decimals} /></span>
+                <span className="mt-1 block font-bold text-navy">{st.label}</span>
+                <span className="block text-sm text-muted">{st.sub}</span>
+              </dd>
+            </Reveal>
           ))}
-        </div>
+        </dl>
       </section>
 
       {/* SERVICES */}
@@ -113,7 +124,7 @@ export default function Home() {
             <Photo slug="team-office-vacuuming" className="mt-8 aspect-[3/4]" sizes="(max-width: 1024px) 45vw, 25vw" />
           </Reveal>
           <div>
-            <SectionHead eyebrow="Why Triple SR" title="A cleaning partner you can rely on" text="We keep it simple: show up on time, follow the checklist, communicate clearly." />
+            <SectionHead eyebrow="The Triple SR difference" title="The difference is in the details" text="We keep it simple: show up on time, follow the checklist, communicate clearly." />
             <div className="mt-8 grid gap-5 sm:grid-cols-2">
               {why.map((w, i) => (
                 <Reveal key={w.t} delay={i * 0.05}>
@@ -133,35 +144,31 @@ export default function Home() {
         <div className="container-x">
           <Reveal className="max-w-2xl">
             <p className="eyebrow !text-green-bright">How it works</p>
-            <h2 className="mt-2 text-3xl font-extrabold !text-white sm:text-4xl">From enquiry to spotless in four steps</h2>
+            <h2 className="mt-2 text-3xl font-extrabold !text-white sm:text-4xl">Simple, seamless, reliable</h2>
+            <p className="mt-3 text-lg text-white/80">From enquiry to a spotless site in four steps.</p>
           </Reveal>
-          <ol className="relative mt-12 grid gap-6 md:grid-cols-4">
-            <div aria-hidden className="absolute left-0 right-0 top-6 hidden h-0.5 bg-gradient-to-r from-green-bright via-teal to-transparent md:block" />
-            {steps.map(([t, d], i) => (
-              <Reveal as="li" key={t} delay={i * 0.1} className="relative">
-                <span className="relative z-10 grid h-12 w-12 place-items-center rounded-full bg-green font-display text-lg font-extrabold shadow-lg ring-4 ring-navy">{i + 1}</span>
-                <h3 className="mt-4 text-xl font-bold !text-white">{t}</h3>
-                <p className="mt-1 text-white/80">{d}</p>
-              </Reveal>
-            ))}
-          </ol>
+          <ProcessTimeline />
         </div>
       </section>
 
-      {/* BEFORE / AFTER + VIDEO */}
+      {/* BEFORE / AFTER */}
       <section className="py-20">
-        <div className="container-x grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="container-x grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <Reveal>
-            <BeforeAfter before="tile-floor-before" after="tile-floor-after" label="Tiled entry floor" />
-            <p className="mt-3 text-center text-sm text-muted">A tiled entry floor from one of our jobs. Drag to compare.</p>
+            <BeforeAfter before="tile-floor-before" after="tile-floor-after" label="Tiled entry floor" className="max-w-lg" />
           </Reveal>
           <div>
-            <SectionHead eyebrow="See the difference" title="Real results from real jobs" text="Dull, marked floors restored to a clean, even finish. These are photos from our own work." />
-            <div className="mt-8 grid grid-cols-2 gap-4">
-              <Photo slug="stairs-mopping" className="aspect-square" sizes="(max-width: 1024px) 45vw, 22vw" />
-              <Photo slug="restroom-vanity" className="aspect-square" sizes="(max-width: 1024px) 45vw, 22vw" />
+            <SectionHead eyebrow="Results that speak for themselves" title="Real results from real jobs" text="These are photos from our own work. Drag the handle to compare." />
+            <div className="mt-6 rounded-3xl border border-line bg-white p-6 shadow-sm">
+              <p className="eyebrow">The job</p>
+              <h3 className="mt-1 text-xl font-extrabold">Tiled entry floor restoration</h3>
+              <p className="mt-2 text-muted">Dull, marked tiles and grout cleaned back to an even, polished finish, taken in the same spot before and after our clean.</p>
+              <div className="mt-4 flex flex-wrap gap-2 text-xs font-bold">
+                <span className="rounded-full bg-navy px-3 py-1 text-white">BEFORE</span>
+                <span className="rounded-full bg-green px-3 py-1 text-white">AFTER</span>
+              </div>
             </div>
-            <Link href="/gallery" className="btn btn-outline mt-8">See the gallery <Arrow className="h-5 w-5" /></Link>
+            <Link href="/gallery" className="btn btn-outline mt-8">View the full gallery <Arrow className="h-5 w-5" /></Link>
           </div>
         </div>
       </section>
@@ -169,15 +176,32 @@ export default function Home() {
       {/* REVIEWS */}
       <ReviewsSection />
 
-      {/* MAP */}
+      {/* SERVICE AREAS */}
       <section className="py-20" aria-labelledby="map-heading">
         <div className="container-x">
           <Reveal className="mb-10 max-w-2xl">
-            <p className="eyebrow">Where we work</p>
-            <h2 id="map-heading" className="mt-2 text-3xl font-extrabold sm:text-4xl">Servicing all of Sydney, with the CBD as our focus</h2>
-            <p className="mt-3 text-lg text-muted">Based in Blacktown, we clean commercial sites from Sydney CBD to Western Sydney, the North Shore, Inner West, Eastern Suburbs and beyond.</p>
+            <p className="eyebrow">Our service areas</p>
+            <h2 id="map-heading" className="mt-2 text-3xl font-extrabold sm:text-4xl">Proudly servicing businesses across Sydney</h2>
+            <p className="mt-3 text-lg text-muted">Based in Blacktown, with the Sydney CBD as our focus. Tap a region for the suburbs we cover.</p>
           </Reveal>
-          <SydneyMap />
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {regions.map((r, i) => (
+              <Reveal as="li" key={r.slug} delay={(i % 4) * 0.05}>
+                <Link href={`/areas/${r.slug}`} className="card-lift block h-full rounded-2xl border border-line bg-white p-4">
+                  <span className="flex items-center justify-between gap-2">
+                    <span className="font-display text-base font-extrabold text-navy">{r.name}</span>
+                    {r.primary && <span className="rounded-full bg-green px-2 py-0.5 text-[10px] font-bold uppercase text-white">Focus</span>}
+                    {r.home && <span className="rounded-full bg-navy px-2 py-0.5 text-[10px] font-bold uppercase text-white">Base</span>}
+                  </span>
+                  <span className="mt-1.5 block text-sm text-muted">{r.suburbs.slice(0, 4).join(" · ")}</span>
+                </Link>
+              </Reveal>
+            ))}
+          </ul>
+          <Reveal className="mt-14">
+            <h3 className="mb-6 text-2xl font-extrabold">Explore the map</h3>
+            <SydneyMap />
+          </Reveal>
         </div>
       </section>
 
@@ -188,7 +212,7 @@ export default function Home() {
         <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-start">
           <Reveal>
             <p className="eyebrow">Free quote</p>
-            <h2 className="mt-2 text-3xl font-extrabold sm:text-4xl">Tell us about your site</h2>
+            <h2 className="mt-2 text-3xl font-extrabold sm:text-4xl">Let's talk about your site</h2>
             <p className="mt-3 text-lg text-muted">Three quick steps. We'll get back to you within one business day with next steps for a free on-site inspection.</p>
             <ul className="mt-6 space-y-3">
               {["Free, no-obligation quote", "After-hours and weekend cleaning available", "Consistent, uniformed team"].map((t) => (

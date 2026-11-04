@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
 import { img } from "@/lib/images";
 
-export function BeforeAfter({ before, after, label }: { before: string; after: string; label: string }) {
+export function BeforeAfter({ before, after, label, className = "max-w-md" }: { before: string; after: string; label: string; className?: string }) {
   const b = img(before);
   const a = img(after);
   const [pos, setPos] = useState(50);
@@ -21,7 +21,7 @@ export function BeforeAfter({ before, after, label }: { before: string; after: s
   return (
     <div
       ref={box}
-      className="relative mx-auto aspect-[4/5] w-full max-w-md touch-pan-y select-none overflow-hidden rounded-3xl shadow-2xl sm:aspect-[4/5]"
+      className={`relative mx-auto aspect-[4/5] w-full ${className} touch-pan-y select-none overflow-hidden rounded-3xl shadow-2xl`}
       onPointerDown={(e) => { (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId); setFromX(e.clientX); }}
       onPointerMove={(e) => { if (e.buttons || e.pointerType === "touch") setFromX(e.clientX); }}
     >
