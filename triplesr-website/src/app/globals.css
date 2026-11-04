@@ -120,3 +120,15 @@ details[open] .faq-chevron { transform: rotate(180deg); }
 
 @keyframes map-dash { to { stroke-dashoffset: -22; } }
 .map-route { animation: map-dash 1.4s linear infinite; }
+
+/* Phone icon wiggles briefly every few seconds to draw the eye */
+@keyframes phone-wiggle {
+  0%, 24%, 100% { transform: rotate(0); }
+  3% { transform: rotate(-16deg); }
+  6% { transform: rotate(14deg); }
+  9% { transform: rotate(-12deg); }
+  12% { transform: rotate(10deg); }
+  15% { transform: rotate(-6deg); }
+  18% { transform: rotate(4deg); }
+}
+.phone-wiggle { transform-origin: 50% 50%; animation: phone-wiggle 3.6s ease-in-out infinite; }

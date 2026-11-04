@@ -14,7 +14,7 @@ const WhatsAppIcon = (p: React.SVGProps<SVGSVGElement>) => (
 
 const waUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
 
-// Fixed call (bottom-left) and WhatsApp (bottom-right) buttons on every page.
+// Fixed WhatsApp (bottom-left) and call (bottom-right, wiggling) buttons on every page.
 // On phones they sit above the sticky Call / Get a Quote bar.
 export function FloatingContact() {
   const reduce = useReducedMotion();
@@ -36,11 +36,11 @@ export function FloatingContact() {
         initial={reduce ? false : { opacity: 0, scale: 0.4, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 260, damping: 18 }}
-        className={`${base} bottom-[4.6rem] left-3 w-12 bg-gradient-to-br from-navy-2 to-navy hover:w-[10.5rem] focus-visible:w-[10.5rem] sm:left-6 lg:bottom-6 lg:w-14`}
+        className={`${base} bottom-[4.6rem] right-3 w-12 flex-row-reverse bg-gradient-to-br from-navy-2 to-navy hover:w-[10.5rem] focus-visible:w-[10.5rem] sm:right-6 lg:bottom-6 lg:w-14`}
       >
         {!reduce && <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-navy/30 [animation-duration:2.8s]" />}
-        <span className="grid h-12 w-12 shrink-0 place-items-center lg:h-14 lg:w-14"><Phone className="h-6 w-6" /></span>
-        <span className="whitespace-nowrap pr-5 text-sm font-bold">Call us now</span>
+        <span className="grid h-12 w-12 shrink-0 place-items-center lg:h-14 lg:w-14"><Phone className="phone-wiggle h-6 w-6" /></span>
+        <span className="whitespace-nowrap pl-5 text-sm font-bold">Call us now</span>
       </motion.a>
 
       <motion.a
@@ -52,11 +52,11 @@ export function FloatingContact() {
         initial={reduce ? false : { opacity: 0, scale: 0.4, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ type: "spring", stiffness: 260, damping: 18, delay: reduce ? 0 : 0.12 }}
-        className={`${base} bottom-[4.6rem] right-3 w-12 flex-row-reverse bg-[#25D366] hover:w-[11.5rem] focus-visible:w-[11.5rem] sm:right-6 lg:bottom-6 lg:w-14`}
+        className={`${base} bottom-[4.6rem] left-3 w-12 bg-[#25D366] hover:w-[11.5rem] focus-visible:w-[11.5rem] sm:left-6 lg:bottom-6 lg:w-14`}
       >
         {!reduce && <span aria-hidden className="pointer-events-none absolute inset-0 -z-10 animate-ping rounded-full bg-[#25D366]/50 [animation-duration:2.8s]" />}
         <span className="grid h-12 w-12 shrink-0 place-items-center lg:h-14 lg:w-14"><WhatsAppIcon className="h-7 w-7" /></span>
-        <span className="whitespace-nowrap pl-5 text-sm font-bold">Chat on WhatsApp</span>
+        <span className="whitespace-nowrap pr-5 text-sm font-bold">Chat on WhatsApp</span>
       </motion.a>
     </>
   );
