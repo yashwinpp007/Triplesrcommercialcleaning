@@ -140,9 +140,22 @@ export const regions: Region[] = [
   },
 ];
 
+import { suburbData } from "./suburbs";
+
+export const slugify = (n: string) =>
+  n.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, "and").replace(/['’.]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+// Each region lists every suburb inside its council areas. The hand-picked names above come first
+// (when they exist in the dataset), then the rest alphabetically.
+const featuredFirst = (r: Region) => {
+  const all = suburbData.filter((t) => t[1] === r.slug).map((t) => t[0]);
+  const feat = r.suburbs.filter((n) => all.includes(n));
+  return [...feat, ...all.filter((n) => !feat.includes(n))];
+};
+regions.forEach((r) => { r.suburbs = featuredFirst(r); });
+
 export const regionBySlug = (slug: string) => regions.find((r) => r.slug === slug);
 
-export const allSuburbs = regions
-  .flatMap((r) => r.suburbs.map((s) => ({ suburb: s, region: r })))
-  .filter((x, i, a) => a.findIndex((y) => y.suburb === x.suburb) === i)
+export const allSuburbs = suburbData
+  .map(([suburb, region, , pc]) => ({ suburb, pc, slug: slugify(suburb), region: regionBySlug(region)! }))
   .sort((a, b) => a.suburb.localeCompare(b.suburb));

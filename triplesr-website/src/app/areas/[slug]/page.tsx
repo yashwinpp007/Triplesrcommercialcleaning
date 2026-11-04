@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { regionBySlug, regions } from "@/content/areas";
+import { regionBySlug, regions, slugify } from "@/content/areas";
 import { services } from "@/content/services";
 import { regionFaqs } from "@/lib/faqs";
 import { site } from "@/config/site";
@@ -68,9 +68,11 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
               </Reveal>
             )}
             <Reveal>
-              <h3 className="text-xl font-extrabold">Suburbs and precincts we cover</h3>
+              <h3 className="text-xl font-extrabold">All {r.suburbs.length} suburbs we cover in {r.name}</h3>
               <p className="mt-3 flex flex-wrap gap-2">
-                {r.suburbs.map((s) => <span key={s} className="rounded-full bg-teal-soft px-3 py-1 text-sm font-semibold text-navy">{s}</span>)}
+                {r.suburbs.map((n) => (
+                  <Link key={n} href={`/areas/${r.slug}/${slugify(n)}`} className="rounded-full bg-teal-soft px-3 py-1 text-sm font-semibold text-navy transition hover:bg-teal hover:text-white">{n}</Link>
+                ))}
               </p>
               <p className="mt-3 text-sm text-muted">Don't see your suburb? Call {site.phoneDisplay}. We may still be able to help.</p>
             </Reveal>

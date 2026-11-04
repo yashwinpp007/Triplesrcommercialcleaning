@@ -1,6 +1,7 @@
 import { site } from "@/config/site";
 import { services } from "@/content/services";
 import { regions } from "@/content/areas";
+import { suburbs } from "@/lib/suburbs";
 
 export const dynamic = "force-static";
 
@@ -19,7 +20,7 @@ ${services.map((s) => `- [${s.title}](${site.url}/services/${s.slug}): ${s.summa
 ## Areas
 ${regions.map((r) => `- [${r.name}](${site.url}/areas/${r.slug}): ${r.suburbs.slice(0, 6).join(", ")}`).join("\n")}
 
-## Key pages
+## Suburb pages\nEvery suburb we cover has its own page at ${site.url}/areas/{region}/{suburb} (${suburbs.length} suburbs), for example ${site.url}/areas/sydney-cbd/sydney-cbd and ${site.url}/areas/western-sydney/blacktown. Each lists postcode, council area, nearby suburbs and FAQs. The full list is in ${site.url}/sitemap.xml.\n\n## Key pages
 - [Get a free quote](${site.url}/get-a-quote)
 - [Reviews](${site.url}/reviews)
 - [FAQ](${site.url}/faq)

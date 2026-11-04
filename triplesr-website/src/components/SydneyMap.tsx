@@ -229,7 +229,7 @@ export function SydneyMap({ compact = false }: { compact?: boolean }) {
                     <Check className="h-4 w-4 text-green-bright" />
                     <button onClick={() => choose(m.region, true)} className="font-semibold underline-offset-2 hover:underline">{m.suburb}</button>
                     <span className="text-white/70">covered · {m.region.short}</span>
-                    <Link href={`/get-a-quote?area=${m.region.slug}&suburb=${encodeURIComponent(m.suburb)}`} className="ml-auto text-xs font-bold text-green-bright hover:underline">Quote →</Link>
+                    <Link href={`/areas/${m.region.slug}/${m.slug}`} className="ml-auto text-xs font-bold text-green-bright hover:underline">{m.suburb} page →</Link>
                   </li>
                 ))}
               </ul>

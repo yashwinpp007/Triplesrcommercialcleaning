@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
 import { services } from "@/content/services";
 import { regions } from "@/content/areas";
+import { suburbs } from "@/lib/suburbs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
@@ -10,5 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pages.map((p) => ({ url: `${site.url}${p}`, lastModified: now, changeFrequency: "monthly" as const, priority: p === "" ? 1 : p === "/get-a-quote" ? 0.9 : 0.7 })),
     ...services.map((s) => ({ url: `${site.url}/services/${s.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.9 })),
     ...regions.map((r) => ({ url: `${site.url}/areas/${r.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: r.primary ? 0.9 : 0.6 })),
+    ...suburbs.map((s) => ({ url: `${site.url}/areas/${s.region.slug}/${s.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: s.region.primary ? 0.6 : 0.5 })),
   ];
 }
