@@ -45,10 +45,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     priceRange: "$$",
     address: { "@type": "PostalAddress", addressLocality: site.address.locality, addressRegion: site.address.region, addressCountry: "AU" },
     areaServed: [{ "@type": "City", name: "Sydney" }, ...regions.map((r) => ({ "@type": "Place", name: r.name }))],
-    openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "17:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:00", closes: "18:00" },
-    ],
+    openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "00:00", closes: "23:59" }],
     sameAs: [site.social.instagram, site.social.facebook, site.googleProfile],
     hasOfferCatalog: { "@type": "OfferCatalog", name: "Commercial cleaning services", itemListElement: services.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title, url: `${site.url}/services/${s.slug}` } })) },
   };

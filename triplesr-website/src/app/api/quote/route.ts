@@ -143,7 +143,7 @@ export async function POST(req: Request) {
     await sendEmail(
       d.email,
       `We've received your quote request – ${site.name}`,
-      `<p>Hi ${esc(d.name)},</p><p>Thanks for contacting ${site.name}. We've received your request for <b>${esc(service)}</b> in ${esc(d.suburb)}.</p><p>${site.responseSla} For anything urgent, call <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a>.</p><p>Hours: Mon–Fri 9am–5pm, Sat 10am–6pm, Sun closed.</p><p>${site.name}<br>${site.address.text}</p>`,
+      `<p>Hi ${esc(d.name)},</p><p>Thanks for contacting ${site.name}. We've received your request for <b>${esc(service)}</b> in ${esc(d.suburb)}.</p><p>${site.responseSla} For anything urgent, call <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a>.</p><p>We're available 24 hours a day, 7 days a week.</p><p>${site.name}<br>${site.address.text}</p>`,
     );
   } catch {
     console.error("lead email failed");

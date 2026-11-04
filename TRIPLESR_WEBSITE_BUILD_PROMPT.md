@@ -38,11 +38,9 @@ Store these in one config file (`src/config/site.ts`) and import everywhere. Nev
 
 | Day | Hours |
 |---|---|
-| Mon – Fri | 9:00am – 5:00pm |
-| Saturday | 10:00am – 6:00pm |
-| Sunday | Closed |
+| Monday – Sunday | Open 24 hours (7 days, 24/7) |
 
-- Show a live **"Open now / Closed — we reply next business day"** badge in the header or contact section, calculated in the `Australia/Sydney` timezone (handle daylight saving correctly).
+- Show an **"Open 24/7"** badge (or a live "Open now / Closed" badge if hours ever change) in the header or contact section, calculated in the `Australia/Sydney` timezone (handle daylight saving correctly).
 - Use the same data for the footer, contact page and `LocalBusiness` schema `openingHoursSpecification`.
 - Do **not** invent an ABN, licence numbers, insurance figures, years in business, staff counts or client names. If a field is needed and unknown, leave a clearly marked `TODO` in the config and hide the UI element until it is filled.
 

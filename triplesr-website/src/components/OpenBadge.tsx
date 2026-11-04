@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { sydneyStatus } from "@/lib/hours";
+import { site } from "@/config/site";
+
+const ALWAYS_OPEN = site.hours.every((h) => h && h.open === "00:00" && h.close === "24:00");
 
 export function OpenBadge({ tone = "light" }: { tone?: "light" | "dark" }) {
   const [s, setS] = useState<ReturnType<typeof sydneyStatus> | null>(null);
@@ -20,8 +23,8 @@ export function OpenBadge({ tone = "light" }: { tone?: "light" | "dark" }) {
       }`}
       role="status"
     >
-      <span className={`h-2 w-2 rounded-full ${s.open ? "bg-green-bright" : "bg-amber-400"}`} />
-      {s.open ? "Open now" : "Closed – we reply next business day"}
+      <span className={`h-2 w-2 rounded-full ${ALWAYS_OPEN || s.open ? "bg-green-bright" : "bg-amber-400"}`} />
+      {ALWAYS_OPEN ? "Open 24/7" : s.open ? "Open now" : "Closed – we reply next business day"}
     </span>
   );
 }

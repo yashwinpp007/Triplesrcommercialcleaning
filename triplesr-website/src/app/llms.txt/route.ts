@@ -12,7 +12,7 @@ export function GET() {
 > Commercial cleaning company based in ${site.address.text}, servicing all of Greater Sydney with Sydney CBD as the primary focus. Free on-site quotes.
 
 Contact: ${site.phoneDisplay} · ${site.email}
-Hours (Australia/Sydney): Mon–Fri 9am–5pm, Sat 10am–6pm, Sun closed
+Hours: open 24 hours a day, 7 days a week
 Google rating: ${site.googleRating.value}/5 from ${site.googleRating.count} Google reviews
 
 ## Services

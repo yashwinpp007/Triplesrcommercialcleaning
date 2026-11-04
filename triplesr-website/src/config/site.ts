@@ -19,21 +19,9 @@ export const site = {
 
   googleProfile: "https://www.google.com/search?q=triple+sr+services#lrd=0x4ff9a269be8bed0f:0x36e7f556a36a4983,1,,,,",
   googleRating: { value: 4.6, count: 36 }, // verified from the Google Business Profile on 2026-11-04
-  // Opening hours in Australia/Sydney local time. Day 0 = Sunday. null = closed.
-  hours: [
-    null,
-    { open: "09:00", close: "17:00" },
-    { open: "09:00", close: "17:00" },
-    { open: "09:00", close: "17:00" },
-    { open: "09:00", close: "17:00" },
-    { open: "09:00", close: "17:00" },
-    { open: "10:00", close: "18:00" },
-  ] as ({ open: string; close: string } | null)[],
-  hoursText: [
-    { days: "Mon – Fri", time: "9.00am – 5.00pm" },
-    { days: "Saturday", time: "10.00am – 6.00pm" },
-    { days: "Sunday", time: "Closed" },
-  ],
+  // Opening hours in Australia/Sydney local time. Day 0 = Sunday. null = closed. Currently open 24 hours, 7 days.
+  hours: Array.from({ length: 7 }, () => ({ open: "00:00", close: "24:00" })) as ({ open: string; close: string } | null)[],
+  hoursText: [{ days: "Monday – Sunday", time: "Open 24 hours" }],
   // Fill these in only when confirmed by the client; the UI hides anything left empty.
   confirmed: { abn: "", insurance: false, policeChecked: false, yearsInBusiness: "20+" },
   responseSla: "We reply to every quote request within one business day.",

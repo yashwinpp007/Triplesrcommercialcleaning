@@ -40,7 +40,7 @@ export const reviewsFaqs: Faq[] = [
 ];
 
 export const contactFaqs: Faq[] = [
-  { q: "What are your opening hours?", a: "Monday to Friday 9.00am to 5.00pm, Saturday 10.00am to 6.00pm, and closed on Sunday. Cleaning itself can happen outside these hours." },
+  { q: "What are your opening hours?", a: "We're available 24 hours a day, 7 days a week. Call 0427 724 809 any time and we'll get back to you as soon as we can." },
   { q: "How fast will you respond?", a: site.responseSla },
   { q: "Do you offer free quotes?", a: "Yes. We offer free, no-obligation quotes, usually after a short on-site inspection." },
   { q: "What's the best way to reach you?", a: "Call 0427 724 809 for the fastest response, or send the quote form and we'll reply by phone or email." },

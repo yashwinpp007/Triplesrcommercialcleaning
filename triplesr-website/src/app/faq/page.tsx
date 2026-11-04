@@ -15,7 +15,7 @@ const faqs = [
   { q: "What cleaning products do you use?", a: "Professional-grade products suited to each surface and site. Tell us about allergies, odour sensitivities or products your building requires and we'll adapt." },
   { q: "What if I'm not happy with a clean?", a: "Contact us straight away. We'll arrange a return visit to put reasonable issues right, and review the checklist so it doesn't recur." },
   { q: "Can you start quickly?", a: "Often, yes. Availability varies by area and size, so send your request or call and we'll tell you the earliest start." },
-  { q: "Do you clean public holidays and weekends?", a: "Weekend cleans are available, and public-holiday work can be arranged by agreement. Our office hours are Monday to Friday 9am–5pm and Saturday 10am–6pm." },
+  { q: "Do you clean public holidays and weekends?", a: "Weekend cleans are available, and public-holiday work can be arranged by agreement. We're available 24 hours a day, 7 days a week." },
   { q: "How do I pay?", a: "Payment terms are set out in your quote. Ask us during the quote if you need particular invoicing arrangements." },
 ];
 
