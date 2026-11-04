@@ -13,10 +13,10 @@ export const site = {
   whatsappNumber: "61427724809",
   whatsappMessage: "Hi Triple SR Commercial Cleaning, I'd like a free quote for commercial cleaning.",
   social: {
-    instagram: "https://www.instagram.com/triplesr_solutions?utm_source=qr",
-    facebook:
-      "https://www.facebook.com/people/Triple-SR-Services/61566346787467/?mibextid=wwXIfr&rdid=luDy7rq1QUVLvzg6&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DNFEQJoUy%2F%3Fmibextid%3DwwXIfr",
+    instagram: "https://www.instagram.com/servicestriplesr?xtok=a2R4aWptYXI5eHFw",
+    facebook: "https://www.facebook.com/share/1F8SsdzSqZ/",
   },
+
   googleProfile: "https://www.google.com/search?q=triple+sr+services#lrd=0x4ff9a269be8bed0f:0x36e7f556a36a4983,1,,,,",
   googleRating: { value: 4.6, count: 36 }, // verified from the Google Business Profile on 2026-11-04
   // Opening hours in Australia/Sydney local time. Day 0 = Sunday. null = closed.

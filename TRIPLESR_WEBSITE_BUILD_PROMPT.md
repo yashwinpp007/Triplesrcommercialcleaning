@@ -31,8 +31,8 @@ Store these in one config file (`src/config/site.ts`) and import everywhere. Nev
 | Email | triplesrservicespty@gmail.com |
 | Phone (display) | 0427 724 809 |
 | Phone (tel link) | +61427724809 |
-| Instagram | https://www.instagram.com/triplesr_solutions?utm_source=qr |
-| Facebook | https://www.facebook.com/people/Triple-SR-Services/61566346787467/?mibextid=wwXIfr&rdid=luDy7rq1QUVLvzg6&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DNFEQJoUy%2F%3Fmibextid%3DwwXIfr |
+| Instagram | https://www.instagram.com/servicestriplesr?xtok=a2R4aWptYXI5eHFw |
+| Facebook | https://www.facebook.com/share/1F8SsdzSqZ/ |
 
 **Opening hours**
 
