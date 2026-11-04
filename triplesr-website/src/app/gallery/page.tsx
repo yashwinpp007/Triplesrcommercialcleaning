@@ -5,6 +5,7 @@ import { Breadcrumbs, CtaBand, PageHero, SectionHead } from "@/components/Sectio
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Gallery } from "@/components/Gallery";
 import { Reveal } from "@/components/Reveal";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "Cleaning Gallery & Before/After | Triple SR Commercial Cleaning",
@@ -63,6 +64,7 @@ export default function GalleryPage() {
           </div>
         </div>
       </section>
+      <ReviewsSection />
       <Faq items={galleryFaqs} />
       <CtaBand />
     </>

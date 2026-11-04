@@ -6,6 +6,7 @@ import { Breadcrumbs, CtaBand, PageHero, SectionHead, ServiceCard } from "@/comp
 import { Reveal } from "@/components/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/config/site";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "Commercial Cleaning Services Sydney | Triple SR Commercial Cleaning",
@@ -48,6 +49,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <ReviewsSection />
       <Faq items={servicesFaqs} />
       <CtaBand />
       <JsonLd data={{ "@context": "https://schema.org", "@type": "ItemList", itemListElement: services.map((s, i) => ({ "@type": "ListItem", position: i + 1, url: `${site.url}/services/${s.slug}`, name: s.title })) }} />

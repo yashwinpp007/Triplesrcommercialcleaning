@@ -9,8 +9,8 @@ import { QuoteForm } from "@/components/QuoteForm";
 import { QuickQuote } from "@/components/QuickQuote";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { SydneyMap } from "@/components/SydneyMap";
-import { GoogleAttribution, RatingSummary } from "@/components/Reviews";
-import { ReviewsShowcase } from "@/components/ReviewsShowcase";
+import { RatingSummary } from "@/components/Reviews";
+import { ReviewsSection } from "@/components/ReviewsSection";
 import { CtaBand, Photo, SectionHead } from "@/components/Sections";
 import { ServicesShowcase } from "@/components/ServicesShowcase";
 import { Reveal } from "@/components/Reveal";
@@ -167,19 +167,7 @@ export default function Home() {
       </section>
 
       {/* REVIEWS */}
-      <section className="relative overflow-hidden bg-soft py-16 sm:py-20" aria-labelledby="reviews-heading">
-        <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-teal/10 blur-3xl" />
-        <div className="container-x relative">
-          <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <div className="max-w-xl">
-              <p className="eyebrow">Google reviews</p>
-              <h2 id="reviews-heading" className="mt-2 text-3xl font-extrabold sm:text-4xl">What our customers say</h2>
-            </div>
-            <GoogleAttribution />
-          </Reveal>
-          <Reveal delay={0.08}><ReviewsShowcase /></Reveal>
-        </div>
-      </section>
+      <ReviewsSection />
 
       {/* MAP */}
       <section className="py-20" aria-labelledby="map-heading">

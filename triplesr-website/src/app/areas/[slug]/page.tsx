@@ -8,7 +8,7 @@ import { site } from "@/config/site";
 import { Faq } from "@/components/Faq";
 import { QuoteForm } from "@/components/QuoteForm";
 import { Breadcrumbs, CtaBand, PageHero, Photo, SectionHead, ServiceCard } from "@/components/Sections";
-import { ReviewCard, reviews } from "@/components/Reviews";
+import { ReviewsSection } from "@/components/ReviewsSection";
 import { Reveal } from "@/components/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { Check } from "@/components/Icons";
@@ -35,7 +35,6 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
   const featured = r.primary
     ? services.filter((s) => ["regular-office-cleaning", "commercial-end-of-lease-cleaning", "regular-window-cleaning"].includes(s.slug))
     : services.filter((s) => (r.home || r.slug === "south-west" || r.slug === "st-george") ? ["warehouse-cleaning", "industrial-cleaning", "factory-cleaning"].includes(s.slug) : ["regular-office-cleaning", "school-cleaning", "education-childcare-cleaning"].includes(s.slug));
-  const officeReviews = reviews.filter((x) => x.suggestedPages.includes("regular-office-cleaning")).slice(0, 2);
 
   return (
     <>
@@ -92,14 +91,7 @@ export default async function AreaPage({ params }: { params: Promise<{ slug: str
         </div>
       </section>
 
-      {r.primary && officeReviews.length > 0 && (
-        <section className="py-16">
-          <div className="container-x">
-            <SectionHead eyebrow="Office clients" title="What office clients say" />
-            <div className="mt-8 grid gap-5 md:grid-cols-2">{officeReviews.map((x) => <ReviewCard key={x.id} r={x} />)}</div>
-          </div>
-        </section>
-      )}
+      <ReviewsSection prioritize={r.primary ? [1, 2] : []} />
 
       <Faq items={regionFaqs(r)} title={`Cleaning in ${r.name}: common questions`} />
       <CtaBand title={`Need a cleaner in ${r.short}?`} />

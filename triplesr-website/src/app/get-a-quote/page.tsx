@@ -6,6 +6,7 @@ import { Faq } from "@/components/Faq";
 import { QuoteForm } from "@/components/QuoteForm";
 import { Breadcrumbs } from "@/components/Sections";
 import { Check } from "@/components/Icons";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "Get a Free Commercial Cleaning Quote | Triple SR Commercial Cleaning",
@@ -38,6 +39,7 @@ export default async function QuotePage({ searchParams }: { searchParams: Promis
           <QuoteForm id="quote-page" defaultService={service} defaultSuburb={suburb} key={`${service}-${suburb}`} />
         </div>
       </section>
+      <ReviewsSection />
       <Faq items={quoteFaqs} />
     </>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Faq } from "@/components/Faq";
 import { Breadcrumbs, CtaBand, PageHero } from "@/components/Sections";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "Commercial Cleaning FAQ | Triple SR Commercial Cleaning",
@@ -23,6 +24,7 @@ export default function FaqPage() {
     <>
       <PageHero eyebrow="FAQ" title="Commercial cleaning questions, answered" lead="Pricing, contracts, products and getting started. Page-specific questions are on each service and area page." image="office-glass-partitions" />
       <Breadcrumbs items={[{ name: "Home", href: "/" }, { name: "FAQ", href: "/faq" }]} />
+      <ReviewsSection />
       <Faq items={faqs} title="General questions" />
       <CtaBand />
     </>

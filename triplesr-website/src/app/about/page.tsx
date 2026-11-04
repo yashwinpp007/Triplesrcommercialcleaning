@@ -5,6 +5,7 @@ import { Faq } from "@/components/Faq";
 import { Breadcrumbs, CtaBand, PageHero, Photo, SectionHead } from "@/components/Sections";
 import { Reveal } from "@/components/Reveal";
 import { Check } from "@/components/Icons";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "About Triple SR Commercial Cleaning | Blacktown, Sydney",
@@ -41,6 +42,7 @@ export default function About() {
           ))}
         </div>
       </section>
+      <ReviewsSection />
       <Faq items={aboutFaqs} />
       <CtaBand />
     </>

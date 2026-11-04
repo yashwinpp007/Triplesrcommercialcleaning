@@ -7,6 +7,7 @@ import { Breadcrumbs, PageHero } from "@/components/Sections";
 import { OpenBadge } from "@/components/OpenBadge";
 import { Reveal } from "@/components/Reveal";
 import { Clock, Facebook, Instagram, Mail, Phone, Pin } from "@/components/Icons";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "Contact Triple SR Commercial Cleaning | Blacktown, Sydney",
@@ -40,6 +41,7 @@ export default function ContactPage() {
           <QuoteForm id="contact-quote" />
         </div>
       </section>
+      <ReviewsSection />
       <Faq items={contactFaqs} />
     </>
   );

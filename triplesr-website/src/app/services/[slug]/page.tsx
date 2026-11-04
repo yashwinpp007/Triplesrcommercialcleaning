@@ -6,7 +6,7 @@ import { site } from "@/config/site";
 import { Faq } from "@/components/Faq";
 import { QuoteForm } from "@/components/QuoteForm";
 import { Breadcrumbs, CtaBand, Photo, SectionHead, ServiceCard } from "@/components/Sections";
-import { ReviewCard, reviews } from "@/components/Reviews";
+import { ReviewsSection } from "@/components/ReviewsSection";
 import { Reveal } from "@/components/Reveal";
 import { JsonLd } from "@/components/JsonLd";
 import { Arrow, Check, Phone } from "@/components/Icons";
@@ -33,7 +33,6 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   const s = serviceBySlug((await params).slug);
   if (!s) notFound();
   const hero = img(s.hero);
-  const matched = reviews.filter((r) => s.reviewIds.includes(r.id));
   const related = s.related.map((r) => services.find((x) => x.slug === r)!).filter(Boolean);
 
   return (
@@ -116,14 +115,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {matched.length > 0 && (
-        <section className="py-16">
-          <div className="container-x">
-            <SectionHead eyebrow="Customer review" title="What clients say" />
-            <div className="mt-8 grid gap-5 md:grid-cols-2">{matched.map((r) => <ReviewCard key={r.id} r={r} />)}</div>
-          </div>
-        </section>
-      )}
+      <ReviewsSection prioritize={s.reviewIds} />
 
       {s.compare && (
         <section className="container-x pb-4">

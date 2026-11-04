@@ -7,6 +7,7 @@ import { SydneyMap } from "@/components/SydneyMap";
 import { Breadcrumbs, CtaBand, PageHero } from "@/components/Sections";
 import { Reveal } from "@/components/Reveal";
 import { Arrow } from "@/components/Icons";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "Commercial Cleaning Areas Sydney-Wide | Sydney CBD Focus | Triple SR",
@@ -39,6 +40,7 @@ export default function AreasPage() {
           </div>
         </div>
       </section>
+      <ReviewsSection />
       <Faq items={areasFaqs} />
       <CtaBand />
     </>
