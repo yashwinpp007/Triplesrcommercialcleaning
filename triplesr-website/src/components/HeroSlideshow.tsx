@@ -117,6 +117,7 @@ export function HeroSlideshow() {
       onMouseLeave={() => { setPaused(false); mx.set(0); my.set(0); }}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
+      onKeyDown={(e) => { if (e.key === "ArrowRight") go(i + 1); if (e.key === "ArrowLeft") go(i - 1); }}
     >
       {/* Backgrounds: all mounted, crossfaded; Ken Burns on the active one */}
       {slides.map((sl, n) => {
@@ -142,7 +143,7 @@ export function HeroSlideshow() {
       <div aria-hidden className="pointer-events-none absolute -left-40 top-1/3 -z-10 h-96 w-96 rounded-full bg-teal/25 blur-3xl" />
       <div aria-hidden className="sparkle absolute right-[42%] top-28 -z-10 hidden h-5 w-5 text-white lg:block"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c1 7 5 11 12 12-7 1-11 5-12 12-1-7-5-11-12-12 7-1 11-5 12-12Z" /></svg></div>
 
-      <div className="container-x grid gap-10 pb-36 pt-16 sm:pt-20 lg:grid-cols-[1.25fr_0.75fr] lg:items-center lg:pb-40">
+      <div className="container-x grid gap-10 pb-16 pt-20 sm:pt-24 lg:grid-cols-[1.25fr_0.75fr] lg:items-center lg:pb-20">
         {/* Copy: changes with every slide */}
         <div className="min-h-[26rem] sm:min-h-[27rem]">
           <div className="mb-5 flex flex-wrap items-center gap-3">
@@ -218,32 +219,40 @@ export function HeroSlideshow() {
         </div>
       </div>
 
-      {/* Controls */}
-      <div className="absolute inset-x-0 bottom-0 pb-6">
-        <div className="container-x">
-          <div className="flex items-end gap-4">
-            <div className="flex min-w-0 flex-1 gap-2 sm:gap-3" role="tablist" aria-label="Choose slide">
-              {slides.map((sl, n) => (
-                <button key={sl.bg} role="tab" aria-selected={n === i} aria-label={`Slide ${n + 1}: ${sl.tag}`} onClick={() => go(n)} className="group min-w-0 flex-1 text-left">
-                  <span className="relative block h-1 overflow-hidden rounded-full bg-white/25">
-                    <span
-                      key={`${n === i}-${i}-${running}`}
-                      className={`absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-green-bright to-[#7fe0d4] ${n < i ? "w-full" : n === i ? (running ? "hero-progress" : "w-full") : "w-0"}`}
-                      style={n === i && running ? { animationDuration: `${INTERVAL}ms` } : undefined}
-                    />
-                  </span>
-                  <span className={`mt-2 hidden truncate text-xs font-bold transition-colors lg:block ${n === i ? "text-white" : "text-white/55 group-hover:text-white/85"}`}>{sl.tag}</span>
-                </button>
-              ))}
-            </div>
-            <div className="flex shrink-0 items-center gap-2">
-              <span className="hidden font-display text-sm font-bold tabular-nums text-white/80 sm:block">{String(i + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</span>
-              <button onClick={() => go(i - 1)} aria-label="Previous slide" className="grid h-11 w-11 place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur transition hover:bg-white hover:text-navy"><Arrow className="h-5 w-5 rotate-180" /></button>
-              <button onClick={() => go(i + 1)} aria-label="Next slide" className="grid h-11 w-11 place-items-center rounded-full border border-white/30 bg-white/10 backdrop-blur transition hover:bg-white hover:text-navy"><Arrow className="h-5 w-5" /></button>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Side arrows */}
+      <button
+        onClick={() => go(i - 1)}
+        aria-label="Previous slide"
+        className="group absolute left-3 top-3 z-20 grid h-12 w-12 place-items-center rounded-full border border-white/30 bg-white/10 text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,.6)] backdrop-blur-md transition duration-300 hover:scale-110 hover:border-white hover:bg-white hover:text-navy sm:left-5 sm:top-5 lg:top-1/2 lg:h-14 lg:w-14 lg:-translate-y-1/2 xl:left-8"
+      >
+        <Arrow className="h-5 w-5 rotate-180 transition-transform duration-300 group-hover:-translate-x-0.5" />
+      </button>
+      <button
+        onClick={() => go(i + 1)}
+        aria-label="Next slide"
+        className="group absolute right-3 top-3 z-20 grid h-12 w-12 place-items-center rounded-full border border-white/30 bg-white/10 text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,.6)] backdrop-blur-md transition duration-300 hover:scale-110 hover:border-white hover:bg-white hover:text-navy sm:right-5 sm:top-5 lg:top-1/2 lg:h-14 lg:w-14 lg:-translate-y-1/2 xl:right-8"
+      >
+        {/* Autoplay progress ring */}
+        <svg aria-hidden viewBox="0 0 56 56" className="pointer-events-none absolute -inset-px h-[calc(100%+2px)] w-[calc(100%+2px)] -rotate-90">
+          <circle cx="28" cy="28" r="26" fill="none" stroke="rgba(255,255,255,.15)" strokeWidth="2" />
+          {running && (
+            <circle
+              key={i}
+              cx="28"
+              cy="28"
+              r="26"
+              fill="none"
+              stroke="#5fd18a"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeDasharray="163.4"
+              className="hero-ring"
+              style={{ animationDuration: `${INTERVAL}ms` }}
+            />
+          )}
+        </svg>
+        <Arrow className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+      </button>
       <p className="sr-only" aria-live="polite">{s.tag}</p>
     </section>
   );
