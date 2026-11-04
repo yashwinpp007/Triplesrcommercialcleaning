@@ -9,7 +9,7 @@ import { OpenBadge } from "./OpenBadge";
 export function Footer() {
   return (
     <footer className="bg-navy pb-28 text-white lg:pb-0">
-      <div className="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.1fr]">
+      <div className="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-[1.4fr_1fr_1fr_1fr_minmax(15.5rem,1.2fr)]">
         <div>
           <div className="inline-block rounded-2xl bg-white p-3">
             <Image src="/logo-horizontal.png" alt={site.name} width={1200} height={341} className="h-16 w-auto sm:h-20" />
@@ -50,7 +50,7 @@ export function Footer() {
           <h2 className="mb-3 font-display text-lg font-bold !text-white">Contact</h2>
           <ul className="space-y-3 text-sm text-white/90">
             <li className="flex gap-2"><Phone className="mt-0.5 h-5 w-5 shrink-0 text-green-bright" /><a href={`tel:${site.phoneTel}`} className="hover:underline">{site.phoneDisplay}</a></li>
-            <li className="flex gap-2"><Mail className="mt-0.5 h-5 w-5 shrink-0 text-green-bright" /><a href={`mailto:${site.email}`} className="break-all hover:underline">{site.email}</a></li>
+            <li className="flex gap-2"><Mail className="mt-0.5 h-5 w-5 shrink-0 text-green-bright" /><a href={`mailto:${site.email}`} className="whitespace-nowrap hover:underline">{site.email}</a></li>
             <li className="flex gap-2"><Pin className="mt-0.5 h-5 w-5 shrink-0 text-green-bright" />{site.address.text}</li>
           </ul>
           <dl className="mt-4 space-y-1 text-sm text-white/80">
