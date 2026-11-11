@@ -26,7 +26,9 @@ export type LandingPageContent = {
   brandName: string;
   metaTitle: string;
   metaDescription: string;
-  hero: { h1: string; sub: string; bullets: string[]; image: string; cta: string; microcopy: string };
+  accent: { a: string; b: string }; // page colour theme (decorative + headings; both pass 3:1 on white)
+  visuals: { slides: string[]; rows: string[][]; side: string; rowsCaption: string };
+  hero: { h1: string; highlight: string; sub: string; bullets: string[]; image: string; cta: string; microcopy: string };
   form: { heading: string; button: string; fields: LpField[] };
   trust: string[];
   problem: { h2: string; paras: string[] };
@@ -37,7 +39,6 @@ export type LandingPageContent = {
   pricing?: { h2: string; intro: string; items: string[]; outro: string };
   documents?: { id: string; h2: string; items: string[] };
   beforeAfter?: { before: string; after: string; caption: string };
-  gallery?: { slugs: string[]; caption: string };
   reviews: { h2: string; ids: number[]; note?: string };
   faqs: Faq[];
   areas: { h2: string; text: string };
@@ -70,8 +71,19 @@ export const landingPages: LandingPageContent[] = [
     brandName: "Triple SR Cleaning Services",
     metaTitle: "End of Lease Cleaning Sydney | Free Quote | Triple SR",
     metaDescription: "Sydney end of lease cleaning, done to the agent's checklist. Oven, bathrooms, windows and floors. Free quote. Call 0427 724 809.",
+    accent: { a: "#0a7c8c", b: "#2f8f3a" },
+    visuals: {
+      slides: ["tile-floor-after", "kitchen-clean-floor", "restroom-vanity-mirror", "window-cleaning-1"],
+      rows: [
+        ["kitchen-mopping", "restroom-basins", "blinds-window-cleaning", "squeegee-window", "stairs-mopping-2", "tile-floor-after-2"],
+        ["window-cleaning-2", "restroom-vanity", "blinds-dusting", "team-kitchen-mopping", "glass-door-vacuum", "restroom-cubicle"],
+      ],
+      side: "team-kitchen-mopping-2",
+      rowsCaption: "Photos from our own cleaning jobs.",
+    },
     hero: {
       h1: "End of Lease Cleaning in Sydney",
+      highlight: "End of Lease Cleaning",
       sub: "We clean your rental top to bottom against the agent's checklist, so you can hand back the keys and get on with your move.",
       bullets: ["Oven, rangehood, bathrooms, kitchen, windows and floors", "Flexible days, including evenings and weekends", "Free, no-obligation written quote"],
       image: "tile-floor-after",
@@ -152,8 +164,19 @@ export const landingPages: LandingPageContent[] = [
     brandName: "Triple SR Cleaning Services",
     metaTitle: "House Cleaning Sydney | Regular Cleaners | Triple SR",
     metaDescription: "Reliable weekly and fortnightly house cleaning across Sydney. Same friendly team each visit. Rated 4.6 on Google. Free quote: 0427 724 809.",
+    accent: { a: "#c2410c", b: "#d97706" },
+    visuals: {
+      slides: ["kitchen-clean-floor", "team-kitchen-mopping", "restroom-vanity-mirror", "blinds-dusting"],
+      rows: [
+        ["team-kitchen-mopping-2", "restroom-basins", "window-cleaning-2", "tile-floor-after-2", "stairs-sweeping", "blinds-window-cleaning"],
+        ["kitchen-mopping", "restroom-vanity", "team-office-vacuuming-2", "squeegee-window", "restroom-cubicle", "tile-floor-after"],
+      ],
+      side: "team-kitchen-mopping",
+      rowsCaption: "Photos from our own cleaning jobs.",
+    },
     hero: {
       h1: "House Cleaning in Sydney, Done Properly",
+      highlight: "Done Properly",
       sub: "A friendly, uniformed team who clean your home every week or fortnight, so your weekends are yours again.",
       bullets: ["Weekly, fortnightly or one-off cleans", "Kitchens and bathrooms get the most attention", "Free, no-obligation quote with clear pricing"],
       image: "kitchen-clean-floor",
@@ -248,8 +271,19 @@ export const landingPages: LandingPageContent[] = [
     brandName: "Triple SR Commercial Cleaning",
     metaTitle: "Strata Cleaning Sydney | Common Areas | Triple SR",
     metaDescription: "Strata and apartment building cleaning across Sydney. Lobbies, lifts, stairs, car parks and bin rooms. Free site inspection and quote. 0427 724 809.",
+    accent: { a: "#5b3cc4", b: "#0a7c8c" },
+    visuals: {
+      slides: ["stairs-mopping", "glass-door-vacuum-city", "team-corridor-vacuuming", "stairs-sweeping"],
+      rows: [
+        ["stairs-mopping-2", "pressure-washing-concrete", "restroom-floor-scrubber", "hall-floor-polished", "office-glass-partitions", "tile-floor-after-2"],
+        ["team-office-vacuuming", "glass-door-vacuum", "pressure-washing-detail", "hall-floor-polished-2", "team-backpack-vacuum-mask", "restroom-vanity"],
+      ],
+      side: "team-corridor-vacuuming",
+      rowsCaption: "Photos from our own cleaning jobs.",
+    },
     hero: {
       h1: "Strata Cleaning in Sydney",
+      highlight: "Strata Cleaning",
       sub: "Reliable, uniformed cleaners for lobbies, lifts, stairwells, car parks and bin rooms, with a written scope and a free site inspection.",
       bullets: ["Daily, weekly or fortnightly common-area cleaning", "Free site inspection and itemised written quote", "Easy to take to your committee"],
       image: "stairs-mopping",
@@ -333,7 +367,6 @@ export const landingPages: LandingPageContent[] = [
         "Cleaning sign-off sheets on request",
       ],
     },
-    gallery: { slugs: ["team-corridor-vacuuming", "stairs-mopping", "glass-door-vacuum-city"], caption: "Our team at work" },
     reviews: { h2: "What our customers say", ids: [1, 2, 11], note: "From our office and regular cleaning clients." },
     faqs: [
       { q: "How much does strata cleaning cost?", a: "It depends on building size, number of floors, car park, frequency and the scope. We inspect first, then send an itemised written quote you can take to your committee." },
