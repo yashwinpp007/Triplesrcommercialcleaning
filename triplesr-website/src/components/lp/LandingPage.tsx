@@ -5,7 +5,8 @@ import { img } from "@/lib/images";
 import { BeforeAfter } from "@/components/BeforeAfter";
 import { Check, Clock, Phone, Shield, Star } from "@/components/Icons";
 import { JsonLd } from "@/components/JsonLd";
-import { ReviewCard, reviews } from "@/components/Reviews";
+import { reviews } from "@/components/Reviews";
+import { LpReviewCard } from "./LpReviewCard";
 import { LpQuoteForm } from "./LpQuoteForm";
 import { LpLink } from "./LpTrackedLink";
 
@@ -188,8 +189,8 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
             </div>
             <a href={site.googleProfile} target="_blank" rel="noopener noreferrer" className="btn btn-outline">Read all on Google</a>
           </div>
-          <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {picked.map((r) => <ReviewCard key={r.id} r={r} />)}
+          <div className="mt-8 grid items-start gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {picked.map((r) => <LpReviewCard key={r.id} r={r} />)}
           </div>
           {page.reviews.note && <p className="mt-4 text-sm text-muted">{page.reviews.note}</p>}
         </div>
