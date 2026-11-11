@@ -4,6 +4,7 @@ import { appendFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { site } from "@/config/site";
 import { services } from "@/content/services";
+import { lpServiceTitles } from "@/content/landing-pages";
 import { linkCount, quoteSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -62,7 +63,7 @@ async function sendToFormspree(fields: Record<string, string>, replyTo: string, 
   const res = await fetch(endpoint, {
     method: "POST",
     headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify({ ...fields, email: replyTo, _subject: subject }),
+    body: JSON.stringify({ ...fields, ...(replyTo ? { email: replyTo } : {}), _subject: subject }),
     signal: AbortSignal.timeout(10_000),
   });
   if (!res.ok) console.error("formspree rejected submission", res.status);
@@ -124,7 +125,7 @@ export async function POST(req: Request) {
   seenKeys.set(d.idempotencyKey, Date.now());
   if (seenKeys.size > 5000) for (const [k, t] of seenKeys) if (Date.now() - t > 3600_000) seenKeys.delete(k);
 
-  const service = services.find((s) => s.slug === d.service)?.title ?? d.service;
+  const service = lpServiceTitles[d.service] ?? services.find((s) => s.slug === d.service)?.title ?? d.service;
   const lead = {
     receivedAt: new Date().toISOString(),
     service, suburb: d.suburb, size: d.size, floors: d.floors, frequency: d.frequency,
@@ -174,7 +175,7 @@ export async function POST(req: Request) {
       );
     }
     // Customer confirmation only sends when Resend is configured with a verified domain
-    await sendEmail(
+    if (d.email) await sendEmail(
       d.email,
       `We've received your quote request – ${site.name}`,
       `<p>Hi ${esc(d.name)},</p><p>Thanks for contacting ${site.name}. We've received your request for <b>${esc(service)}</b> in ${esc(d.suburb)}.</p><p>${site.responseSla} For anything urgent, call <a href="tel:${site.phoneTel}">${site.phoneDisplay}</a>.</p><p>We're available 24 hours a day, 7 days a week.</p><p>${site.name}<br>${site.address.text}</p>`,

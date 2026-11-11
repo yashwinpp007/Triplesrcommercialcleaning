@@ -8,6 +8,7 @@ import { MobileBar } from "@/components/MobileBar";
 import { FloatingContact } from "@/components/FloatingContact";
 import { ConsentBanner } from "@/components/ConsentBanner";
 import { JsonLd } from "@/components/JsonLd";
+import { ChromeGate, MainShell } from "@/components/ChromeGate";
 import { site } from "@/config/site";
 import { regions } from "@/content/areas";
 import { services } from "@/content/services";
@@ -55,11 +56,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en-AU" className={`${display.variable} ${body.variable}`}>
       <body className="flex min-h-screen flex-col">
         <JsonLd data={orgLd} />
-        <Header />
-        <main id="main" className="flex-1 pt-20">{children}</main>
-        <Footer />
-        <MobileBar />
-        <FloatingContact />
+        <ChromeGate><Header /></ChromeGate>
+        <MainShell>{children}</MainShell>
+        <ChromeGate><Footer /></ChromeGate>
+        <ChromeGate><MobileBar /></ChromeGate>
+        <ChromeGate><FloatingContact /></ChromeGate>
         <ConsentBanner />
       </body>
     </html>

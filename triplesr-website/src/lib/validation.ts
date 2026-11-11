@@ -1,7 +1,8 @@
 import { z } from "zod";
 import { services } from "@/content/services";
+import { lpServiceSlugs } from "@/content/landing-pages";
 
-export const serviceSlugs = services.map((s) => s.slug) as [string, ...string[]];
+export const serviceSlugs = [...services.map((s) => s.slug), ...lpServiceSlugs] as [string, ...string[]];
 export const sizes = ["small", "medium", "large", "not-sure"] as const;
 export const frequencies = ["daily", "weekly", "fortnightly", "monthly", "one-off", "not-sure"] as const;
 export const contactMethods = ["phone", "email", "either"] as const;
@@ -24,7 +25,8 @@ export const quoteSchema = z
     name: text(80, 2),
     business: z.string().max(120).transform(clean).optional().default(""),
     phone: z.string().transform(clean).pipe(z.string().regex(auPhone, "Enter a valid Australian phone number")),
-    email: z.string().transform(clean).pipe(z.string().email().max(160)),
+    // Ads landing pages let some forms skip email; the main quote form still requires it client-side.
+    email: z.union([z.literal(""), z.string().transform(clean).pipe(z.string().email().max(160))]),
     message: z.string().max(1500).transform(clean).optional().default(""),
     consent: z.literal(true),
     // anti-abuse
