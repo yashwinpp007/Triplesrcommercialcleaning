@@ -334,7 +334,7 @@ export const landingPages: LandingPageContent[] = [
       ],
     },
     gallery: { slugs: ["team-corridor-vacuuming", "stairs-mopping", "glass-door-vacuum-city"], caption: "Our team at work" },
-    reviews: { h2: "From our regular cleaning clients", ids: [1, 2, 11], note: "These reviews are from our office and regular cleaning clients, not strata buildings." },
+    reviews: { h2: "What our customers say", ids: [1, 2, 11], note: "From our office and regular cleaning clients." },
     faqs: [
       { q: "How much does strata cleaning cost?", a: "It depends on building size, number of floors, car park, frequency and the scope. We inspect first, then send an itemised written quote you can take to your committee." },
       ...(cert ? [{ q: "Can you provide a Certificate of Currency?", a: "Yes. We can provide a Certificate of Currency for public liability on request." }] : []),

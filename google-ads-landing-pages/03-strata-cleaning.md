@@ -207,7 +207,7 @@ We give you a written scope, a consistent team and one number to call.
 > "Highly recommended Triple SR Cleaning Services. Very good service and communication."
 > — **GJ Kiruba**, Google review
 
-> **Important:** Our Google profile has no review from a strata or apartment building yet. These quotes are real, from our regular cleaning clients, but they're not strata clients. Label them "Regular cleaning clients". Don't present them as strata references. Ask one managed building for a review so you can add a genuine strata testimonial.
+> **Important:** Our Google profile has no review from a strata or apartment building yet. These quotes are real, from our regular cleaning clients, but they're not strata clients. Heading is "What our customers say" with the note "From our office and regular cleaning clients." Don't present them as strata references. Ask one managed building for a review so you can add a genuine strata testimonial.
 
 **Photo strip:** real team photos: `team-corridor-vacuuming`, `stairs-mopping`, `glass-door-vacuum-city` (captioned "Our team at work").
 
