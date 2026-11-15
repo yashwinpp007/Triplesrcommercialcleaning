@@ -10,7 +10,12 @@ import { reviews } from "@/components/Reviews";
 import { LpReviewCard } from "./LpReviewCard";
 import { LpQuoteForm } from "./LpQuoteForm";
 import { LpLink } from "./LpTrackedLink";
+import { CountUp } from "@/components/CountUp";
+import { img } from "@/lib/images";
 import { DrawLine, HeroSlides, ParallaxImage, PhotoRows, ScrollProgress, Stagger, StaggerItem } from "./Motion";
+import { grad, palettes } from "./premium-colors";
+import { FloatingChips, ServiceIcon, Twinkles, SpotlightCard, Ticker, WordReveal } from "./Premium";
+import "./premium.css";
 
 const defaultOrder = ["trust", "problem", "included", "photos", "table", "steps", "reviews", "beforeAfter", "why", "pricing", "documents", "faq", "areas", "final"];
 const wa = (msg: string) => `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(msg)}`;
@@ -18,11 +23,11 @@ const groupIcons = [Sparkles, Shield, Users, Calendar];
 const tint = "bg-[color-mix(in_srgb,var(--a)_7%,white)]";
 const gradient = "bg-gradient-to-br from-[var(--a)] to-[var(--b)]";
 
-function Heading({ id, eyebrow, children }: { id?: string; eyebrow?: string; children: React.ReactNode }) {
+function Heading({ id, eyebrow, light, children }: { id?: string; eyebrow?: string; light?: boolean; children: React.ReactNode }) {
   return (
     <Reveal className="max-w-3xl">
-      {eyebrow && <p className="inline-flex items-center gap-2 text-[.8rem] font-extrabold uppercase tracking-[.14em] text-[var(--a)]"><span className="h-1 w-8 rounded-full bg-gradient-to-r from-[var(--a)] to-[var(--b)]" />{eyebrow}</p>}
-      <h2 id={id} className="mt-2 text-3xl font-extrabold sm:text-4xl">{children}</h2>
+      {eyebrow && <p className={`inline-flex items-center gap-2 text-[.8rem] font-extrabold uppercase tracking-[.14em] ${light ? "text-[#5eead4]" : "text-[var(--a)]"}`}><span className="h-1 w-8 rounded-full bg-gradient-to-r from-[var(--a)] to-[var(--b)]" />{eyebrow}</p>}
+      <h2 id={id} className={`mt-2 text-3xl font-extrabold sm:text-4xl ${light ? "!text-white" : ""}`}>{children}</h2>
     </Reveal>
   );
 }
@@ -65,6 +70,26 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
   const theme = { "--a": page.accent.a, "--b": page.accent.b } as CSSProperties;
 
   const sections: Record<string, React.ReactNode> = {
+    stats: (
+      <>
+        {page.stats && (
+          <section aria-label="At a glance" className="relative overflow-hidden bg-white py-12">
+            <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--a)] to-transparent" />
+            <Stagger className="container-x grid grid-cols-2 gap-6 lg:grid-cols-4">
+              {page.stats.map((st, i) => (
+                <StaggerItem key={st.label} className="text-center">
+                  <div className="font-display text-5xl font-extrabold sm:text-6xl" style={{ background: grad(i), WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>
+                    <CountUp to={st.to} decimals={st.decimals} suffix={st.suffix} />
+                  </div>
+                  <p className="mt-1 text-sm font-bold uppercase tracking-wide text-muted">{st.label}</p>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </section>
+        )}
+      </>
+    ),
+    ticker: <>{page.ticker && <Ticker items={page.ticker} />}</>,
     trust: (
       <>
       {/* 3. Trust strip */}
@@ -84,7 +109,8 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
     problem: (
       <>
       {/* 4. Problem, with a parallax photo */}
-      <section className="py-14 sm:py-20" aria-labelledby="lp-problem">
+      <section className={`relative overflow-hidden py-14 sm:py-20 ${page.premium ? "bg-gradient-to-b from-white via-[color-mix(in_srgb,var(--a)_6%,white)] to-white" : ""}`} aria-labelledby="lp-problem">
+        {page.premium && <div aria-hidden className="lp-blob absolute -right-24 top-10 h-72 w-72 rounded-full bg-[var(--b)]/15 blur-3xl" />}
         <div className="container-x grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
           <div>
             <Heading id="lp-problem">{page.problem.h2}</Heading>
@@ -93,9 +119,9 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
             </div>
             {page.problem.points && (
               <Stagger as="ul" className="mt-6 space-y-3">
-                {page.problem.points.map((pt) => (
-                  <StaggerItem as="li" key={pt.title} className="rounded-2xl border border-line bg-white p-4">
-                    <h3 className="font-extrabold text-[var(--a)]">{pt.title}</h3>
+                {page.problem.points.map((pt, pi) => (
+                  <StaggerItem as="li" key={pt.title} className="card-lift rounded-2xl border border-line border-l-[6px] bg-white p-4 shadow-sm" >
+                    <h3 className="font-extrabold" style={page.premium ? { color: palettes[pi][0] } : undefined}>{pt.title}</h3>
                     <p className="mt-1 text-muted">{pt.body}</p>
                   </StaggerItem>
                 ))}
@@ -111,11 +137,36 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
     included: (
       <>
       {/* 5. What's included */}
-      <section id="included" className={`scroll-mt-20 ${tint} py-14 sm:py-20`} aria-labelledby="lp-included">
-        <div className="container-x">
-          <Heading id="lp-included" eyebrow="Scope">{page.included.h2}</Heading>
-          {page.included.intro && <Reveal><p className="mt-4 max-w-3xl text-lg text-muted">{page.included.intro}</p></Reveal>}
-          {page.included.cards && (
+      <section id="included" className={`scroll-mt-20 py-14 sm:py-24 ${page.premium ? "relative overflow-hidden bg-[#06182c]" : tint}`} aria-labelledby="lp-included">
+        {page.premium && (
+          <>
+            <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#1a0b3d_0%,#06182c_55%,#0b3a4f_100%)]" />
+            <div aria-hidden className="lp-grid absolute inset-0" />
+            <div aria-hidden className="lp-blob absolute -left-20 top-1/3 h-80 w-80 rounded-full bg-[#06b6d4]/25 blur-3xl" />
+            <div aria-hidden className="lp-blob absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-[#db2777]/25 blur-3xl [animation-delay:-5s]" />
+            <Twinkles n={14} />
+          </>
+        )}
+        <div className="container-x relative">
+          <Heading id="lp-included" eyebrow="Scope" light={page.premium}>{page.included.h2}</Heading>
+          {page.included.intro && <Reveal><p className={`mt-4 max-w-3xl text-lg ${page.premium ? "text-white/75" : "text-muted"}`}>{page.included.intro}</p></Reveal>}
+          {page.included.cards && page.premium && (
+            <Stagger className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {page.included.cards.map((c, ci) => (
+                <StaggerItem key={c.title}>
+                  <SpotlightCard className="h-full overflow-hidden rounded-3xl border border-white/15 bg-white/[.06] p-6 backdrop-blur-md">
+                    <div aria-hidden className="absolute -right-8 -top-8 h-28 w-28 rounded-full opacity-40 blur-2xl" style={{ background: grad(ci) }} />
+                    <span className="relative grid h-14 w-14 place-items-center rounded-2xl text-white shadow-xl" style={{ background: grad(ci), boxShadow: `0 12px 30px -8px ${palettes[ci % palettes.length][0]}` }}><ServiceIcon name={c.title} className="h-7 w-7" /></span>
+                    <span aria-hidden className="absolute right-5 top-4 font-display text-5xl font-extrabold text-white/10">{String(ci + 1).padStart(2, "0")}</span>
+                    <h3 className="relative mt-5 text-lg font-extrabold !text-white">{c.title}</h3>
+                    <p className="relative mt-2 text-white/70">{c.body}</p>
+                    <div aria-hidden className="absolute inset-x-0 bottom-0 h-1" style={{ background: grad(ci) }} />
+                  </SpotlightCard>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          )}
+          {page.included.cards && !page.premium && (
             <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {page.included.cards.map((c, ci) => {
                 const Icon = groupIcons[ci % groupIcons.length];
@@ -155,7 +206,7 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
               <p className="mt-2 text-ink">{page.included.extras.items.join(" · ")}</p>
             </Reveal>
           )}
-          {page.included.note && <p className="mt-5 max-w-3xl text-sm text-muted">{page.included.note}</p>}
+          {page.included.note && <p className={`mt-6 max-w-3xl text-sm ${page.premium ? "text-white/65" : "text-muted"}`}>{page.included.note}</p>}
           <QuoteCta page={page} where="included" />
         </div>
       </section>
@@ -183,13 +234,27 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
               <Heading id="lp-properties" eyebrow="Property types">{page.properties.h2}</Heading>
               <Reveal><p className="mt-4 max-w-3xl text-lg text-muted">{page.properties.intro}</p></Reveal>
               <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                {page.properties.items.map((p) => (
+                {page.properties.items.map((p, pi) => (
                   <StaggerItem key={p.title} className="card-lift overflow-hidden rounded-3xl border border-line bg-white">
-                    <ParallaxImage slug={p.image} className="aspect-[4/3] w-full" />
-                    <div className="p-5">
-                      <h3 className="text-lg font-extrabold text-[var(--a)]">{p.title}</h3>
-                      <p className="mt-1.5 text-muted">{p.body}</p>
-                    </div>
+                    {page.premium ? (
+                      <div className="group relative aspect-[3/4] overflow-hidden">
+                        <Image src={img(p.image).src} alt={img(p.image).alt} fill sizes="(min-width: 1024px) 22vw, 90vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
+                        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#06182c] via-[#06182c]/40 to-transparent" />
+                        <div aria-hidden className="absolute inset-x-0 top-0 h-1.5" style={{ background: grad(pi) }} />
+                        <div className="absolute inset-x-0 bottom-0 p-5">
+                          <h3 className="text-xl font-extrabold !text-white">{p.title}</h3>
+                          <p className="mt-1.5 text-sm text-white/80">{p.body}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <>
+                        <ParallaxImage slug={p.image} className="aspect-[4/3] w-full" />
+                        <div className="p-5">
+                          <h3 className="text-lg font-extrabold text-[var(--a)]">{p.title}</h3>
+                          <p className="mt-1.5 text-muted">{p.body}</p>
+                        </div>
+                      </>
+                    )}
                   </StaggerItem>
                 ))}
               </Stagger>
@@ -245,7 +310,7 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
             <Stagger as="ol" gap={0.14} className={`relative z-10 grid gap-4 sm:grid-cols-2 ${page.steps.items.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
               {page.steps.items.map((s, i) => (
                 <StaggerItem as="li" key={s.title} className="card-lift rounded-3xl border border-line bg-white p-6 shadow-sm">
-                  <span className={`grid h-12 w-12 place-items-center rounded-full text-lg font-extrabold text-white shadow-lg ring-4 ring-white ${gradient}`}>{i + 1}</span>
+                  <span className={`grid h-12 w-12 place-items-center rounded-full text-lg font-extrabold text-white shadow-lg ring-4 ring-white ${gradient}`} style={page.premium ? { background: grad(i), boxShadow: `0 10px 28px -6px ${palettes[i % palettes.length][0]}` } : undefined}>{i + 1}</span>
                   <h3 className="mt-4 text-lg font-extrabold">{s.title}</h3>
                   <p className="mt-2 text-muted">{s.body}</p>
                 </StaggerItem>
@@ -301,15 +366,16 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
       <>
       {/* Why us */}
       {page.why && (
-        <section className="py-14 sm:py-20" aria-labelledby="lp-why">
+        <section className={`py-14 sm:py-20 ${page.premium ? "bg-gradient-to-b from-white to-[color-mix(in_srgb,var(--b)_8%,white)]" : ""}`} aria-labelledby="lp-why">
           <div className="container-x">
             <Heading id="lp-why">{page.why.h2}</Heading>
             <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {page.why.items.map((w, i) => {
                 const Icon = groupIcons[i % groupIcons.length];
                 return (
-                  <StaggerItem key={w.title} className="card-lift rounded-3xl border border-line bg-white p-6">
-                    <span className={`grid h-11 w-11 place-items-center rounded-2xl text-white ${gradient}`}><Icon className="h-6 w-6" /></span>
+                  <StaggerItem key={w.title} className="card-lift relative overflow-hidden rounded-3xl border border-line bg-white p-6">
+                    {page.premium && <div aria-hidden className="absolute inset-x-0 top-0 h-1.5" style={{ background: grad(i + 2) }} />}
+                    <span className={`grid h-11 w-11 place-items-center rounded-2xl text-white ${gradient}`} style={page.premium ? { background: grad(i + 2) } : undefined}><Icon className="h-6 w-6" /></span>
                     <h3 className="mt-4 text-lg font-extrabold">{w.title}</h3>
                     <p className="mt-2 text-muted">{w.body}</p>
                   </StaggerItem>
@@ -386,6 +452,13 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         <div className="container-x">
           <Heading id="lp-areas">{page.areas.h2}</Heading>
           <Reveal><p className="mt-3 max-w-4xl text-muted">{page.areas.text}</p></Reveal>
+          {page.areas.chips && (
+            <Stagger as="ul" gap={0.05} className="mt-6 flex flex-wrap gap-3">
+              {page.areas.chips.map((c, i) => (
+                <StaggerItem as="li" key={c}><span className="inline-block rounded-full px-5 py-2.5 font-bold text-white shadow-lg transition-transform hover:-translate-y-1 hover:scale-105" style={{ background: grad(i) }}>{c}</span></StaggerItem>
+              ))}
+            </Stagger>
+          )}
         </div>
       </section>
 
@@ -397,6 +470,14 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
       <section className="relative overflow-hidden bg-navy py-20 text-white" aria-labelledby="lp-final">
         <div aria-hidden className="lp-blob absolute -left-16 top-0 h-80 w-80 rounded-full bg-[var(--a)]/50 blur-3xl" />
         <div aria-hidden className="lp-blob absolute -right-10 bottom-0 h-96 w-96 rounded-full bg-[var(--b)]/45 blur-3xl [animation-delay:-7s]" />
+        {page.premium && (
+          <>
+            <div aria-hidden className="lp-grid absolute inset-0 opacity-60" />
+            <div aria-hidden className="lp-orbit absolute left-1/2 top-1/2 h-[46rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/15" />
+            <div aria-hidden className="lp-orbit absolute left-1/2 top-1/2 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 [animation-direction:reverse]" />
+            <Twinkles n={18} />
+          </>
+        )}
         <div className="container-x relative text-center">
           <Reveal>
             <h2 id="lp-final" className="mx-auto max-w-3xl text-3xl font-extrabold !text-white sm:text-5xl">{page.finalCta.h2}</h2>
@@ -421,7 +502,7 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
   const order = page.order ?? defaultOrder;
 
   return (
-    <div className="pb-24 lg:pb-0" style={theme}>
+    <div className={`pb-24 lg:pb-0 ${page.premium ? "lp-premium" : ""}`} style={theme}>
       <ScrollProgress />
 
       {/* 1. Top bar: logo (not a link), phone, CTA */}
@@ -438,6 +519,48 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
       </header>
 
       {/* 2. Hero + form */}
+      {page.premium ? (
+        <section className="relative overflow-hidden bg-[#06182c] py-12 text-white sm:py-16" aria-labelledby="lp-h1">
+          <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,#0e5a73_0%,#06182c_52%,#1a0b3d_100%)]" />
+          <div aria-hidden className="lp-grid absolute inset-0" />
+          <div aria-hidden className="lp-blob absolute -left-24 top-10 h-80 w-80 rounded-full bg-[#06b6d4]/35 blur-3xl" />
+          <div aria-hidden className="lp-blob absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-[#7c3aed]/40 blur-3xl [animation-delay:-6s]" />
+          <div aria-hidden className="lp-blob absolute left-1/3 top-2/3 h-72 w-72 rounded-full bg-[#22c55e]/25 blur-3xl [animation-delay:-3s]" />
+          <div aria-hidden className="lp-blob absolute right-1/4 -top-10 h-56 w-56 rounded-full bg-[#f5b301]/20 blur-3xl [animation-delay:-9s]" />
+          <Twinkles n={18} />
+          <div className="container-x relative grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+            <div>
+              <p className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[.8rem] font-extrabold uppercase tracking-[.12em] text-[#5eead4] backdrop-blur">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-[#a3e635]" /> {page.hero.eyebrow ?? page.brandName}
+              </p>
+              <h1 id="lp-h1" className="mt-4 text-4xl font-extrabold leading-[1.08] !text-white sm:text-5xl lg:text-6xl"><WordReveal text={page.hero.h1} highlight={page.hero.highlight} /></h1>
+              <p className="mt-5 max-w-xl text-lg text-white/80">{page.hero.sub}</p>
+              <ul className="mt-6 space-y-2.5">
+                {page.hero.bullets.map((b, i) => (
+                  <li key={b} className="flex items-start gap-3 font-semibold text-white">
+                    <Check className="mt-0.5 h-6 w-6 shrink-0 rounded-full p-1 text-white shadow-lg" style={{ background: grad(i) }} /> {b}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <LpLink href="#quote" event="lp_cta_click" page={page.slug} location="hero" className="btn btn-primary lp-pulse">{page.hero.cta}</LpLink>
+                <LpLink href={`tel:${site.phoneTel}`} event="phone_click" page={page.slug} location="hero" className="btn btn-ghost"><Phone className="h-5 w-5" /> Call {site.phoneDisplay}</LpLink>
+                {page.whatsapp && <LpLink external href={wa(page.whatsapp)} event="whatsapp_click" page={page.slug} location="hero" className="btn btn-ghost">WhatsApp us</LpLink>}
+              </div>
+              <div className="relative mt-12">
+                <HeroSlides slugs={page.visuals.slides} />
+                {page.chips && <FloatingChips items={page.chips} />}
+              </div>
+            </div>
+            <div id="quote" className="scroll-mt-24 lg:sticky lg:top-24">
+              <div className="lp-ring">
+                <LpQuoteForm page={page} />
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : (
+        <>
       <section className="relative overflow-hidden py-10 sm:py-14" aria-labelledby="lp-h1">
         <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-[color-mix(in_srgb,var(--a)_14%,white)] via-white to-[color-mix(in_srgb,var(--b)_14%,white)]" />
         <div aria-hidden className="lp-blob absolute -left-24 top-10 h-72 w-72 rounded-full bg-[var(--a)]/20 blur-3xl" />
@@ -469,6 +592,9 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
           </div>
         </div>
       </section>
+
+        </>
+      )}
 
       {order.map((k) => <Fragment key={k}>{sections[k]}</Fragment>)}
 

@@ -28,6 +28,10 @@ export type LandingPageContent = {
   metaDescription: string;
   accent: { a: string; b: string }; // page colour theme (decorative + headings; both pass 3:1 on white)
   visuals: { slides: string[]; rows: string[][]; side: string; rowsCaption: string };
+  premium?: boolean; // colourful dark-hero variant with extra motion (LandingPage + Premium.tsx)
+  stats?: { to: number; decimals?: number; suffix?: string; label: string }[];
+  ticker?: string[];
+  chips?: string[];
   order?: string[]; // section order override (see LandingPage defaultOrder)
   faqHeading?: string;
   properties?: { h2: string; intro: string; items: { title: string; body: string; image: string }[] };
@@ -44,7 +48,7 @@ export type LandingPageContent = {
   beforeAfter?: { before: string; after: string; caption: string };
   reviews: { h2: string; ids: number[]; note?: string };
   faqs: Faq[];
-  areas: { h2: string; text: string };
+  areas: { h2: string; text: string; chips?: string[] };
   finalCta: { h2: string; body: string; reassurance: string; bullets?: string[] };
   whatsapp: string | null;
 };
@@ -77,7 +81,16 @@ export const landingPages: LandingPageContent[] = [
     metaTitle: "Commercial End of Lease Cleaning Sydney | Free Quote",
     metaDescription: "Looking for commercial end of lease cleaning in Sydney? Professional office, retail and commercial property cleaning tailored to your handover requirements. Request a free quote today.",
     accent: { a: "#0a7c8c", b: "#2f8f3a" },
-    order: ["trust", "problem", "included", "properties", "why", "steps", "areas", "reviews", "beforeAfter", "faq", "final"],
+    premium: true,
+    order: ["trust", "stats", "problem", "included", "ticker", "properties", "why", "steps", "areas", "reviews", "beforeAfter", "faq", "final"],
+    stats: [
+      { to: site.googleRating.value, decimals: 1, label: "Google rating" },
+      { to: site.googleRating.count, label: "Google reviews" },
+      { to: 8, label: "Cleaning scopes covered" },
+      { to: 10, label: "Sydney areas serviced" },
+    ],
+    ticker: ["Offices", "Retail & showrooms", "Warehouses", "Commercial facilities", "Inspection-focused", "Flexible scheduling", "Free quote"],
+    chips: ["Inspection-focused", "Flexible scheduling", "Detailed checklist", "Free quote"],
     faqHeading: "Commercial End of Lease Cleaning – FAQs",
     visuals: {
       slides: ["office-glass-partitions", "tile-floor-after", "office-lounge-city", "kitchen-mopping"],
@@ -179,7 +192,7 @@ export const landingPages: LandingPageContent[] = [
       { q: "How do I get a commercial end of lease cleaning quote?", a: "Simply complete our online enquiry form or call our team. Provide your property location, approximate size and preferred cleaning date, and we'll get back to you with a tailored quotation." },
       { q: "Do you guarantee bond return?", a: "We aim to deliver cleaning in accordance with the agreed scope and your provided handover requirements. However, bond or security deposit refunds are determined by the landlord, property manager and applicable lease conditions, so we cannot guarantee a bond refund." },
     ],
-    areas: { h2: "Commercial End of Lease Cleaning Across Sydney", text: "Looking for reliable commercial end of lease cleaners in Sydney? We service commercial properties across Sydney CBD · Parramatta · Blacktown · North Sydney · Chatswood · Hills District · Western Sydney · Inner West · Eastern Suburbs · South Sydney. Contact our team to confirm availability in your area." },
+    areas: { h2: "Commercial End of Lease Cleaning Across Sydney", text: "Looking for reliable commercial end of lease cleaners in Sydney? We service commercial properties across the areas below. Contact our team to confirm availability in your area.", chips: ["Sydney CBD", "Parramatta", "Blacktown", "North Sydney", "Chatswood", "Hills District", "Western Sydney", "Inner West", "Eastern Suburbs", "South Sydney"] },
     finalCta: {
       h2: "Ready to Hand Over Your Commercial Property?",
       body: "Make your commercial move-out easier with professional end of lease cleaning. Let our team take care of the cleaning while you focus on your next move.",

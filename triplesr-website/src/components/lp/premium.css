@@ -1,0 +1,21 @@
+/* Premium landing variant (page.premium): conic glow ring, grid, spotlight cards, twinkles.
+   All motion is switched off by the global prefers-reduced-motion rule in globals.css. */
+@property --ang { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@keyframes lp-spin { to { --ang: 360deg; } }
+@keyframes lp-gradient-x { to { background-position: 220% 50%; } }
+@keyframes lp-twinkle { 0%, 100% { opacity: .15; transform: scale(.6); } 50% { opacity: 1; transform: scale(1.2); } }
+@keyframes lp-bob { 0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); } 50% { transform: translateY(-12px) rotate(var(--r, 0deg)); } }
+@keyframes lp-orbit { to { transform: rotate(360deg); } }
+
+.lp-ring { position: relative; border-radius: 2.2rem; padding: 3px; background: conic-gradient(from var(--ang), var(--a), var(--b), #f5b301, #7c3aed, #0ea5e9, var(--a)); animation: lp-spin 7s linear infinite; }
+.lp-ring::before { content: ""; position: absolute; inset: -6px; border-radius: inherit; background: inherit; filter: blur(26px); opacity: .55; z-index: -1; }
+.lp-grid { background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px); background-size: 52px 52px; -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%); mask-image: radial-gradient(ellipse at 50% 40%, #000 25%, transparent 75%); }
+.lp-shimmer-hi { background: linear-gradient(90deg, #5eead4, #a3e635, #fde047, #f9a8d4, #5eead4); background-size: 220% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: lp-gradient-x 6s linear infinite; }
+.lp-spot { position: relative; }
+.lp-spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .35s; background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.22), transparent 45%); }
+.lp-spot:hover::before { opacity: 1; }
+.lp-twinkle { animation: lp-twinkle 3.2s ease-in-out infinite; }
+.lp-bob { animation: lp-bob 5s ease-in-out infinite; }
+.lp-orbit { animation: lp-orbit 40s linear infinite; }
+.lp-premium .btn-primary { background: linear-gradient(135deg, #16a34a, #0a7c8c); }
+.lp-premium .btn-primary:hover { background: linear-gradient(135deg, #15803d, #0e7490); }
