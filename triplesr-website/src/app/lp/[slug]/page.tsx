@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { landingPages, lpBySlug } from "@/content/landing-pages";
+import { landingPages, lpBySlug, lpPath, lpTopLevel } from "@/content/landing-pages";
 import { LandingPage } from "@/components/lp/LandingPage";
 
-// Google Ads landing pages. Kept out of search results (noindex) and out of the sitemap: they exist for paid traffic.
+// Google Ads landing pages. Most are noindex and out of the sitemap (paid traffic only); lpTopLevel pages are indexable.
 export function generateStaticParams() {
   return landingPages.map((p) => ({ slug: p.slug }));
 }
@@ -14,8 +14,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: page.metaTitle,
     description: page.metaDescription,
-    alternates: { canonical: `/lp/${page.slug}` },
-    robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+    alternates: { canonical: lpPath(page.slug) },
+    // Top-level pages (e.g. commercial end of lease) are indexable and in the sitemap; other ad pages stay noindex.
+    robots: lpTopLevel.has(page.slug) ? { index: true, follow: true } : { index: false, follow: true, googleBot: { index: false, follow: true } },
   };
 }
 

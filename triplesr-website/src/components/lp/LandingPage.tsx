@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
+import { Fragment, type CSSProperties } from "react";
 import { site } from "@/config/site";
 import type { LandingPageContent } from "@/content/landing-pages";
 import { BeforeAfter } from "@/components/BeforeAfter";
@@ -12,6 +12,7 @@ import { LpQuoteForm } from "./LpQuoteForm";
 import { LpLink } from "./LpTrackedLink";
 import { DrawLine, HeroSlides, ParallaxImage, PhotoRows, ScrollProgress, Stagger, StaggerItem } from "./Motion";
 
+const defaultOrder = ["trust", "problem", "included", "photos", "table", "steps", "reviews", "beforeAfter", "why", "pricing", "documents", "faq", "areas", "final"];
 const wa = (msg: string) => `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(msg)}`;
 const groupIcons = [Sparkles, Shield, Users, Calendar];
 const tint = "bg-[color-mix(in_srgb,var(--a)_7%,white)]";
@@ -63,56 +64,9 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
   const picked = page.reviews.ids.map((id) => reviews.find((r) => r.id === id)).filter((r): r is NonNullable<typeof r> => !!r);
   const theme = { "--a": page.accent.a, "--b": page.accent.b } as CSSProperties;
 
-  return (
-    <div className="pb-24 lg:pb-0" style={theme}>
-      <ScrollProgress />
-
-      {/* 1. Top bar: logo (not a link), phone, CTA */}
-      <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
-        <div className="container-x flex h-16 items-center justify-between gap-3">
-          <Image src="/logo-horizontal.png" alt={page.brandName} width={220} height={56} priority className="h-9 w-auto sm:h-11" />
-          <div className="flex items-center gap-2 sm:gap-3">
-            <LpLink href={`tel:${site.phoneTel}`} event="phone_click" page={page.slug} location="top_bar" className="hidden items-center gap-2 font-bold text-navy sm:inline-flex">
-              <Phone className="h-5 w-5 text-[var(--a)]" /> {site.phoneDisplay}
-            </LpLink>
-            <LpLink href="#quote" event="lp_cta_click" page={page.slug} location="top_bar" className="btn btn-primary min-h-11 px-4 py-2 text-sm sm:text-base">{page.hero.cta}</LpLink>
-          </div>
-        </div>
-      </header>
-
-      {/* 2. Hero + form */}
-      <section className="relative overflow-hidden py-10 sm:py-14" aria-labelledby="lp-h1">
-        <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-[color-mix(in_srgb,var(--a)_14%,white)] via-white to-[color-mix(in_srgb,var(--b)_14%,white)]" />
-        <div aria-hidden className="lp-blob absolute -left-24 top-10 h-72 w-72 rounded-full bg-[var(--a)]/20 blur-3xl" />
-        <div aria-hidden className="lp-blob absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[var(--b)]/25 blur-3xl [animation-delay:-6s]" />
-        <div className="container-x relative grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-[.8rem] font-extrabold uppercase tracking-[.12em] text-[var(--a)] shadow-sm ring-1 ring-line">
-              <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--b)]" /> {page.brandName}
-            </p>
-            <h1 id="lp-h1" className="mt-4 text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl"><HeroTitle text={page.hero.h1} highlight={page.hero.highlight} /></h1>
-            <p className="mt-4 max-w-xl text-lg text-muted">{page.hero.sub}</p>
-            <ul className="mt-6 space-y-2.5">
-              {page.hero.bullets.map((b) => (
-                <li key={b} className="flex items-start gap-3 font-semibold text-navy">
-                  <Check className={`mt-0.5 h-6 w-6 shrink-0 rounded-full p-1 text-white ${gradient}`} /> {b}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <LpLink href={`tel:${site.phoneTel}`} event="phone_click" page={page.slug} location="hero" className="btn btn-outline"><Phone className="h-5 w-5" /> Or call {site.phoneDisplay}</LpLink>
-              {page.whatsapp && <LpLink external href={wa(page.whatsapp)} event="whatsapp_click" page={page.slug} location="hero" className="btn btn-outline">WhatsApp us</LpLink>}
-            </div>
-            <div className="mt-8"><HeroSlides slugs={page.visuals.slides} /></div>
-          </div>
-          <div id="quote" className="scroll-mt-24 lg:sticky lg:top-24">
-            <div className="rounded-[2.2rem] bg-gradient-to-br from-[var(--a)] to-[var(--b)] p-1 shadow-2xl">
-              <LpQuoteForm page={page} />
-            </div>
-          </div>
-        </div>
-      </section>
-
+  const sections: Record<string, React.ReactNode> = {
+    trust: (
+      <>
       {/* 3. Trust strip */}
       <section aria-label="Why trust us" className="relative z-10 -mt-1 bg-navy py-5 text-white">
         <Stagger as="ul" gap={0.1} className="container-x flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-bold">
@@ -125,6 +79,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </Stagger>
       </section>
 
+      </>
+    ),
+    problem: (
+      <>
       {/* 4. Problem, with a parallax photo */}
       <section className="py-14 sm:py-20" aria-labelledby="lp-problem">
         <div className="container-x grid items-center gap-10 lg:grid-cols-[1.1fr_1fr]">
@@ -133,17 +91,49 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
             <div className="mt-5 space-y-4 text-lg text-muted">
               {page.problem.paras.map((p, i) => <Reveal key={p} delay={i * 0.08}><p>{p}</p></Reveal>)}
             </div>
+            {page.problem.points && (
+              <Stagger as="ul" className="mt-6 space-y-3">
+                {page.problem.points.map((pt) => (
+                  <StaggerItem as="li" key={pt.title} className="rounded-2xl border border-line bg-white p-4">
+                    <h3 className="font-extrabold text-[var(--a)]">{pt.title}</h3>
+                    <p className="mt-1 text-muted">{pt.body}</p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            )}
           </div>
           <Reveal><ParallaxImage slug={page.visuals.side} className="aspect-[4/5] max-h-[34rem] w-full" /></Reveal>
         </div>
       </section>
 
+      </>
+    ),
+    included: (
+      <>
       {/* 5. What's included */}
       <section id="included" className={`scroll-mt-20 ${tint} py-14 sm:py-20`} aria-labelledby="lp-included">
         <div className="container-x">
           <Heading id="lp-included" eyebrow="Scope">{page.included.h2}</Heading>
+          {page.included.intro && <Reveal><p className="mt-4 max-w-3xl text-lg text-muted">{page.included.intro}</p></Reveal>}
+          {page.included.cards && (
+            <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {page.included.cards.map((c, ci) => {
+                const Icon = groupIcons[ci % groupIcons.length];
+                return (
+                  <StaggerItem key={c.title} className="card-lift overflow-hidden rounded-3xl border border-line bg-white">
+                    <div className={`h-1.5 ${gradient}`} />
+                    <div className="p-5">
+                      <span className={`grid h-11 w-11 place-items-center rounded-2xl text-white shadow-lg ${gradient}`}><Icon className="h-6 w-6" /></span>
+                      <h3 className="mt-3 text-lg font-extrabold">{c.title}</h3>
+                      <p className="mt-1.5 text-muted">{c.body}</p>
+                    </div>
+                  </StaggerItem>
+                );
+              })}
+            </Stagger>
+          )}
           <Stagger className="mt-8 grid gap-5 sm:grid-cols-2">
-            {page.included.groups.map((g, gi) => {
+            {(page.included.groups ?? []).map((g, gi) => {
               const Icon = groupIcons[gi % groupIcons.length];
               return (
                 <StaggerItem key={g.title} className="card-lift overflow-hidden rounded-3xl border border-line bg-white">
@@ -170,6 +160,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </div>
       </section>
 
+      </>
+    ),
+    photos: (
+      <>
       {/* Photo rows */}
       <section className="overflow-hidden bg-white py-14 sm:py-16" aria-labelledby="lp-photos">
         <div className="container-x">
@@ -179,6 +173,34 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         <div className="mt-8"><PhotoRows rows={page.visuals.rows} label="Photos of our cleaning team at work" /></div>
       </section>
 
+      </>
+    ),
+    properties: (
+      <>
+        {page.properties && (
+          <section id="properties" className="scroll-mt-20 py-14 sm:py-20" aria-labelledby="lp-properties">
+            <div className="container-x">
+              <Heading id="lp-properties" eyebrow="Property types">{page.properties.h2}</Heading>
+              <Reveal><p className="mt-4 max-w-3xl text-lg text-muted">{page.properties.intro}</p></Reveal>
+              <Stagger className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {page.properties.items.map((p) => (
+                  <StaggerItem key={p.title} className="card-lift overflow-hidden rounded-3xl border border-line bg-white">
+                    <ParallaxImage slug={p.image} className="aspect-[4/3] w-full" />
+                    <div className="p-5">
+                      <h3 className="text-lg font-extrabold text-[var(--a)]">{p.title}</h3>
+                      <p className="mt-1.5 text-muted">{p.body}</p>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+              <QuoteCta page={page} where="properties" />
+            </div>
+          </section>
+        )}
+      </>
+    ),
+    table: (
+      <>
       {/* Frequency / plans table */}
       {page.table && (
         <section id={page.table.id} className={`scroll-mt-20 ${tint} py-14 sm:py-20`} aria-labelledby="lp-table">
@@ -210,13 +232,17 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </section>
       )}
 
+      </>
+    ),
+    steps: (
+      <>
       {/* 6. How it works */}
       <section id="how-it-works" className="scroll-mt-20 py-14 sm:py-20" aria-labelledby="lp-steps">
         <div className="container-x">
           <Heading id="lp-steps" eyebrow="How it works">{page.steps.h2}</Heading>
           <div className="relative mt-10">
             <DrawLine />
-            <Stagger as="ol" gap={0.14} className="relative z-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <Stagger as="ol" gap={0.14} className={`relative z-10 grid gap-4 sm:grid-cols-2 ${page.steps.items.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
               {page.steps.items.map((s, i) => (
                 <StaggerItem as="li" key={s.title} className="card-lift rounded-3xl border border-line bg-white p-6 shadow-sm">
                   <span className={`grid h-12 w-12 place-items-center rounded-full text-lg font-extrabold text-white shadow-lg ring-4 ring-white ${gradient}`}>{i + 1}</span>
@@ -230,6 +256,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </div>
       </section>
 
+      </>
+    ),
+    reviews: (
+      <>
       {/* Reviews */}
       <section id="reviews" className={`scroll-mt-20 ${tint} py-14 sm:py-20`} aria-labelledby="lp-reviews">
         <div className="container-x">
@@ -250,6 +280,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </div>
       </section>
 
+      </>
+    ),
+    beforeAfter: (
+      <>
       {/* Before / after (end of lease) */}
       {page.beforeAfter && (
         <section className="py-14 sm:py-20" aria-labelledby="lp-ba">
@@ -261,6 +295,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </section>
       )}
 
+      </>
+    ),
+    why: (
+      <>
       {/* Why us */}
       {page.why && (
         <section className="py-14 sm:py-20" aria-labelledby="lp-why">
@@ -282,6 +320,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </section>
       )}
 
+      </>
+    ),
+    pricing: (
+      <>
       {/* Pricing explainer (end of lease) */}
       {page.pricing && (
         <section className={`${tint} py-14 sm:py-20`} aria-labelledby="lp-pricing">
@@ -295,6 +337,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </section>
       )}
 
+      </>
+    ),
+    documents: (
+      <>
       {/* Documents (strata) */}
       {page.documents && (
         <section id={page.documents.id} className={`scroll-mt-20 ${tint} py-14 sm:py-20`} aria-labelledby="lp-docs">
@@ -306,10 +352,14 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </section>
       )}
 
+      </>
+    ),
+    faq: (
+      <>
       {/* FAQ: native <details>, answers stay in the HTML */}
       <section className="py-14 sm:py-20" aria-labelledby="lp-faq">
         <div className="container-x max-w-4xl">
-          <Heading id="lp-faq" eyebrow="FAQ">Questions people ask before booking</Heading>
+          <Heading id="lp-faq" eyebrow="FAQ">{page.faqHeading ?? "Questions people ask before booking"}</Heading>
           <Stagger gap={0.05} className="mt-8 space-y-3">
             {page.faqs.map((f) => (
               <StaggerItem key={f.q}>
@@ -327,6 +377,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         <JsonLd data={{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: page.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }} />
       </section>
 
+      </>
+    ),
+    areas: (
+      <>
       {/* Areas */}
       <section className={`${tint} py-12`} aria-labelledby="lp-areas">
         <div className="container-x">
@@ -335,6 +389,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         </div>
       </section>
 
+      </>
+    ),
+    final: (
+      <>
       {/* Final CTA */}
       <section className="relative overflow-hidden bg-navy py-20 text-white" aria-labelledby="lp-final">
         <div aria-hidden className="lp-blob absolute -left-16 top-0 h-80 w-80 rounded-full bg-[var(--a)]/50 blur-3xl" />
@@ -343,6 +401,11 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
           <Reveal>
             <h2 id="lp-final" className="mx-auto max-w-3xl text-3xl font-extrabold !text-white sm:text-5xl">{page.finalCta.h2}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-lg text-white/85">{page.finalCta.body}</p>
+            {page.finalCta.bullets && (
+              <ul className="mx-auto mt-5 flex max-w-3xl flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-bold text-white/90">
+                {page.finalCta.bullets.map((b) => <li key={b} className="flex items-center gap-2"><Check className="h-4 w-4 text-[var(--b)] brightness-150" /> {b}</li>)}
+              </ul>
+            )}
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <LpLink href="#quote" event="lp_cta_click" page={page.slug} location="final" className="btn btn-primary lp-pulse">{page.hero.cta}</LpLink>
               <LpLink href={`tel:${site.phoneTel}`} event="phone_click" page={page.slug} location="final" className="btn btn-ghost"><Phone className="h-5 w-5" /> Call {site.phoneDisplay}</LpLink>
@@ -351,6 +414,63 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
           </Reveal>
         </div>
       </section>
+
+      </>
+    ),
+  };
+  const order = page.order ?? defaultOrder;
+
+  return (
+    <div className="pb-24 lg:pb-0" style={theme}>
+      <ScrollProgress />
+
+      {/* 1. Top bar: logo (not a link), phone, CTA */}
+      <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur">
+        <div className="container-x flex h-16 items-center justify-between gap-3">
+          <Image src="/logo-horizontal.png" alt={page.brandName} width={220} height={56} priority className="h-9 w-auto sm:h-11" />
+          <div className="flex items-center gap-2 sm:gap-3">
+            <LpLink href={`tel:${site.phoneTel}`} event="phone_click" page={page.slug} location="top_bar" className="hidden items-center gap-2 font-bold text-navy sm:inline-flex">
+              <Phone className="h-5 w-5 text-[var(--a)]" /> {site.phoneDisplay}
+            </LpLink>
+            <LpLink href="#quote" event="lp_cta_click" page={page.slug} location="top_bar" className="btn btn-primary min-h-11 px-4 py-2 text-sm sm:text-base">{page.hero.cta}</LpLink>
+          </div>
+        </div>
+      </header>
+
+      {/* 2. Hero + form */}
+      <section className="relative overflow-hidden py-10 sm:py-14" aria-labelledby="lp-h1">
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-[color-mix(in_srgb,var(--a)_14%,white)] via-white to-[color-mix(in_srgb,var(--b)_14%,white)]" />
+        <div aria-hidden className="lp-blob absolute -left-24 top-10 h-72 w-72 rounded-full bg-[var(--a)]/20 blur-3xl" />
+        <div aria-hidden className="lp-blob absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[var(--b)]/25 blur-3xl [animation-delay:-6s]" />
+        <div className="container-x relative grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-start">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-[.8rem] font-extrabold uppercase tracking-[.12em] text-[var(--a)] shadow-sm ring-1 ring-line">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--b)]" /> {page.hero.eyebrow ?? page.brandName}
+            </p>
+            <h1 id="lp-h1" className="mt-4 text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl"><HeroTitle text={page.hero.h1} highlight={page.hero.highlight} /></h1>
+            <p className="mt-4 max-w-xl text-lg text-muted">{page.hero.sub}</p>
+            <ul className="mt-6 space-y-2.5">
+              {page.hero.bullets.map((b) => (
+                <li key={b} className="flex items-start gap-3 font-semibold text-navy">
+                  <Check className={`mt-0.5 h-6 w-6 shrink-0 rounded-full p-1 text-white ${gradient}`} /> {b}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <LpLink href={`tel:${site.phoneTel}`} event="phone_click" page={page.slug} location="hero" className="btn btn-outline"><Phone className="h-5 w-5" /> Or call {site.phoneDisplay}</LpLink>
+              {page.whatsapp && <LpLink external href={wa(page.whatsapp)} event="whatsapp_click" page={page.slug} location="hero" className="btn btn-outline">WhatsApp us</LpLink>}
+            </div>
+            <div className="mt-8"><HeroSlides slugs={page.visuals.slides} /></div>
+          </div>
+          <div id="quote" className="scroll-mt-24 lg:sticky lg:top-24">
+            <div className="rounded-[2.2rem] bg-gradient-to-br from-[var(--a)] to-[var(--b)] p-1 shadow-2xl">
+              <LpQuoteForm page={page} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {order.map((k) => <Fragment key={k}>{sections[k]}</Fragment>)}
 
       {/* Minimal footer: required legal links only */}
       <footer className="border-t border-line py-6 text-center text-sm text-muted">

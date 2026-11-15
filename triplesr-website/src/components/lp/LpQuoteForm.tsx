@@ -149,6 +149,8 @@ export function LpQuoteForm({ page, id = "quote" }: { page: LandingPageContent; 
                   <option value="">Select…</option>
                   {f.options?.map(([val, l]) => <option key={val} value={val}>{l}</option>)}
                 </select>
+              ) : f.type === "textarea" ? (
+                <textarea {...common} rows={3} maxLength={500} placeholder={f.placeholder} onChange={(e) => set(f.key, e.target.value)} />
               ) : (
                 <input
                   {...common}

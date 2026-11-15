@@ -9,7 +9,7 @@ export type FieldOption = [value: string, label: string];
 export type LpField = {
   key: string;
   label: string;
-  type: "text" | "tel" | "email" | "select" | "date";
+  type: "text" | "tel" | "email" | "select" | "date" | "textarea";
   required?: boolean;
   options?: FieldOption[];
   placeholder?: string;
@@ -28,11 +28,14 @@ export type LandingPageContent = {
   metaDescription: string;
   accent: { a: string; b: string }; // page colour theme (decorative + headings; both pass 3:1 on white)
   visuals: { slides: string[]; rows: string[][]; side: string; rowsCaption: string };
-  hero: { h1: string; highlight: string; sub: string; bullets: string[]; image: string; cta: string; microcopy: string };
+  order?: string[]; // section order override (see LandingPage defaultOrder)
+  faqHeading?: string;
+  properties?: { h2: string; intro: string; items: { title: string; body: string; image: string }[] };
+  hero: { eyebrow?: string; h1: string; highlight: string; sub: string; bullets: string[]; image: string; cta: string; microcopy: string };
   form: { heading: string; button: string; fields: LpField[] };
   trust: string[];
-  problem: { h2: string; paras: string[] };
-  included: { h2: string; groups: LpList[]; extras?: LpList; note?: string };
+  problem: { h2: string; paras: string[]; points?: { title: string; body: string }[] };
+  included: { h2: string; intro?: string; cards?: { title: string; body: string }[]; groups?: LpList[]; extras?: LpList; note?: string };
   table?: { id: string; h2: string; headers: string[]; rows: string[][]; listTitle?: string; list?: string[]; footnote?: string };
   steps: { h2: string; items: { title: string; body: string }[] };
   why?: { h2: string; items: { title: string; body: string }[] };
@@ -42,7 +45,7 @@ export type LandingPageContent = {
   reviews: { h2: string; ids: number[]; note?: string };
   faqs: Faq[];
   areas: { h2: string; text: string };
-  finalCta: { h2: string; body: string; reassurance: string };
+  finalCta: { h2: string; body: string; reassurance: string; bullets?: string[] };
   whatsapp: string | null;
 };
 
@@ -63,97 +66,127 @@ const bedrooms: FieldOption[] = [["Studio", "Studio"], ["1", "1 bedroom"], ["2",
 const propertyTypes: FieldOption[] = [["House", "House"], ["Apartment", "Apartment"], ["Townhouse", "Townhouse"]];
 
 export const landingPages: LandingPageContent[] = [
-  // ───────────────────────── End of lease ─────────────────────────
+  // ───────────────────────── Commercial end of lease ─────────────────────────
+  // Structure follows the agreed page brief: hero + form, problem/solution, 8 service cards, property types,
+  // why us, 3-step process, areas, reviews, FAQs, final CTA. No bond-back, 24/7 or years-of-experience claims.
   {
-    slug: "end-of-lease-cleaning-sydney",
+    slug: "commercial-end-of-lease-cleaning-sydney",
     service: "end-of-lease-lp",
-    serviceTitle: "End of Lease Cleaning (ads page)",
-    brandName: "Triple SR Cleaning Services",
-    metaTitle: "End of Lease Cleaning Sydney | Free Quote | Triple SR",
-    metaDescription: "Sydney end of lease cleaning, done to the agent's checklist. Oven, bathrooms, windows and floors. Free quote. Call 0427 724 809.",
+    serviceTitle: "Commercial End of Lease Cleaning (ads page)",
+    brandName: "Triple SR Commercial Cleaning",
+    metaTitle: "Commercial End of Lease Cleaning Sydney | Free Quote",
+    metaDescription: "Looking for commercial end of lease cleaning in Sydney? Professional office, retail and commercial property cleaning tailored to your handover requirements. Request a free quote today.",
     accent: { a: "#0a7c8c", b: "#2f8f3a" },
+    order: ["trust", "problem", "included", "properties", "why", "steps", "areas", "reviews", "beforeAfter", "faq", "final"],
+    faqHeading: "Commercial End of Lease Cleaning – FAQs",
     visuals: {
-      slides: ["tile-floor-after", "kitchen-clean-floor", "restroom-vanity-mirror", "window-cleaning-1"],
-      rows: [
-        ["kitchen-mopping", "restroom-basins", "blinds-window-cleaning", "squeegee-window", "stairs-mopping-2", "tile-floor-after-2"],
-        ["window-cleaning-2", "restroom-vanity", "blinds-dusting", "team-kitchen-mopping", "glass-door-vacuum", "restroom-cubicle"],
-      ],
-      side: "team-kitchen-mopping-2",
-      rowsCaption: "Photos from our own cleaning jobs.",
+      slides: ["office-glass-partitions", "tile-floor-after", "office-lounge-city", "kitchen-mopping"],
+      rows: [[], []],
+      side: "office-lounge-city",
+      rowsCaption: "",
     },
     hero: {
-      h1: "End of Lease Cleaning in Sydney",
-      highlight: "End of Lease Cleaning",
-      sub: "We clean your rental top to bottom against the agent's checklist, so you can hand back the keys and get on with your move.",
-      bullets: ["Oven, rangehood, bathrooms, kitchen, windows and floors", "Flexible days, including evenings and weekends", "Free, no-obligation written quote"],
-      image: "tile-floor-after",
-      cta: "Get My Free Quote",
+      eyebrow: "Commercial Cleaning Specialists | Sydney NSW",
+      h1: "Commercial End of Lease Cleaning in Sydney",
+      highlight: "Commercial End of Lease Cleaning",
+      sub: "Professional. Thorough. Inspection-ready. Moving out of your commercial premises? Leave the cleaning to the professionals. We help businesses, commercial tenants and property managers prepare premises for the final inspection and handover, from offices and retail spaces to commercial facilities.",
+      bullets: ["Offices, retail, warehouses and commercial facilities", "Cleaning scope tailored to your premises and lease", "Free, no-obligation quote"],
+      image: "office-glass-partitions",
+      cta: "Get a Free Quote",
       microcopy: "Free and no obligation. We reply within one business day.",
     },
     form: {
-      heading: "Get your free end of lease quote",
-      button: "Get My Free Quote",
+      heading: "Request a Free Commercial Cleaning Quote",
+      button: "Request My Free Quote",
       fields: [
-        { key: "name", label: "Your name", type: "text", required: true, autoComplete: "name" },
-        { key: "phone", label: "Mobile number", type: "tel", required: true, placeholder: "04xx xxx xxx", autoComplete: "tel" },
-        { key: "suburb", label: "Suburb", type: "text", required: true, placeholder: "e.g. Parramatta", autoComplete: "address-level2" },
-        { key: "property", label: "Property type", type: "select", required: true, options: propertyTypes, half: true },
-        { key: "bedrooms", label: "Bedrooms", type: "select", required: true, options: bedrooms, half: true },
-        { key: "date", label: "Preferred clean date (optional)", type: "date" },
-        { key: "email", label: "Email (optional)", type: "email", autoComplete: "email" },
+        { key: "name", label: "Full name", type: "text", required: true, autoComplete: "name" },
+        { key: "phone", label: "Phone number", type: "tel", required: true, placeholder: "04xx xxx xxx", autoComplete: "tel" },
+        { key: "email", label: "Email address", type: "email", required: true, autoComplete: "email" },
+        { key: "property", label: "Property type", type: "select", required: true, options: [["Office", "Office"], ["Retail / showroom", "Retail / showroom"], ["Warehouse / industrial", "Warehouse / industrial"], ["Clinic / commercial facility", "Clinic / commercial facility"], ["Other", "Other"]] },
+        { key: "suburb", label: "Property suburb", type: "text", required: true, placeholder: "e.g. Parramatta", autoComplete: "address-level2" },
+        { key: "size", label: "Approximate size", type: "select", options: [["Under 100 sqm", "Under 100 sqm"], ["100-250 sqm", "100-250 sqm"], ["250-500 sqm", "250-500 sqm"], ["500-1,000 sqm", "500-1,000 sqm"], ["1,000+ sqm", "1,000+ sqm"], ["Not sure", "Not sure"]], half: true },
+        { key: "date", label: "Preferred cleaning date", type: "date", half: true },
+        { key: "requirements", label: "Additional requirements", type: "textarea", placeholder: "e.g. carpet cleaning, lease checklist, building access" },
       ],
     },
-    trust: base(["Local Sydney team, based in Blacktown", "Free written quotes", "Open 24 hours, 7 days"]),
+    trust: base(["Professional cleaning team", "Flexible scheduling", "Detailed cleaning checklist"]),
     problem: {
-      h2: "Moving out is stressful enough",
+      h2: "Moving Out? Leave Your Commercial Space Spotless.",
       paras: [
-        "You have boxes to pack, keys to return and a bond on the line. The last thing you need is spending your final weekend scrubbing an oven.",
-        "Agents inspect every room against a checklist. Miss a shower screen, a window track or the inside of the oven, and you could be asked to go back and clean again.",
-        "We take the cleaning off your list and work through the same places the agent checks.",
+        "Commercial lease handovers come with cleaning expectations that shouldn't be overlooked.",
+        "Dust, built-up grime, dirty floors, neglected kitchens and unclean washrooms can affect the presentation of your premises during the final inspection.",
+        "Our commercial end of lease cleaning service helps take the pressure off your move-out process. We focus on the details that matter, delivering a thorough clean so your premises are ready for inspection and handover.",
+      ],
+      points: [
+        { title: "Inspection-Focused Cleaning", body: "Cleaning tailored to your property's condition and handover requirements." },
+        { title: "Flexible Scheduling", body: "Cleaning appointments arranged around your relocation and handover timeline." },
+        { title: "Attention to Detail", body: "Thorough cleaning of high-use areas, surfaces, floors and facilities." },
       ],
     },
     included: {
-      h2: "What's included in your end of lease clean",
-      groups: [
-        { title: "Kitchen", items: ["Oven inside and out", "Rangehood and filter", "Cooktop, sink and benchtops", "Cupboards and drawers, inside and out", "Fridge and freezer (if left in place)"] },
-        { title: "Bathrooms and laundry", items: ["Shower, screen, bath and tiles", "Toilet, basin and vanity", "Mirrors, taps and fixtures", "Laundry tub and cabinets"] },
-        { title: "Bedrooms and living areas", items: ["Wardrobes and built-ins, inside and out", "Skirting boards, doors and door frames", "Light switches and power points", "Light fittings and ceiling fans (accessible)", "Marks and scuffs on walls where they come off"] },
-        { title: "Windows, floors and extras", items: ["Internal windows, sills and tracks", "Blinds and curtain tracks", "Vacuuming and mopping of all floors", "Balcony or patio sweep"] },
+      h2: "Comprehensive Commercial Cleaning Services",
+      intro: "Every commercial property is different. Our cleaning scope can be tailored to your premises, lease requirements and condition.",
+      cards: [
+        { title: "Office Cleaning", body: "Desks, workstations, meeting rooms, surfaces and common areas." },
+        { title: "Floor Cleaning", body: "Vacuuming, mopping, scrubbing and floor treatment where required." },
+        { title: "Carpet Cleaning", body: "Carpet vacuuming and specialised carpet cleaning where requested." },
+        { title: "Window & Glass Cleaning", body: "Internal glass, partitions, mirrors and accessible windows." },
+        { title: "Kitchen & Breakroom Cleaning", body: "Benchtops, sinks, cupboards, appliances and splashbacks." },
+        { title: "Washroom Cleaning", body: "Toilets, basins, mirrors, fixtures and sanitisation." },
+        { title: "Walls & Skirting Boards", body: "Spot cleaning of marks, dust and accessible skirting boards." },
+        { title: "Rubbish Removal", body: "Emptying bins and removing general cleaning waste." },
       ],
-      extras: { title: "Add-ons (quoted separately)", items: ["Carpet steam cleaning", "Pressure washing of balcony, patio or driveway"] },
-      note: "We don't do repairs, painting or make-good work. If the agent lists those, you'll need a separate trade, and we can clean around them.",
+      note: "Services such as carpet steam cleaning, external windows, high-access cleaning and specialist floor treatments can be quoted separately depending on requirements. We don't do make-good repairs, painting or reinstatement.",
+    },
+    properties: {
+      h2: "Commercial End of Lease Cleaning for Every Workspace",
+      intro: "Whether you're vacating a small office or a large commercial facility, we can tailor our cleaning services to suit your premises.",
+      items: [
+        { title: "Office Spaces", body: "Corporate offices, shared workspaces and business premises.", image: "office-glass-partitions" },
+        { title: "Retail & Showrooms", body: "Retail stores, display areas and commercial showrooms.", image: "glass-door-vacuum-city" },
+        { title: "Warehouses & Industrial", body: "Warehouses, storage facilities and industrial premises.", image: "hall-floor-polished" },
+        { title: "Commercial Facilities", body: "Clinics, professional suites and other business facilities.", image: "restroom-vanity-mirror" },
+      ],
+    },
+    why: {
+      h2: "A Reliable Cleaning Partner for Your Commercial Handover",
+      items: [
+        { title: "Professional Standards", body: "A systematic approach to commercial cleaning." },
+        { title: "Tailored Cleaning Plans", body: "Services designed around your property's needs." },
+        { title: "Reliable Scheduling", body: "Appointments coordinated with your move-out timeline." },
+        { title: "Attention to Detail", body: "Focus on the areas that are often overlooked." },
+        { title: "Transparent Quotes", body: "Clear pricing based on the scope of work." },
+        { title: "Sydney-Wide Service", body: "Serving commercial properties across Sydney and surrounding areas." },
+      ],
     },
     steps: {
-      h2: "Four simple steps",
+      h2: "From Booking to Handover – Made Simple",
       items: [
-        { title: "Tell us about the place", body: "Fill in the form or call. We ask the size, the suburb and your move-out date." },
-        { title: "Get a clear written quote", body: "No hidden extras. We confirm what's included and the price." },
-        { title: "We clean", body: "A uniformed team arrives on the day, with the equipment and products, and works through the checklist." },
-        { title: "Hand back the keys", body: "Walk through, then book the agent's inspection. If something reasonable within scope was missed, tell us and we'll arrange a return visit." },
+        { title: "Request Your Free Quote", body: "Tell us about your commercial property, its size, location and handover date." },
+        { title: "Get Your Cleaning Plan", body: "We assess your requirements and provide a tailored cleaning scope and quotation." },
+        { title: "Professional Cleaning & Handover", body: "Our team completes the agreed cleaning work, leaving your premises ready for the next stage." },
       ],
     },
-    pricing: {
-      h2: "How we price your clean",
-      intro: "We give a fixed written quote, so you know the cost before we start. The price depends on:",
-      items: ["Number of bedrooms and bathrooms", "Size and condition of the property", "Whether you need carpet steam cleaning, balcony washing or other add-ons", "How soon you need it, and the day and time"],
-      outro: "Not sure? Send us the suburb, bedrooms and move-out date, and we'll reply with a quote.",
-    },
     beforeAfter: { before: "tile-floor-before", after: "tile-floor-after", caption: "A real floor we cleaned. Photos are from our own jobs." },
-    reviews: { h2: "What our customers say", ids: [4, 13, 14] },
+    reviews: { h2: "Trusted to Deliver a Professional Clean", ids: [1, 3, 2], note: "Genuine Google reviews from our office and commercial cleaning clients." },
     faqs: [
-      { q: "What does an end of lease clean include?", a: "A top-to-bottom clean of kitchen, bathrooms, bedrooms, living areas, windows and floors, including the oven and rangehood. The checklist above shows what we cover, and your quote lists what's included for your property." },
-      { q: "Will it pass the agent's inspection?", a: "We clean to the standard agents check, but the agent or landlord makes the final decision. If they raise a reasonable item within the scope of your clean, tell us promptly and we'll arrange a return visit." },
-      { q: "Can I get my full bond back?", a: "We can't promise that. The bond depends on the whole condition of the property, including damage and wear that cleaning can't fix. A thorough clean removes the most common reason for deductions." },
-      { q: "Do I need to be home?", a: "No. Many customers hand over the keys or arrange access with the agent. We'll agree the plan when you book." },
-      { q: "Do you bring your own equipment and products?", a: "Yes. We bring professional equipment and products." },
-      { q: "Do you clean carpets?", a: "Carpet steam cleaning is available as an add-on and is quoted separately." },
-      { q: "How far ahead should I book?", a: "As early as you can. Final weeks before a move are busy, so contact us once your vacate date is set." },
-      { q: "What if I only need part of the property cleaned?", a: "Tell us what you need. We can quote a smaller scope, but check your lease and the agent's requirements first." },
-      { q: "Do you service my suburb?", a: "We cover Greater Sydney. Enter your suburb in the form and we'll confirm." },
+      { q: "What is included in commercial end of lease cleaning?", a: "Our service can include office cleaning, floor cleaning, carpet vacuuming, internal glass cleaning, kitchen cleaning, washroom cleaning, skirting boards and general surface cleaning. The exact scope depends on your property's requirements and agreed quotation." },
+      { q: "How much does commercial end of lease cleaning cost in Sydney?", a: "Pricing depends on the size of the property, its condition, cleaning requirements and any additional services requested. Contact us for a tailored, obligation-free quote." },
+      { q: "Do you clean offices, warehouses and retail spaces?", a: "Yes. We provide tailored commercial end of lease cleaning for offices, retail spaces, warehouses, showrooms and other commercial premises, subject to the required cleaning scope." },
+      { q: "Can I book cleaning before my lease handover date?", a: "Yes. We can arrange cleaning appointments around your scheduled move-out and handover date, subject to availability." },
+      { q: "Do you provide carpet steam cleaning?", a: "Carpet cleaning can be included as an additional service where required. Let us know your carpet cleaning requirements when requesting a quote." },
+      { q: "Do you bring your own cleaning equipment and products?", a: "We can confirm the equipment, cleaning products and any special requirements as part of your quotation and booking arrangements." },
+      { q: "How do I get a commercial end of lease cleaning quote?", a: "Simply complete our online enquiry form or call our team. Provide your property location, approximate size and preferred cleaning date, and we'll get back to you with a tailored quotation." },
+      { q: "Do you guarantee bond return?", a: "We aim to deliver cleaning in accordance with the agreed scope and your provided handover requirements. However, bond or security deposit refunds are determined by the landlord, property manager and applicable lease conditions, so we cannot guarantee a bond refund." },
     ],
-    areas: { h2: "End of lease cleaning across Greater Sydney", text: sydneyAreas },
-    finalCta: { h2: "Ready to hand back the keys?", body: "Tell us the suburb and your move-out date. We'll send a clear written quote.", reassurance: "Free quote. No obligation. Open 24 hours, 7 days." },
-    whatsapp: "Hi, I'd like a quote for an end of lease clean. Suburb: ___, bedrooms: ___, move-out date: ___.",
+    areas: { h2: "Commercial End of Lease Cleaning Across Sydney", text: "Looking for reliable commercial end of lease cleaners in Sydney? We service commercial properties across Sydney CBD · Parramatta · Blacktown · North Sydney · Chatswood · Hills District · Western Sydney · Inner West · Eastern Suburbs · South Sydney. Contact our team to confirm availability in your area." },
+    finalCta: {
+      h2: "Ready to Hand Over Your Commercial Property?",
+      body: "Make your commercial move-out easier with professional end of lease cleaning. Let our team take care of the cleaning while you focus on your next move.",
+      reassurance: "Free quote. No obligation. Your information is only used to respond to your enquiry.",
+      bullets: ["Professional commercial cleaning", "Flexible scheduling", "Tailored cleaning solutions", "Sydney-wide service"],
+    },
+    whatsapp: "Hi, I'd like a quote for a commercial end of lease clean. Suburb: ___, premises type: ___, size (sqm): ___, handover date: ___.",
   },
 
   // ───────────────────────── Regular house cleaning ─────────────────────────
@@ -386,6 +419,9 @@ export const landingPages: LandingPageContent[] = [
   },
 ];
 
+// Pages served from a clean top-level URL (rewritten to /lp/[slug] in next.config.ts) instead of /lp/[slug].
+export const lpTopLevel = new Set(["commercial-end-of-lease-cleaning-sydney"]);
+export const lpPath = (slug: string) => (lpTopLevel.has(slug) ? `/${slug}` : `/lp/${slug}`);
 export const lpBySlug = (slug: string) => landingPages.find((p) => p.slug === slug);
 export const lpServiceTitles: Record<string, string> = Object.fromEntries(landingPages.map((p) => [p.service, p.serviceTitle]));
 export const lpServiceSlugs = landingPages.map((p) => p.service);

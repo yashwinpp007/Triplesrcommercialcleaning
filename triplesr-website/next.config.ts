@@ -9,6 +9,19 @@ const nextConfig: NextConfig = {
       "*.css": { loaders: ["@tailwindcss/turbopack"], as: "*.css" },
     },
   },
+  async redirects() {
+    return [
+      { source: "/lp/end-of-lease-cleaning-sydney", destination: "/commercial-end-of-lease-cleaning-sydney", permanent: true },
+      { source: "/lp/commercial-end-of-lease-cleaning-sydney", destination: "/commercial-end-of-lease-cleaning-sydney", permanent: true },
+    ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [{ source: "/commercial-end-of-lease-cleaning-sydney", destination: "/lp/commercial-end-of-lease-cleaning-sydney" }],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
   async headers() {
     return [
       {

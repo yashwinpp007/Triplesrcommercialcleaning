@@ -1,6 +1,6 @@
 # Landing Page 1: End of Lease Cleaning (Sydney)
 
-**URL:** `/lp/end-of-lease-cleaning-sydney` (noindex)
+**URL:** `/commercial-end-of-lease-cleaning-sydney` (noindex)
 **Audience:** Renters moving out in Greater Sydney who need the property to pass the agent's final inspection. Often stressed, short on time, worried about their bond.
 **Single goal:** Free quote request (form) or call 0427 724 809.
 **Traffic intent:** "end of lease cleaning sydney", "bond cleaning", "vacate clean".
@@ -293,7 +293,7 @@ We'll reply within one business day. Need it sooner? Call **0427 724 809**.
 
 ## 15. Google Ads copy for this campaign
 
-**Final URL:** `https://triplesrcommercialcleaning.com.au/lp/end-of-lease-cleaning-sydney`
+**Final URL:** `https://triplesrcommercialcleaning.com.au/commercial-end-of-lease-cleaning-sydney`
 **Display path:** `/end-of-lease/sydney`
 
 ### Headlines (max 30 characters each; provide 15)
