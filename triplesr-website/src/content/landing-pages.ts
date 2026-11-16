@@ -28,6 +28,7 @@ export type LandingPageContent = {
   metaDescription: string;
   accent: { a: string; b: string }; // page colour theme (decorative + headings; both pass 3:1 on white)
   visuals: { slides: string[]; rows: string[][]; side: string; rowsCaption: string };
+  guarantee?: { title: string; body: string; points: string[]; note: string };
   premium?: boolean; // colourful dark-hero variant with extra motion (LandingPage + Premium.tsx)
   stats?: { to: number; decimals?: number; suffix?: string; label: string }[];
   ticker?: string[];
@@ -63,11 +64,6 @@ const base = (extra: string[]) => [
   ...(police ? ["Police-checked cleaners"] : []),
 ];
 
-const sydneyAreas =
-  "Western Sydney (Blacktown, Parramatta, Penrith, Castle Hill) · Inner West · Sydney CBD and fringe · Eastern Suburbs · North Shore · Hills District · South West · St George · Sutherland Shire";
-
-const bedrooms: FieldOption[] = [["Studio", "Studio"], ["1", "1 bedroom"], ["2", "2 bedrooms"], ["3", "3 bedrooms"], ["4", "4 bedrooms"], ["5+", "5+ bedrooms"]];
-const propertyTypes: FieldOption[] = [["House", "House"], ["Apartment", "Apartment"], ["Townhouse", "Townhouse"]];
 
 export const landingPages: LandingPageContent[] = [
   // ───────────────────────── Commercial end of lease ─────────────────────────
@@ -82,7 +78,7 @@ export const landingPages: LandingPageContent[] = [
     metaDescription: "Looking for commercial end of lease cleaning in Sydney? Professional office, retail and commercial property cleaning tailored to your handover requirements. Request a free quote today.",
     accent: { a: "#0a7c8c", b: "#2f8f3a" },
     premium: true,
-    order: ["trust", "stats", "problem", "included", "ticker", "properties", "why", "steps", "areas", "reviews", "beforeAfter", "faq", "final"],
+    order: ["trust", "stats", "problem", "included", "ticker", "properties", "why", "guarantee", "steps", "areas", "reviews", "beforeAfter", "faq", "final"],
     stats: [
       { to: site.googleRating.value, decimals: 1, label: "Google rating" },
       { to: site.googleRating.count, label: "Google reviews" },
@@ -103,7 +99,7 @@ export const landingPages: LandingPageContent[] = [
       h1: "Commercial End of Lease Cleaning in Sydney",
       highlight: "Commercial End of Lease Cleaning",
       sub: "Professional. Thorough. Inspection-ready. Moving out of your commercial premises? Leave the cleaning to the professionals. We help businesses, commercial tenants and property managers prepare premises for the final inspection and handover, from offices and retail spaces to commercial facilities.",
-      bullets: ["Offices, retail, warehouses and commercial facilities", "Cleaning scope tailored to your premises and lease", "Free, no-obligation quote"],
+      bullets: ["Offices, retail, warehouses and commercial facilities", "Cleaning scope tailored to your premises and lease", "Free re-clean if the inspection raises reasonable issues"],
       image: "office-glass-partitions",
       cta: "Get a Free Quote",
       microcopy: "Free and no obligation. We reply within one business day.",
@@ -122,7 +118,7 @@ export const landingPages: LandingPageContent[] = [
         { key: "requirements", label: "Additional requirements", type: "textarea", placeholder: "e.g. carpet cleaning, lease checklist, building access" },
       ],
     },
-    trust: base(["Professional cleaning team", "Flexible scheduling", "Detailed cleaning checklist"]),
+    trust: base(["Free re-clean guarantee", "Professional cleaning team", "Flexible scheduling", "Detailed cleaning checklist"]),
     problem: {
       h2: "Moving Out? Leave Your Commercial Space Spotless.",
       paras: [
@@ -172,6 +168,12 @@ export const landingPages: LandingPageContent[] = [
         { title: "Sydney-Wide Service", body: "Serving commercial properties across Sydney and surrounding areas." },
       ],
     },
+    guarantee: {
+      title: "Our Re-Clean Guarantee",
+      body: "If your agent, landlord or property manager raises a reasonable cleaning issue at the handover inspection, within the scope we agreed, we'll come back and re-clean it at no extra charge.",
+      points: ["Free return visit for reasonable issues within the agreed scope", "Cleaned to your lease and the agent's checklist", "Tell us promptly after the inspection and we'll arrange a time"],
+      note: "This covers cleaning only. We can't guarantee a bond or security deposit refund, as that is decided by the landlord or property manager, and it doesn't cover damage, repairs or make-good works.",
+    },
     steps: {
       h2: "From Booking to Handover – Made Simple",
       items: [
@@ -190,123 +192,162 @@ export const landingPages: LandingPageContent[] = [
       { q: "Do you provide carpet steam cleaning?", a: "Carpet cleaning can be included as an additional service where required. Let us know your carpet cleaning requirements when requesting a quote." },
       { q: "Do you bring your own cleaning equipment and products?", a: "We can confirm the equipment, cleaning products and any special requirements as part of your quotation and booking arrangements." },
       { q: "How do I get a commercial end of lease cleaning quote?", a: "Simply complete our online enquiry form or call our team. Provide your property location, approximate size and preferred cleaning date, and we'll get back to you with a tailored quotation." },
-      { q: "Do you guarantee bond return?", a: "We aim to deliver cleaning in accordance with the agreed scope and your provided handover requirements. However, bond or security deposit refunds are determined by the landlord, property manager and applicable lease conditions, so we cannot guarantee a bond refund." },
+      { q: "What is your re-clean guarantee?", a: "If the agent, landlord or property manager raises a reasonable cleaning issue at the handover inspection, within the scope we agreed, we'll return and re-clean it at no extra charge. Tell us promptly after the inspection and we'll arrange a time." },
+      { q: "Do you guarantee bond return?", a: "We guarantee our cleaning through the free re-clean above, but we can't guarantee a bond or security deposit refund. That is decided by the landlord, property manager and your lease conditions, and can also depend on damage or repairs that cleaning can't fix." },
     ],
     areas: { h2: "Commercial End of Lease Cleaning Across Sydney", text: "Looking for reliable commercial end of lease cleaners in Sydney? We service commercial properties across the areas below. Contact our team to confirm availability in your area.", chips: ["Sydney CBD", "Parramatta", "Blacktown", "North Sydney", "Chatswood", "Hills District", "Western Sydney", "Inner West", "Eastern Suburbs", "South Sydney"] },
     finalCta: {
       h2: "Ready to Hand Over Your Commercial Property?",
       body: "Make your commercial move-out easier with professional end of lease cleaning. Let our team take care of the cleaning while you focus on your next move.",
       reassurance: "Free quote. No obligation. Your information is only used to respond to your enquiry.",
-      bullets: ["Professional commercial cleaning", "Flexible scheduling", "Tailored cleaning solutions", "Sydney-wide service"],
+      bullets: ["Free re-clean guarantee", "Professional commercial cleaning", "Flexible scheduling", "Sydney-wide service"],
     },
     whatsapp: "Hi, I'd like a quote for a commercial end of lease clean. Suburb: ___, premises type: ___, size (sqm): ___, handover date: ___.",
   },
 
-  // ───────────────────────── Regular house cleaning ─────────────────────────
+  // ───────────────────────── Commercial regular cleaning ─────────────────────────
+  // Keywords follow the OfficeCommercial ads campaign: commercial cleaning (Sydney), office cleaning, business cleaning.
+  // No invented claims: no 24/7, years-in-business, insurance or police-check statements.
   {
-    slug: "house-cleaning-sydney",
-    service: "house-cleaning-lp",
-    serviceTitle: "Regular House Cleaning (ads page)",
-    brandName: "Triple SR Cleaning Services",
-    metaTitle: "House Cleaning Sydney | Regular Cleaners | Triple SR",
-    metaDescription: "Reliable weekly and fortnightly house cleaning across Sydney. Same friendly team each visit. Rated 4.6 on Google. Free quote: 0427 724 809.",
-    accent: { a: "#c2410c", b: "#d97706" },
+    slug: "commercial-cleaning-sydney",
+    service: "commercial-cleaning-lp",
+    serviceTitle: "Commercial Regular Cleaning (ads page)",
+    brandName: "Triple SR Commercial Cleaning",
+    metaTitle: "Commercial Cleaning Sydney | Office & Business Cleaners",
+    metaDescription: "Reliable commercial cleaning in Sydney. Regular office and business cleaning, daily to monthly, after hours, with a consistent uniformed team. Free walkthrough and written quote.",
+    accent: { a: "#0369a1", b: "#6d28d9" },
+    premium: true,
+    order: ["trust", "stats", "problem", "included", "ticker", "properties", "table", "why", "steps", "areas", "reviews", "beforeAfter", "faq", "final"],
+    stats: [
+      { to: site.googleRating.value, decimals: 1, label: "Google rating" },
+      { to: site.googleRating.count, label: "Google reviews" },
+      { to: 8, label: "Cleaning scopes covered" },
+      { to: 10, label: "Sydney areas serviced" },
+    ],
+    ticker: ["Office cleaning", "Commercial cleaning", "Business cleaning", "After-hours cleans", "Consistent team", "Free walkthrough", "Written quotes"],
+    chips: ["After-hours cleans", "Consistent team", "Free walkthrough", "Written quote"],
+    faqHeading: "Commercial Cleaning Sydney – FAQs",
     visuals: {
-      slides: ["kitchen-clean-floor", "team-kitchen-mopping", "restroom-vanity-mirror", "blinds-dusting"],
-      rows: [
-        ["team-kitchen-mopping-2", "restroom-basins", "window-cleaning-2", "tile-floor-after-2", "stairs-sweeping", "blinds-window-cleaning"],
-        ["kitchen-mopping", "restroom-vanity", "team-office-vacuuming-2", "squeegee-window", "restroom-cubicle", "tile-floor-after"],
-      ],
-      side: "team-kitchen-mopping",
-      rowsCaption: "Photos from our own cleaning jobs.",
+      slides: ["office-open-plan", "team-office-vacuuming", "office-workstations", "restroom-vanity-mirror"],
+      rows: [[], []],
+      side: "office-city-views",
+      rowsCaption: "",
     },
     hero: {
-      h1: "House Cleaning in Sydney, Done Properly",
+      eyebrow: "Commercial Cleaners | Sydney NSW",
+      h1: "Commercial Cleaning in Sydney, Done Properly",
       highlight: "Done Properly",
-      sub: "A friendly, uniformed team who clean your home every week or fortnight, so your weekends are yours again.",
-      bullets: ["Weekly, fortnightly or one-off cleans", "Kitchens and bathrooms get the most attention", "Free, no-obligation quote with clear pricing"],
-      image: "kitchen-clean-floor",
-      cta: "Get My Free Quote",
+      sub: "Regular office and business cleaning from a consistent, uniformed team. We clean around your schedule, usually after hours, so your people walk into a fresh workplace every day.",
+      bullets: ["Daily, weekly, fortnightly or monthly cleans", "After-hours and early-morning options", "Free site walkthrough and itemised written quote"],
+      image: "office-open-plan",
+      cta: "Get a Free Quote",
       microcopy: "Free and no obligation. We reply within one business day.",
     },
     form: {
-      heading: "Get your free house cleaning quote",
-      button: "Get My Free Quote",
+      heading: "Request a Free Commercial Cleaning Quote",
+      button: "Request My Free Quote",
       fields: [
-        { key: "name", label: "Your name", type: "text", required: true, autoComplete: "name" },
-        { key: "phone", label: "Mobile number", type: "tel", required: true, placeholder: "04xx xxx xxx", autoComplete: "tel" },
-        { key: "suburb", label: "Suburb", type: "text", required: true, placeholder: "e.g. Blacktown", autoComplete: "address-level2" },
-        { key: "property", label: "Home type", type: "select", required: true, options: propertyTypes, half: true },
-        { key: "bedrooms", label: "Bedrooms", type: "select", required: true, options: bedrooms, half: true },
-        { key: "bathrooms", label: "Bathrooms", type: "select", required: true, options: [["1", "1"], ["2", "2"], ["3", "3"], ["4+", "4+"]], half: true },
-        { key: "frequency", label: "How often?", type: "select", required: true, options: [["weekly", "Weekly"], ["fortnightly", "Fortnightly"], ["monthly", "Monthly"], ["one-off", "One-off"], ["not-sure", "Not sure"]], half: true },
-        { key: "email", label: "Email (optional)", type: "email", autoComplete: "email" },
+        { key: "name", label: "Full name", type: "text", required: true, autoComplete: "name" },
+        { key: "phone", label: "Phone number", type: "tel", required: true, placeholder: "04xx xxx xxx", autoComplete: "tel" },
+        { key: "email", label: "Email address", type: "email", required: true, autoComplete: "email" },
+        { key: "property", label: "Premises type", type: "select", required: true, options: [["Office", "Office"], ["Retail / showroom", "Retail / showroom"], ["Medical / allied-health suite", "Medical / allied-health suite"], ["School / childcare", "School / childcare"], ["Warehouse / industrial", "Warehouse / industrial"], ["Other", "Other"]] },
+        { key: "suburb", label: "Premises suburb", type: "text", required: true, placeholder: "e.g. Parramatta", autoComplete: "address-level2" },
+        { key: "frequency", label: "How often?", type: "select", required: true, options: [["daily", "Daily"], ["weekly", "Weekly"], ["fortnightly", "Fortnightly"], ["monthly", "Monthly"], ["not-sure", "Not sure"]], half: true },
+        { key: "size", label: "Approximate size", type: "select", options: [["Under 100 sqm", "Under 100 sqm"], ["100-250 sqm", "100-250 sqm"], ["250-500 sqm", "250-500 sqm"], ["500-1,000 sqm", "500-1,000 sqm"], ["1,000+ sqm", "1,000+ sqm"], ["Not sure", "Not sure"]], half: true },
+        { key: "requirements", label: "Anything else we should know?", type: "textarea", placeholder: "e.g. after-hours access, current cleaner, number of washrooms" },
       ],
     },
-    trust: base(["Sydney-based team (Blacktown)", "Free written quotes", "Open 24 hours, 7 days"]),
+    trust: base(["Free on-site walkthrough", "Consistent uniformed team", "After-hours cleaning", "Itemised written quotes"]),
     problem: {
-      h2: "You shouldn't have to spend your weekend cleaning",
+      h2: "A Clean Workplace Shouldn't Be Something You Chase.",
       paras: [
-        "Work, family and a full diary leave little time for scrubbing bathrooms and mopping floors. Cleaning gets pushed back, then it becomes a big job.",
-        "And finding a cleaner you trust can feel like a gamble: Will they turn up? Will they do the same job every time? Is it safe to leave them in the house?",
-        "We keep it simple: a consistent team, a clear checklist and a quote you agree before the first visit.",
+        "A clean workplace lifts morale, protects your people and makes the right impression on every client who walks in. But missed visits, inconsistent standards and a revolving door of cleaners quickly wear thin.",
+        "We keep it simple: a free walkthrough, a site-specific checklist and a regular team in Triple SR uniforms who learn your space, your access arrangements and your standards.",
+        "Already have a cleaner and thinking of switching? We inspect, agree a scope and handle the changeover.",
+      ],
+      points: [
+        { title: "A Site-Specific Checklist", body: "After a free walkthrough we write a checklist for your space, so everyone knows exactly what clean means." },
+        { title: "After-Hours Cleaning", body: "Cleans run in the evening or early morning, so nobody is disturbed." },
+        { title: "Easy to Reach", body: "One phone number, one email, and a quick response if something needs attention between visits." },
       ],
     },
     included: {
-      h2: "What a regular clean covers",
-      groups: [
-        { title: "Kitchen", items: ["Benchtops, sink and splashback", "Cooktop and appliance exteriors", "Microwave wipe-out", "Floors vacuumed and mopped"] },
-        { title: "Bathrooms and toilets", items: ["Shower, screen, bath and tiles", "Toilet, basin and vanity", "Mirrors and taps", "Floors mopped"] },
-        { title: "Bedrooms and living areas", items: ["Dusting of surfaces, shelves and furniture tops", "Vacuuming of carpets and rugs", "Mopping of hard floors", "Beds made on request"] },
-        { title: "Throughout", items: ["Light switches and door handles wiped", "Rubbish bins emptied", "Cobwebs from reachable corners", "Skirting boards wiped (rotated through visits)"] },
+      h2: "What Your Regular Commercial Clean Covers",
+      intro: "Every workplace is different. Your scope is tailored to your premises, your schedule and your standards.",
+      cards: [
+        { title: "Office Cleaning", body: "Desk and surface wipe-down (tidy desks), reception, meeting rooms and breakout areas." },
+        { title: "Floor Cleaning", body: "Vacuuming and mopping of all hard floors, kept consistent between visits." },
+        { title: "Carpet Cleaning", body: "Regular carpet vacuuming, with carpet steam cleaning available as an extra." },
+        { title: "Window & Glass Cleaning", body: "Internal glass doors, partitions and mirrors." },
+        { title: "Kitchen & Breakroom Cleaning", body: "Sinks, benches, appliance exteriors and kitchenettes." },
+        { title: "Washroom Cleaning", body: "Cleaning and sanitising, with restocking of consumables." },
+        { title: "Walls & Skirting Boards", body: "Touch-point disinfection of door handles, light switches and lift buttons, plus spot cleaning of marks." },
+        { title: "Rubbish Removal", body: "Rubbish and recycling removal with liner replacement." },
       ],
-      extras: { title: "Extras (quoted separately, tell us if you want them)", items: ["Inside the oven", "Inside the fridge", "Interior windows", "Blinds", "Carpet steam cleaning"] },
+      note: "Extras such as carpet steam cleaning, internal window cleaning, fridge and microwave deep cleans, and hard-floor polishing or strip-and-seal are quoted separately.",
+    },
+    properties: {
+      h2: "Commercial Cleaning for Every Kind of Workplace",
+      intro: "From a small office to a multi-floor building, we tailor the clean to suit your premises.",
+      items: [
+        { title: "Offices & Corporate", body: "Corporate and professional offices, co-working spaces and serviced offices.", image: "office-open-plan" },
+        { title: "Retail & Showrooms", body: "Retail stores, showrooms, display areas and reception.", image: "glass-door-vacuum-city" },
+        { title: "Medical & Allied-Health Suites", body: "General and non-clinical areas of medical and allied-health suites.", image: "restroom-vanity-mirror" },
+        { title: "Schools & Childcare", body: "Classrooms, corridors, amenities and shared learning spaces.", image: "classroom-clean" },
+      ],
     },
     table: {
       id: "plans",
-      h2: "A schedule that suits your home",
-      headers: ["Plan", "Best for", "Notes"],
+      h2: "A Schedule That Suits Your Business",
+      headers: ["Frequency", "Best for", "Notes"],
       rows: [
-        ["Weekly", "Busy families, pets, larger homes", "The home stays consistently clean"],
-        ["Fortnightly", "Most households", "A steady rhythm that keeps on top of it"],
-        ["Monthly", "Smaller homes, a catch-up clean", "A deeper reset each month"],
-        ["One-off", "Before guests, after renovations or to start a routine", "No ongoing commitment"],
+        ["Daily", "Busy offices, reception areas, high-traffic sites", "The workplace starts every day fresh"],
+        ["Several times a week", "Mid-sized offices and retail premises", "Washrooms and kitchens stay on top of it"],
+        ["Weekly", "Smaller offices and professional suites", "A steady rhythm that keeps standards up"],
+        ["Fortnightly or monthly", "Low-traffic premises, or a catch-up clean", "A thorough reset between visits"],
       ],
-      footnote: "Need to change or pause your schedule? Call or message us.",
-    },
-    steps: {
-      h2: "Getting started takes about two minutes",
-      items: [
-        { title: "Tell us about your home", body: "Suburb, bedrooms, bathrooms and how often you'd like a clean." },
-        { title: "Get your quote", body: "A clear written price, with what's included." },
-        { title: "Pick your day", body: "We agree a time that suits you, including how we'll get in." },
-        { title: "Relax", body: "The team arrives on time, with equipment and products, and cleans to the checklist." },
-      ],
+      footnote: "Frequency and times are set around your building's access and alarm procedures. We'll recommend a schedule at the walkthrough.",
     },
     why: {
-      h2: "Why households choose Triple SR",
+      h2: "Why Sydney Businesses Choose Triple SR",
       items: [
-        { title: "Punctual", body: "Reviewers mention it again and again." },
-        { title: "Consistent team", body: "We aim to send the same people each visit, and we tell you if the roster changes." },
-        { title: "Flexible", body: "We work around your schedule where we can." },
-        { title: "Clear communication", body: "One phone number, one email, and we reply within one business day." },
+        { title: "Consistent Team", body: "We aim to keep the same team on your site, and we tell you if the roster changes." },
+        { title: "Professional Standards", body: "A systematic approach, with a checklist written for your space." },
+        { title: "Flexible Scheduling", body: "Cleans around your hours, including after-hours and early-morning options." },
+        { title: "Transparent Quotes", body: "A clear, itemised written quote based on the scope of work." },
+        { title: "Easy to Switch", body: "Changing cleaner? We inspect, agree the scope and handle the changeover." },
+        { title: "Sydney-Wide Service", body: "Serving commercial premises across Sydney, including the CBD." },
       ],
     },
-    reviews: { h2: "Homes we've cleaned, in our customers' words", ids: [7, 8, 12, 9] },
+    steps: {
+      h2: "Getting Started Is Simple",
+      items: [
+        { title: "Request Your Free Quote", body: "Tell us about your premises, its size, location and how often you need a clean." },
+        { title: "Free Walkthrough & Quote", body: "We inspect the site or review plans, then send a clear itemised written quote." },
+        { title: "Your Regular Clean Begins", body: "Your consistent team arrives on schedule with equipment and products and cleans to your checklist." },
+      ],
+    },
+    beforeAfter: { before: "tile-floor-before", after: "tile-floor-after", caption: "A real floor we cleaned. Photos are from our own jobs." },
+    reviews: { h2: "Trusted by Sydney Workplaces", ids: [2, 1, 3], note: "Genuine Google reviews from our office and commercial cleaning clients." },
     faqs: [
-      { q: "How much does house cleaning cost?", a: "It depends on the size of your home, the number of bathrooms, how often you want us and how dirty it is. Send us your suburb, bedrooms and bathrooms and we'll give you a clear written quote." },
-      { q: "Do I need to be home?", a: "No. Many customers arrange access with a key, lockbox or building manager. We'll agree the plan before the first visit." },
-      { q: "Will the same cleaners come each time?", a: "We aim to keep the same team so they learn your home. If the roster changes, we'll tell you." },
-      { q: "Do you bring your own equipment and products?", a: "Yes. If you prefer specific products, such as fragrance-free, tell us and we'll work with them." },
-      { q: "Do you clean homes with pets or kids?", a: "Yes. Let us know about pets (for example, if a dog needs to be secured) and any products to avoid." },
-      { q: "What if I'm not happy with the clean?", a: "Tell us as soon as possible. We'll arrange a return visit for reasonable issues within the scope of the clean." },
-      { q: "Can I pause or change my schedule?", a: "Yes, with notice. Call or message us." },
-      { q: "Do you also clean apartments and townhouses?", a: "Yes, in Sydney, including buildings that need lift bookings or access arrangements." },
-      { q: "Do you do end of lease cleaning too?", a: "Yes. Ask us for a quote." },
+      { q: "How much does commercial cleaning cost in Sydney?", a: "Pricing depends on floor area, number of washrooms and kitchens, frequency and access hours. We inspect the site or review plans, then send a clear written quote with no obligation." },
+      { q: "Can you clean our office after hours?", a: "Yes. Most office cleans happen in the evening or early morning so nobody is disturbed. We can work to your building's access times and alarm procedures." },
+      { q: "What is included in a regular commercial clean?", a: "Typically floors, desk and surface wipe-downs, kitchens and breakrooms, washrooms, rubbish and recycling, internal glass and touch-point disinfection. We agree a checklist for your site at the walkthrough." },
+      { q: "How often can you clean?", a: "Daily, several times a week, weekly, fortnightly or monthly, with after-hours or early-morning options." },
+      { q: "Will the same cleaners come each time?", a: "We aim to keep the same team on your site so they know your space and your preferences, and we'll tell you if the roster changes." },
+      { q: "Do you supply the cleaning products and equipment?", a: "Yes. We bring our own equipment and professional products. If your building requires particular products, tell us and we'll work with them." },
+      { q: "Can you clean offices in the Sydney CBD?", a: "Yes. We can arrange building inductions, access cards and lift or loading dock bookings with your building manager." },
+      { q: "We already have a cleaner. Is it easy to switch?", a: "Yes. We inspect, agree a scope and handle the changeover. Get a free quote and we'll talk you through it." },
+      { q: "Do you do end of lease cleaning for commercial premises?", a: "Yes. See our commercial end of lease cleaning page, or ask us for a quote." },
     ],
-    areas: { h2: "House cleaning across Greater Sydney", text: sydneyAreas },
-    finalCta: { h2: "Ready for a cleaner home?", body: "Tell us your suburb and how often you'd like us. We'll send a clear written quote.", reassurance: "Free quote. No obligation. We reply within one business day." },
-    whatsapp: "Hi, I'd like a quote for regular house cleaning. Suburb: ___, bedrooms: ___, bathrooms: ___, how often: ___.",
+    areas: { h2: "Commercial Cleaning Across Sydney", text: "Looking for reliable commercial cleaners in Sydney? We service workplaces across the areas below. Contact our team to confirm availability in your area.", chips: ["Sydney CBD", "Parramatta", "Blacktown", "North Sydney", "Chatswood", "Hills District", "Western Sydney", "Inner West", "Eastern Suburbs", "South Sydney"] },
+    finalCta: {
+      h2: "Ready for a Cleaner Workplace?",
+      body: "Tell us about your premises and how often you'd like us. We'll arrange a free walkthrough and send a clear written quote.",
+      reassurance: "Free quote. No obligation. We reply within one business day.",
+      bullets: ["Free on-site walkthrough", "After-hours cleaning", "Consistent uniformed team", "Sydney-wide service"],
+    },
+    whatsapp: "Hi, I'd like a quote for regular commercial cleaning. Suburb: ___, premises type: ___, size (sqm): ___, how often: ___.",
   },
 
   // ───────────────────────── Strata ─────────────────────────
@@ -433,7 +474,7 @@ export const landingPages: LandingPageContent[] = [
 ];
 
 // Pages served from a clean top-level URL (rewritten to /lp/[slug] in next.config.ts) instead of /lp/[slug].
-export const lpTopLevel = new Set(["commercial-end-of-lease-cleaning-sydney"]);
+export const lpTopLevel = new Set(["commercial-end-of-lease-cleaning-sydney", "commercial-cleaning-sydney"]);
 export const lpPath = (slug: string) => (lpTopLevel.has(slug) ? `/${slug}` : `/lp/${slug}`);
 export const lpBySlug = (slug: string) => landingPages.find((p) => p.slug === slug);
 export const lpServiceTitles: Record<string, string> = Object.fromEntries(landingPages.map((p) => [p.service, p.serviceTitle]));

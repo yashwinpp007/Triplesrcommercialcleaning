@@ -89,6 +89,38 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         )}
       </>
     ),
+    guarantee: (
+      <>
+        {page.guarantee && (
+          <section className="relative overflow-hidden py-14 sm:py-20" aria-labelledby="lp-guarantee">
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-[#0a7c8c] via-[#2563eb] to-[#7c3aed]" />
+            <div aria-hidden className="lp-grid absolute inset-0 opacity-70" />
+            <div aria-hidden className="lp-blob absolute -right-16 -top-10 h-72 w-72 rounded-full bg-[#f5b301]/30 blur-3xl" />
+            <Twinkles n={12} />
+            <div className="container-x relative grid items-center gap-10 lg:grid-cols-[auto_1fr]">
+              <Reveal className="mx-auto">
+                <div className="lp-bob grid h-40 w-40 place-items-center rounded-full bg-white/15 ring-8 ring-white/20 backdrop-blur sm:h-48 sm:w-48">
+                  <Shield className="h-20 w-20 text-white drop-shadow-lg sm:h-24 sm:w-24" />
+                </div>
+              </Reveal>
+              <div>
+                <Heading id="lp-guarantee" eyebrow="Peace of mind" light>{page.guarantee.title}</Heading>
+                <Reveal><p className="mt-4 max-w-3xl text-lg text-white/90">{page.guarantee.body}</p></Reveal>
+                <Stagger as="ul" className="mt-5 space-y-2.5">
+                  {page.guarantee.points.map((pt) => (
+                    <StaggerItem as="li" key={pt} className="flex items-start gap-3 font-semibold text-white">
+                      <Check className="mt-0.5 h-6 w-6 shrink-0 rounded-full bg-white/25 p-1 text-white" /> {pt}
+                    </StaggerItem>
+                  ))}
+                </Stagger>
+                <p className="mt-5 max-w-3xl text-sm text-white/75">{page.guarantee.note}</p>
+                <QuoteCta page={page} where="guarantee" />
+              </div>
+            </div>
+          </section>
+        )}
+      </>
+    ),
     ticker: <>{page.ticker && <Ticker items={page.ticker} />}</>,
     trust: (
       <>

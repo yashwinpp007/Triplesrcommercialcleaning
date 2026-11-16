@@ -12,12 +12,17 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/lp/end-of-lease-cleaning-sydney", destination: "/commercial-end-of-lease-cleaning-sydney", permanent: true },
+      { source: "/lp/house-cleaning-sydney", destination: "/commercial-cleaning-sydney", permanent: true },
+      { source: "/lp/commercial-cleaning-sydney", destination: "/commercial-cleaning-sydney", permanent: true },
       { source: "/lp/commercial-end-of-lease-cleaning-sydney", destination: "/commercial-end-of-lease-cleaning-sydney", permanent: true },
     ];
   },
   async rewrites() {
     return {
-      beforeFiles: [{ source: "/commercial-end-of-lease-cleaning-sydney", destination: "/lp/commercial-end-of-lease-cleaning-sydney" }],
+      beforeFiles: [
+        { source: "/commercial-end-of-lease-cleaning-sydney", destination: "/lp/commercial-end-of-lease-cleaning-sydney" },
+        { source: "/commercial-cleaning-sydney", destination: "/lp/commercial-cleaning-sydney" },
+      ],
       afterFiles: [],
       fallback: [],
     };
