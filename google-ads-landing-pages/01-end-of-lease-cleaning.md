@@ -294,50 +294,53 @@ We'll reply within one business day. Need it sooner? Call **0427 724 809**.
 ## 15. Google Ads copy for this campaign
 
 **Final URL:** `https://triplesrcommercialcleaning.com.au/commercial-end-of-lease-cleaning-sydney`
-**Display path:** `/end-of-lease/sydney`
+**Display path:** `/commercial/end-of-lease`
 
-### Headlines (max 30 characters each; provide 15)
+> **Update (commercial rework):** the page is now **Commercial** End of Lease Cleaning. Sections 1-14 above describe the original residential draft; the live page copy is in `triplesr-website/src/content/landing-pages.ts`. The campaign is `GOOG_Search_CommercialEndOfLease_Sydney` in `google-ads-editor-import.csv`.
 
-| # | Headline | Chars |
+### Ad groups and keywords
+
+| Ad group | Exact | Phrase |
 |---|---|---|
-| 1 | End of Lease Cleaning Sydney | 28 |
-| 2 | Bond Cleaning Sydney | 20 |
-| 3 | Pass Your Final Inspection | 26 |
-| 4 | Free Quote, No Obligation | 25 |
-| 5 | Oven, Windows & Bathrooms | 25 |
-| 6 | Rated 4.6 on Google | 19 |
-| 7 | Call 0427 724 809 Today | 23 |
-| 8 | Book Your Move-Out Clean | 24 |
-| 9 | Cleaned to Agent's Checklist | 28 |
-| 10 | Open 24 Hours, 7 Days | 21 |
-| 11 | Sydney-Wide Cleaning Team | 25 |
-| 12 | Clear Written Quote | 19 |
-| 13 | Flexible Evening Weekend Slots | 30 |
-| 14 | Vacate Cleaning in Sydney | 25 |
-| 15 | Moving Out? We'll Clean It | 26 |
+| Commercial end of lease | commercial end of lease cleaning (sydney), commercial lease cleaning sydney, commercial end of lease cleaners, end of lease cleaning commercial sydney | commercial end of lease cleaning, commercial end of lease cleaners, commercial lease cleaning |
+| Office vacate | office end of lease cleaning (sydney), office vacate cleaning sydney, office move out cleaning sydney, office lease end cleaning sydney | office end of lease cleaning, office vacate cleaning, office move out cleaning, office handover cleaning |
+| Retail and warehouse | retail / shop / warehouse end of lease cleaning sydney, warehouse vacate cleaning sydney, showroom end of lease cleaning | retail end of lease cleaning, shop end of lease cleaning, warehouse end of lease cleaning, industrial unit end of lease cleaning |
+| Commercial vacate | commercial vacate cleaning sydney, commercial move out cleaning sydney, vacate cleaning commercial premises, commercial premises end of lease cleaning | commercial vacate cleaning, commercial move out cleaning, vacating commercial premises cleaning |
 
-*Pin headline 1 to position 1. Headlines 6 and 9 are strong proof or hook lines, so leave them unpinned.*
+**Negatives changed:** removed `commercial`, `office`, `warehouse`, `factory`, `school` (they would have blocked the new keywords). Added residential blockers: `bond`, `house`, `home`, `domestic`, `residential`, `apartment`, `bedroom(s)`, `studio`, `granny flat`, `real estate agent`, `rental inspection`. The Office/Commercial campaign already negatives `end of lease`, `vacate` and `move out`, so the two campaigns do not compete.
 
-### Descriptions (max 90 characters; 4 provided)
+**Note:** Google showed no volume data for commercial end of lease terms, so expect low impressions. Run it at the $40 budget for 2-3 weeks, then check the search terms report.
 
-| # | Description | Chars |
-|---|---|---|
-| 1 | Top-to-bottom end of lease clean, done to the agent's checklist. Get a free quote today. | 88 |
-| 2 | Rated 4.6 on Google from 36 reviews. Uniformed team, own equipment. Call 0427 724 809. | 86 |
-| 3 | Kitchen, oven, bathrooms, windows and floors. Evening and weekend slots. Free quote. | 84 |
-| 4 | Moving out of a Sydney rental? Send your suburb and date for a clear written quote. | 83 |
+### Headlines (max 30 characters; 15 per ad, first 3 differ by ad group)
+
+Shared: Inspection-Ready Handovers · Free Commercial Cleaning Quote · Rated 4.6 on Google · Call 0427 724 809 Today · Offices, Retail & Warehouses · Tailored to Your Lease Scope · Evening & Weekend Slots · Sydney-Wide Commercial Team · Clear Written Quote · Sydney CBD & Western Sydney · Professional Cleaning Team · Free Quote, No Obligation
+
+Per ad group (H1 pinned to position 1):
+- Commercial end of lease: Commercial End of Lease Clean · Commercial Lease Cleaning · Commercial Handover Cleaning
+- Office vacate: Office End of Lease Cleaning · Office Vacate Cleaning Sydney · Move-Out Cleaning for Offices
+- Retail and warehouse: Retail End of Lease Cleaning · Warehouse Lease-End Cleaning · Shop & Warehouse Lease Clean
+- Commercial vacate: Commercial Vacate Cleaning · Vacating Your Premises? · Commercial Move-Out Cleaning
+
+Removed from the old copy: "Bond Cleaning", "Pass Your Final Inspection" (a promise), "Open 24 Hours, 7 Days" (unsubstantiated), "Oven, Windows & Bathrooms" (residential).
+
+### Descriptions (max 90 characters)
+
+1. Detailed commercial end of lease cleaning for offices, retail and warehouses. Free quote.
+2. Rated 4.6 on Google from 36 reviews. Professional team, tailored scope. Call 0427 724 809.
+3. Floors, kitchens, washrooms and glass, cleaned to your lease and agent's checklist.
+4. Vacating commercial premises? Send your suburb, size and date for a clear written quote.
 
 ### Sitelinks
-- Get a Free Quote → same page, `#quote`
+- Get a Free Quote → `#quote`
 - What's Included → `#included`
 - Customer Reviews → `#reviews`
 - How It Works → `#how-it-works`
 
 ### Callouts
-Free Written Quotes · Open 24/7 · Uniformed Team · Evening & Weekend Slots · Sydney-Wide
+Free Written Quotes · Professional Cleaning Team · Flexible Scheduling · Offices, Retail & Warehouses · Sydney-Wide
 
 ### Structured snippet
-**Service types:** Kitchen & oven, Bathrooms, Windows, Floors, Carpet steam (add-on)
+**Service types:** Office cleaning, Floor cleaning, Carpet cleaning, Window & glass, Kitchen & breakroom, Washrooms
 
 ### Call asset
 0427 724 809 · count calls over 30 seconds as conversions

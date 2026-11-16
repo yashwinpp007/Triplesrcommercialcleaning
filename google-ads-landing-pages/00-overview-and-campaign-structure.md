@@ -4,7 +4,7 @@ Three Search campaigns, three dedicated landing pages (one message, one CTA each
 
 | # | Campaign | Landing page (suggested URL) | Primary conversion |
 |---|---|---|---|
-| 1 | End of Lease Cleaning | `/commercial-end-of-lease-cleaning-sydney` | Quote form or call |
+| 1 | Commercial End of Lease Cleaning | `/commercial-end-of-lease-cleaning-sydney` | Quote form or call |
 | 2 | Regular House Cleaning | `/lp/house-cleaning-sydney` | Quote form or call |
 | 3 | Strata Cleaning | `/lp/strata-cleaning-sydney` | Quote form or call |
 
