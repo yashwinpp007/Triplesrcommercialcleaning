@@ -10,10 +10,10 @@ export function proxy(request: NextRequest) {
     `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${dev ? " 'unsafe-eval'" : ""}`,
     // Inline style attributes are needed by the animation library; scripts stay strict.
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob:",
+    "img-src 'self' data: blob: https://www.facebook.com",
     "font-src 'self' data:",
     "media-src 'self'",
-    `connect-src 'self'${dev ? " ws: wss:" : ""}`,
+    `connect-src 'self' https://www.facebook.com https://connect.facebook.net${dev ? " ws: wss:" : ""}`,
     "frame-src 'none'",
     "object-src 'none'",
     "base-uri 'self'",

@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { MobileBar } from "@/components/MobileBar";
 import { FloatingContact } from "@/components/FloatingContact";
 import { ConsentBanner } from "@/components/ConsentBanner";
+import { MetaPixel } from "@/components/MetaPixel";
 import { JsonLd } from "@/components/JsonLd";
 import { ChromeGate, MainShell } from "@/components/ChromeGate";
 import { site } from "@/config/site";
@@ -62,6 +63,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <ChromeGate><MobileBar /></ChromeGate>
         <ChromeGate><FloatingContact /></ChromeGate>
         <ConsentBanner />
+        <MetaPixel />
       </body>
     </html>
   );
