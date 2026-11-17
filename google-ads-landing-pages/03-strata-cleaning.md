@@ -2,7 +2,7 @@
 
 **URL:** `/lp/strata-cleaning-sydney` (noindex)
 **Audience:** Strata managers, building managers, committee/executive committee members and owners corporations in Greater Sydney who need a reliable contractor for common areas. They compare quotes, need proof, and often need approval from a committee, so the page must be easy to forward.
-**Single goal:** Free quote request (form) or call 0427 724 809. Secondary: "Request a site inspection".
+**Single goal:** Free quote request (form) or call 1300 557 279. Secondary: "Request a site inspection".
 **Traffic intent:** "strata cleaning sydney", "common area cleaning", "apartment building cleaning", "body corporate cleaning".
 **Brand on this page:** Triple SR Commercial Cleaning (this is a commercial buyer).
 **Message hook:** *Common areas your residents and committee don't have to think about.*
@@ -12,7 +12,7 @@
 ## Page meta
 
 - **Title (≤60):** Strata Cleaning Sydney | Common Areas | Triple SR
-- **Meta description (≤155):** Strata and apartment building cleaning across Sydney. Lobbies, lifts, stairs, car parks and bin rooms. Free site inspection and quote. 0427 724 809.
+- **Meta description (≤155):** Strata and apartment building cleaning across Sydney. Lobbies, lifts, stairs, car parks and bin rooms. Free site inspection and quote. 1300 557 279.
 - **Robots:** `noindex, follow`
 
 ---
@@ -41,7 +41,7 @@
 ## 1. Sticky top bar
 
 **Left:** Logo (not a link)
-**Right:** `Call 0427 724 809` · button **Request a Free Quote**
+**Right:** `Call 1300 557 279` · button **Request a Free Quote**
 
 ---
 
@@ -57,7 +57,7 @@
 - Easy to take to your committee
 
 **Primary CTA (form button):** Request a Free Quote
-**Secondary CTA:** Or call 0427 724 809
+**Secondary CTA:** Or call 1300 557 279
 **Microcopy:** Free and no obligation. We reply within one business day.
 
 **Hero form fields**
@@ -251,7 +251,7 @@ Yes. We inspect, write a new scope, agree a start date and handle the changeover
 You get a written checklist, and we provide sign-off sheets on request. You also have a direct number to call.
 
 **What if there's a problem between visits?**
-Call 0427 724 809 or email us, and we'll respond as soon as we can. For reasonable issues within scope, we'll arrange a return visit.
+Call 1300 557 279 or email us, and we'll respond as soon as we can. For reasonable issues within scope, we'll arrange a return visit.
 
 **Do you clean car parks and bin rooms?**
 Yes. Bin rooms and car parks are common strata scope. Sweeping is part of regular cleans and pressure washing is available as an add-on.
@@ -280,7 +280,7 @@ Sydney CBD and fringe (Surry Hills, Pyrmont, Ultimo, Haymarket, Darling Harbour)
 
 Tell us about the building. We'll arrange a free inspection and send an itemised quote.
 
-**Buttons:** Request a Free Quote · Call 0427 724 809
+**Buttons:** Request a Free Quote · Call 1300 557 279
 
 **Reassurance:** Free, no obligation. We reply within one business day.
 
@@ -298,7 +298,7 @@ Tell us about the building. We'll arrange a free inspection and send an itemised
 
 **H1:** Thanks, we've got your details
 
-We'll reply within one business day to arrange your free site inspection. Need it sooner? Call **0427 724 809**.
+We'll reply within one business day to arrange your free site inspection. Need it sooner? Call **1300 557 279**.
 
 **To speed things up:** send the building address, the number of floors and units, and the current cleaning schedule (if any).
 
@@ -321,7 +321,7 @@ We'll reply within one business day to arrange your free site inspection. Need i
 | 4 | Free Site Inspection | 20 |
 | 5 | Itemised Written Quotes | 23 |
 | 6 | Rated 4.6 on Google | 19 |
-| 7 | Call 0427 724 809 Today | 23 |
+| 7 | Call 1300 557 279 Today | 23 |
 | 8 | Lobbies, Lifts & Stairwells | 27 |
 | 9 | Car Parks & Bin Rooms Too | 25 |
 | 10 | Consistent Uniformed Teams | 26 |
@@ -340,7 +340,7 @@ We'll reply within one business day to arrange your free site inspection. Need i
 | 1 | Reliable common-area cleaning for Sydney strata buildings. Free site inspection and quote. |
 | 2 | Lobbies, lifts, stairs, car parks and bin rooms. Written scope, consistent team. Call us. |
 | 3 | Rated 4.6 on Google. One contact for managers, easy handover from your current cleaner. |
-| 4 | Take an itemised quote to your committee. Free inspection. Call 0427 724 809 today. |
+| 4 | Take an itemised quote to your committee. Free inspection. Call 1300 557 279 today. |
 
 ### Sitelinks
 - Request a Free Quote → `#quote`
@@ -355,7 +355,7 @@ Free Site Inspection · Itemised Quotes · Written Scope · Consistent Team · O
 **Service types:** Lobbies, Lifts, Stairwells, Car parks, Bin rooms
 
 ### Call asset
-0427 724 809 · count calls over 30 seconds as conversions
+1300 557 279 · count calls over 30 seconds as conversions
 
 ### Important
 Don't run "Certificate of Currency" or "fully insured" in any ad until the insurance is confirmed.

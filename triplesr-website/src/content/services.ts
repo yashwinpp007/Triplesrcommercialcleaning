@@ -63,7 +63,7 @@ export const services: Service[] = [
     ],
     related: ["commercial-end-of-lease-cleaning", "regular-window-cleaning", "school-cleaning"],
     metaTitle: "Regular Office Cleaning Sydney | Triple SR Commercial Cleaning",
-    metaDescription: "Reliable regular office cleaning across Sydney and the CBD. After-hours, consistent teams, free on-site quotes. Call 0427 724 809.",
+    metaDescription: "Reliable regular office cleaning across Sydney and the CBD. After-hours, consistent teams, free on-site quotes. Call 1300 557 279.",
     reviewIds: [1, 2],
   },
   {

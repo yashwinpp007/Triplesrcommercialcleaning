@@ -19,11 +19,11 @@ const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: "Best Commercial Cleaning Sydney | Triple SR", template: "%s" },
-  description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809.",
+  description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 1300 557 279.",
   applicationName: site.name,
   alternates: { canonical: "./" },
-  openGraph: { type: "website", locale: "en_AU", siteName: site.name, url: site.url, title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809.", images: [{ url: "/images/office-city-views.webp", width: 1800, height: 1200, alt: "Clean open-plan office with city skyline views" }] },
-  twitter: { card: "summary_large_image", title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809." },
+  openGraph: { type: "website", locale: "en_AU", siteName: site.name, url: site.url, title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 1300 557 279.", images: [{ url: "/images/office-city-views.webp", width: 1800, height: 1200, alt: "Clean open-plan office with city skyline views" }] },
+  twitter: { card: "summary_large_image", title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 1300 557 279." },
   keywords: ["best commercial cleaning sydney", "commercial cleaning sydney", "office cleaning sydney cbd", "commercial cleaners sydney"],
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } },
 };

@@ -16,10 +16,10 @@ import { HeroSlideshow } from "@/components/HeroSlideshow";
 
 export const metadata: Metadata = {
   title: "Best Commercial Cleaning Sydney | Triple SR",
-  description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809.",
+  description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 1300 557 279.",
   alternates: { canonical: "/" },
-  openGraph: { title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809.", url: "/" },
-  twitter: { card: "summary_large_image", title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 0427 724 809." },
+  openGraph: { title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 1300 557 279.", url: "/" },
+  twitter: { card: "summary_large_image", title: "Best Commercial Cleaning Sydney | Triple SR", description: "Best commercial cleaning in Sydney: offices, schools, aged care, warehouses and windows across the CBD and Greater Sydney. Free quote, call 1300 557 279." },
 };
 
 const why = [

@@ -4,7 +4,7 @@ import { site } from "@/config/site";
 
 export const homeFaqs: Faq[] = [
   { q: "Do you provide commercial cleaning in the Sydney CBD?", a: "Yes. Sydney CBD is our primary service area. We clean offices, retail and strata buildings and can coordinate inductions, access cards and lift bookings with your building manager." },
-  { q: "How do I get a quote for commercial cleaning?", a: "Send the quote form or call 0427 724 809. We'll arrange a free on-site inspection or review your plans, then send a written quote with no obligation." },
+  { q: "How do I get a quote for commercial cleaning?", a: "Send the quote form or call 1300 557 279. We'll arrange a free on-site inspection or review your plans, then send a written quote with no obligation." },
   { q: "What types of businesses do you clean for?", a: "Offices, schools, childcare centres, aged care and health facilities, hospitals, warehouses, factories and industrial sites, plus window cleaning and end of lease cleans." },
   { q: "Can you clean after hours?", a: "Yes. Most commercial cleans run after hours or early in the morning, and we can also schedule weekend work." },
   { q: "Do you bring your own equipment and products?", a: "Yes. We bring professional equipment and products. If your site needs particular products, tell us and we'll work with them." },
@@ -40,10 +40,10 @@ export const reviewsFaqs: Faq[] = [
 ];
 
 export const contactFaqs: Faq[] = [
-  { q: "What are your opening hours?", a: "We're available 24 hours a day, 7 days a week. Call 0427 724 809 any time and we'll get back to you as soon as we can." },
+  { q: "What are your opening hours?", a: "We're available 24 hours a day, 7 days a week. Call 1300 557 279 any time and we'll get back to you as soon as we can." },
   { q: "How fast will you respond?", a: site.responseSla },
   { q: "Do you offer free quotes?", a: "Yes. We offer free, no-obligation quotes, usually after a short on-site inspection." },
-  { q: "What's the best way to reach you?", a: "Call 0427 724 809 for the fastest response, or send the quote form and we'll reply by phone or email." },
+  { q: "What's the best way to reach you?", a: "Call 1300 557 279 for the fastest response, or send the quote form and we'll reply by phone or email." },
 ];
 
 export const quoteFaqs: Faq[] = [
@@ -79,7 +79,7 @@ export function regionFaqs(r: Region): Faq[] {
   const base: Faq[] = [
     { q: `Do you provide commercial cleaning in ${r.name}?`, a: `Yes. We clean commercial sites across ${r.name}, including ${sub} and nearby suburbs.` },
     { q: `What kinds of sites do you clean in ${r.name}?`, a: `Typical sites include ${r.context}. We also clean schools, childcare centres and offices; see the service pages for details.` },
-    { q: `How do I get a quote for ${r.name}?`, a: "Send the quote form with your suburb or call 0427 724 809. We arrange a free inspection where needed and send a written quote." },
+    { q: `How do I get a quote for ${r.name}?`, a: "Send the quote form with your suburb or call 1300 557 279. We arrange a free inspection where needed and send a written quote." },
     { q: `Can you clean after hours in ${r.name}?`, a: "Yes. Evening, early-morning and weekend cleans are available and we'll work to your site's access rules." },
   ];
   if (r.primary) {
@@ -96,6 +96,6 @@ export const regionList = regions;
 export const blogFaqs: Faq[] = [
   { q: "What does the Triple SR blog cover?", a: "Practical commercial cleaning advice for Sydney businesses: checklists, how to prepare for cleans, what affects cost and how to choose a cleaner." },
   { q: "How often do you publish new articles?", a: "We add new guides regularly, so check back or follow us on Instagram and Facebook for updates." },
-  { q: "Can I ask for an article on a specific cleaning topic?", a: "Yes. Email triplesrservicespty@gmail.com or call 0427 724 809 with the topic you'd like us to cover." },
+  { q: "Can I ask for an article on a specific cleaning topic?", a: "Yes. Email triplesrservicespty@gmail.com or call 1300 557 279 with the topic you'd like us to cover." },
   { q: "Is the advice on the blog specific to Sydney?", a: "It's written for Sydney and NSW businesses, but most of the cleaning guidance applies to any commercial premises." },
 ];

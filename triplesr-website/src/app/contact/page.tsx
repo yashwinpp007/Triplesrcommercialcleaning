@@ -11,7 +11,7 @@ import { ReviewsSection } from "@/components/ReviewsSection";
 
 export const metadata: Metadata = {
   title: "Contact Triple SR Commercial Cleaning | Blacktown, Sydney",
-  description: "Call 0427 724 809 or send a quote request. Triple SR Commercial Cleaning, Blacktown NSW, servicing Sydney CBD and Greater Sydney.",
+  description: "Call 1300 557 279 or send a quote request. Triple SR Commercial Cleaning, Blacktown NSW, servicing Sydney CBD and Greater Sydney.",
   alternates: { canonical: "/contact" },
 };
 

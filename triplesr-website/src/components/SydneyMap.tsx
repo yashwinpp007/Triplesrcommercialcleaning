@@ -234,7 +234,7 @@ export function SydneyMap({ compact = false }: { compact?: boolean }) {
                 ))}
               </ul>
             ) : (
-              <p className="flex items-start gap-2 text-white/90"><Pin className="mt-0.5 h-4 w-4 shrink-0" /> Not on our list yet. Call 0427 724 809, we may still be able to help.</p>
+              <p className="flex items-start gap-2 text-white/90"><Pin className="mt-0.5 h-4 w-4 shrink-0" /> Not on our list yet. Call 1300 557 279, we may still be able to help.</p>
             )}
           </div>
         </div>

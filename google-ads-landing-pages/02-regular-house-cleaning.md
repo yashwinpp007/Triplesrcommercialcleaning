@@ -2,7 +2,7 @@
 
 **URL:** `/lp/house-cleaning-sydney` (noindex)
 **Audience:** Busy households and professionals in Greater Sydney who want a reliable regular cleaner (weekly or fortnightly), or a first clean to start a routine. Common worries: letting strangers into the home, quality varying week to week, the cleaner not turning up.
-**Single goal:** Free quote request (form) or call 0427 724 809.
+**Single goal:** Free quote request (form) or call 1300 557 279.
 **Traffic intent:** "house cleaning sydney", "house cleaners near me", "fortnightly cleaner", "home cleaning services".
 **Brand on this page:** Triple SR Cleaning Services (see overview, decision 1).
 **Message hook:** *Come home to a clean house. Same team, every visit.*
@@ -14,7 +14,7 @@
 ## Page meta
 
 - **Title (≤60):** House Cleaning Sydney | Regular Cleaners | Triple SR
-- **Meta description (≤155):** Reliable weekly and fortnightly house cleaning across Sydney. Same friendly team each visit. Rated 4.6 on Google. Free quote: 0427 724 809.
+- **Meta description (≤155):** Reliable weekly and fortnightly house cleaning across Sydney. Same friendly team each visit. Rated 4.6 on Google. Free quote: 1300 557 279.
 - **Robots:** `noindex, follow`
 
 ---
@@ -42,7 +42,7 @@
 ## 1. Sticky top bar
 
 **Left:** Logo (not a link)
-**Right:** `Call 0427 724 809` · button **Get My Free Quote**
+**Right:** `Call 1300 557 279` · button **Get My Free Quote**
 
 ---
 
@@ -58,7 +58,7 @@
 - Free, no-obligation quote with clear pricing
 
 **Primary CTA (form button):** Get My Free Quote
-**Secondary CTA:** Or call 0427 724 809
+**Secondary CTA:** Or call 1300 557 279
 **Microcopy:** Free and no obligation. We reply within one business day.
 
 **Hero form fields**
@@ -250,7 +250,7 @@ Western Sydney (Blacktown, Parramatta, Penrith, Castle Hill) · Inner West · Sy
 
 Tell us your suburb and how often you'd like us. We'll send a clear written quote.
 
-**Buttons:** Get My Free Quote · Call 0427 724 809
+**Buttons:** Get My Free Quote · Call 1300 557 279
 
 **Reassurance:** Free quote. No obligation. We reply within one business day.
 
@@ -268,7 +268,7 @@ WhatsApp pre-filled: *Hi, I'd like a quote for regular house cleaning. Suburb: _
 
 **H1:** Thanks, we've got your details
 
-We'll reply within one business day with your quote. In a hurry? Call **0427 724 809**.
+We'll reply within one business day with your quote. In a hurry? Call **1300 557 279**.
 
 **To speed things up:** reply with the number of bedrooms and bathrooms, any pets, and your preferred day.
 
@@ -291,7 +291,7 @@ We'll reply within one business day with your quote. In a hurry? Call **0427 724
 | 4 | Get Your Weekends Back | 22 |
 | 5 | Free Quote, No Obligation | 25 |
 | 6 | Rated 4.6 on Google | 19 |
-| 7 | Call 0427 724 809 Today | 23 |
+| 7 | Call 1300 557 279 Today | 23 |
 | 8 | Friendly, Punctual Cleaners | 27 |
 | 9 | Kitchens & Bathrooms Spotless | 29 |
 | 10 | Open 24 Hours, 7 Days | 21 |
@@ -308,7 +308,7 @@ We'll reply within one business day with your quote. In a hurry? Call **0427 724
 | # | Description |
 |---|---|
 | 1 | Reliable weekly and fortnightly house cleaning across Sydney. Get a free quote today. |
-| 2 | Rated 4.6 on Google from 36 reviews. Friendly, punctual team. Call 0427 724 809. |
+| 2 | Rated 4.6 on Google from 36 reviews. Friendly, punctual team. Call 1300 557 279. |
 | 3 | Kitchens, bathrooms, floors and more, cleaned to a checklist. Tell us your suburb. |
 | 4 | Busy week? Hand the cleaning to us. Fast online quote, no obligation. |
 
@@ -325,4 +325,4 @@ Free Written Quotes · Open 24/7 · Weekly, Fortnightly or One-Off · Punctual T
 **Service types:** Weekly clean, Fortnightly clean, One-off clean, Apartments, Houses
 
 ### Call asset
-0427 724 809 · count calls over 30 seconds as conversions
+1300 557 279 · count calls over 30 seconds as conversions

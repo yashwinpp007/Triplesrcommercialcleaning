@@ -2,7 +2,7 @@
 
 **URL:** `/commercial-end-of-lease-cleaning-sydney` (noindex)
 **Audience:** Renters moving out in Greater Sydney who need the property to pass the agent's final inspection. Often stressed, short on time, worried about their bond.
-**Single goal:** Free quote request (form) or call 0427 724 809.
+**Single goal:** Free quote request (form) or call 1300 557 279.
 **Traffic intent:** "end of lease cleaning sydney", "bond cleaning", "vacate clean".
 **Brand on this page:** Triple SR Cleaning Services (see overview, decision 1).
 **Message hook:** *Leave on time. Pass the inspection.*
@@ -12,7 +12,7 @@
 ## Page meta (for the `<head>`)
 
 - **Title (≤60):** End of Lease Cleaning Sydney | Free Quote | Triple SR
-- **Meta description (≤155):** Sydney end of lease cleaning, done to the agent's checklist. Oven, bathrooms, windows and floors. Free quote. Call 0427 724 809.
+- **Meta description (≤155):** Sydney end of lease cleaning, done to the agent's checklist. Oven, bathrooms, windows and floors. Free quote. Call 1300 557 279.
 - **Robots:** `noindex, follow`
 
 ---
@@ -40,7 +40,7 @@
 ## 1. Sticky top bar
 
 **Left:** Triple SR logo (not a link)
-**Right:** `Call 0427 724 809` · button **Get My Free Quote**
+**Right:** `Call 1300 557 279` · button **Get My Free Quote**
 
 ---
 
@@ -56,7 +56,7 @@
 - Free, no-obligation written quote
 
 **Primary CTA (form button):** Get My Free Quote
-**Secondary CTA:** Or call 0427 724 809
+**Secondary CTA:** Or call 1300 557 279
 **Form microcopy under the button:** Free and no obligation. We reply within one business day.
 
 **Hero form fields**
@@ -265,7 +265,7 @@ Western Sydney (Blacktown, Parramatta, Penrith, Castle Hill) · Inner West · Sy
 
 Tell us the suburb and your move-out date. We'll send a clear written quote.
 
-**Buttons:** Get My Free Quote · Call 0427 724 809
+**Buttons:** Get My Free Quote · Call 1300 557 279
 
 **Reassurance line:** Free quote. No obligation. Open 24 hours, 7 days.
 
@@ -283,7 +283,7 @@ WhatsApp pre-filled message: *Hi, I'd like a quote for an end of lease clean. Su
 
 **H1:** Thanks, we've got your details
 
-We'll reply within one business day. Need it sooner? Call **0427 724 809**.
+We'll reply within one business day. Need it sooner? Call **1300 557 279**.
 
 **While you wait:** Take photos of the oven, bathroom and windows, so we can quote accurately. Reply with them, or send them on WhatsApp.
 
@@ -313,7 +313,7 @@ We'll reply within one business day. Need it sooner? Call **0427 724 809**.
 
 ### Headlines (max 30 characters; 15 per ad, first 3 differ by ad group)
 
-Shared: Inspection-Ready Handovers · Free Commercial Cleaning Quote · Rated 4.6 on Google · Call 0427 724 809 Today · Offices, Retail & Warehouses · Tailored to Your Lease Scope · Evening & Weekend Slots · Sydney-Wide Commercial Team · Clear Written Quote · Sydney CBD & Western Sydney · Professional Cleaning Team · Free Quote, No Obligation
+Shared: Inspection-Ready Handovers · Free Commercial Cleaning Quote · Rated 4.6 on Google · Call 1300 557 279 Today · Offices, Retail & Warehouses · Tailored to Your Lease Scope · Evening & Weekend Slots · Sydney-Wide Commercial Team · Clear Written Quote · Sydney CBD & Western Sydney · Professional Cleaning Team · Free Quote, No Obligation
 
 Per ad group (H1 pinned to position 1):
 - Commercial end of lease: Commercial End of Lease Clean · Commercial Lease Cleaning · Commercial Handover Cleaning
@@ -326,7 +326,7 @@ Removed from the old copy: "Bond Cleaning", "Pass Your Final Inspection" (a prom
 ### Descriptions (max 90 characters)
 
 1. Detailed commercial end of lease cleaning for offices, retail and warehouses. Free quote.
-2. Rated 4.6 on Google from 36 reviews. Professional team, tailored scope. Call 0427 724 809.
+2. Rated 4.6 on Google from 36 reviews. Professional team, tailored scope. Call 1300 557 279.
 3. Floors, kitchens, washrooms and glass, cleaned to your lease and agent's checklist.
 4. Vacating commercial premises? Send your suburb, size and date for a clear written quote.
 
@@ -343,4 +343,4 @@ Free Written Quotes · Professional Cleaning Team · Flexible Scheduling · Offi
 **Service types:** Office cleaning, Floor cleaning, Carpet cleaning, Window & glass, Kitchen & breakroom, Washrooms
 
 ### Call asset
-0427 724 809 · count calls over 30 seconds as conversions
+1300 557 279 · count calls over 30 seconds as conversions

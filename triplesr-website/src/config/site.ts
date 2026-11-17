@@ -7,8 +7,8 @@ export const site = {
     "Triple SR Commercial Cleaning delivers reliable office, school, childcare, aged care, warehouse, industrial and window cleaning across Sydney, including the CBD. Free on-site quotes.",
   address: { locality: "Blacktown", region: "NSW", country: "AU", text: "Blacktown, NSW, Australia" },
   email: "triplesrservicespty@gmail.com",
-  phoneDisplay: "0427 724 809",
-  phoneTel: "+61427724809",
+  phoneDisplay: "1300 557 279",
+  phoneTel: "+611300557279",
   // WhatsApp click-to-chat (international format, digits only) and the pre-filled opening message
   whatsappNumber: "61427724809",
   whatsappMessage: "Hi Triple SR Commercial Cleaning, I'd like a free quote for commercial cleaning.",

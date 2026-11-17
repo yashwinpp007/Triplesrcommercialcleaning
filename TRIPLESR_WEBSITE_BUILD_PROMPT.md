@@ -29,8 +29,8 @@ Store these in one config file (`src/config/site.ts`) and import everywhere. Nev
 | Domain | https://triplesrcommercialcleaning.com.au |
 | Address | Blacktown, NSW, Australia |
 | Email | triplesrservicespty@gmail.com |
-| Phone (display) | 0427 724 809 |
-| Phone (tel link) | +61427724809 |
+| Phone (display) | 1300 557 279 |
+| Phone (tel link) | +611300557279 |
 | Instagram | https://www.instagram.com/servicestriplesr?xtok=a2R4aWptYXI5eHFw |
 | Facebook | https://www.facebook.com/share/1F8SsdzSqZ/ |
 
@@ -183,7 +183,7 @@ https://www.google.com/search?q=triple+sr+services#lrd=0x4ff9a269be8bed0f:0x36e7
 Write original, specific, Australian-English copy. No lorem ipsum anywhere. No claims that cannot be substantiated (no "#1 in Sydney", no fake awards, no invented certifications). Phrase compliance as practice, not accreditation, unless the client confirms accreditation (e.g. "cleaning to infection-control best practice", not "certified").
 
 ### Home (`/`)
-1. **Hero:** strong H1 (e.g. "Commercial Cleaning Across Western Sydney, Done Properly"), sub-headline, primary CTA **Get a Free Quote**, secondary CTA **Call 0427 724 809**, trust chips (e.g. "Free on-site quotes", "Flexible schedules", "Uniformed, trained teams" — only claims that are true/confirmable), hero video or photo of the uniformed team, and a compact **inline quick-quote form** (name, phone, service, suburb) above the fold.
+1. **Hero:** strong H1 (e.g. "Commercial Cleaning Across Western Sydney, Done Properly"), sub-headline, primary CTA **Get a Free Quote**, secondary CTA **Call 1300 557 279**, trust chips (e.g. "Free on-site quotes", "Flexible schedules", "Uniformed, trained teams" — only claims that are true/confirmable), hero video or photo of the uniformed team, and a compact **inline quick-quote form** (name, phone, service, suburb) above the fold.
 2. **Trust strip:** Google rating/reviews (if verified), insured/police-checked **only if confirmed**, local Blacktown business.
 3. **Services grid:** 10 animated service cards with image, short description, hover reveal, link.
 4. **Why choose us:** 4–6 benefits with animated icons.
@@ -411,7 +411,7 @@ Implement **all** of the following. Document each control and where it lives in 
 - **Every indexable page** (Home, Services overview, all 10 service pages, every area/region/CBD page, About, Gallery, Reviews, Contact, Get-a-Quote, resources/guides) must have a **visible FAQ section** of 4–8 questions with answers that are **unique to that page** (no copy-pasting the same FAQ across pages).
 - Questions must reflect real buyer concerns for that page's topic and location (pricing factors, frequency, after-hours access, insurance/compliance *only as confirmed*, products used, supervision, how quotes work, start times, contracts vs one-off, areas covered, how to prepare for end of lease inspection, etc.).
 - Mark up with `FAQPage` JSON-LD **matching the visible text exactly**. Render answers in the server HTML (accordion uses `<details>`/`<summary>` or an accessible button pattern; content must be crawlable when collapsed).
-- Keep answers concise (40–80 words), factual, and linked to the relevant service/area page. Include a CTA after each FAQ block ("Still have a question? Call 0427 724 809 or get a free quote").
+- Keep answers concise (40–80 words), factual, and linked to the relevant service/area page. Include a CTA after each FAQ block ("Still have a question? Call 1300 557 279 or get a free quote").
 - Store FAQs in `src/content/faq/*.ts` keyed by page so they can be edited without touching components. Add a build-time check that fails if any indexable page has fewer than 4 FAQs or duplicate questions across pages.
 
 ---
