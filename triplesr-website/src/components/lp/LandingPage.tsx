@@ -10,6 +10,7 @@ import { reviews } from "@/components/Reviews";
 import { LpReviewCard } from "./LpReviewCard";
 import { LpQuoteForm } from "./LpQuoteForm";
 import { LpLink } from "./LpTrackedLink";
+import { FloatingContact } from "../FloatingContact";
 import { CountUp } from "@/components/CountUp";
 import { img } from "@/lib/images";
 import { DrawLine, HeroSlides, ParallaxImage, PhotoRows, ScrollProgress, Stagger, StaggerItem } from "./Motion";
@@ -644,6 +645,9 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         {page.whatsapp && <LpLink external href={wa(page.whatsapp)} event="whatsapp_click" page={page.slug} location="mobile_bar" className="btn btn-outline min-h-12 flex-1">WhatsApp</LpLink>}
         <LpLink href="#quote" event="lp_cta_click" page={page.slug} location="mobile_bar" className="btn btn-primary min-h-12 flex-1">Get Quote</LpLink>
       </div>
+
+      {/* Floating WhatsApp (left) and call (right) widgets */}
+      <FloatingContact message={page.whatsapp ?? undefined} page={page.slug} />
     </div>
   );
 }

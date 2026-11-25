@@ -12,11 +12,13 @@ const WhatsAppIcon = (p: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-const waUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;
+const waLink = (message: string) => `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 
 // Fixed WhatsApp (bottom-left) and call (bottom-right, wiggling) buttons on every page.
 // On phones they sit above the sticky Call / Get a Quote bar.
-export function FloatingContact() {
+// On landing pages it is rendered by the page itself with a page-specific WhatsApp message.
+export function FloatingContact({ message, page }: { message?: string; page?: string } = {}) {
+  const waUrl = waLink(message ?? site.whatsappMessage);
   const reduce = useReducedMotion();
   const [ready, setReady] = useState(false);
   useEffect(() => {
@@ -31,7 +33,7 @@ export function FloatingContact() {
     <>
       <motion.a
         href={`tel:${site.phoneTel}`}
-        onClick={() => track("phone_click", { location: "floating_widget" })}
+        onClick={() => track("phone_click", { location: "floating_widget", ...(page ? { page } : {}) })}
         aria-label={`Call Triple SR on ${site.phoneDisplay}`}
         initial={reduce ? false : { opacity: 0, scale: 0.4, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -47,7 +49,7 @@ export function FloatingContact() {
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => track("whatsapp_click", { location: "floating_widget" })}
+        onClick={() => track("whatsapp_click", { location: "floating_widget", ...(page ? { page } : {}) })}
         aria-label="Chat with Triple SR on WhatsApp (opens in a new tab)"
         initial={reduce ? false : { opacity: 0, scale: 0.4, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
