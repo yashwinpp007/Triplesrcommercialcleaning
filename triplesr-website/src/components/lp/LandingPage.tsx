@@ -637,6 +637,10 @@ export function LandingPage({ page }: { page: LandingPageContent }) {
         <p className="mt-1">
           <a href="/privacy-policy" className="underline">Privacy Policy</a> · <a href="/terms" className="underline">Terms</a>
         </p>
+        <p className="mt-2 flex items-center justify-center gap-4">
+          <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Triple SR on Instagram" className="underline">Instagram</a>
+          <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Triple SR on Facebook" className="underline">Facebook</a>
+        </p>
       </footer>
 
       {/* Sticky mobile action bar */}

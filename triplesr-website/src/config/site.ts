@@ -13,8 +13,8 @@ export const site = {
   whatsappNumber: "61427724809",
   whatsappMessage: "Hi Triple SR Commercial Cleaning, I'd like a free quote for commercial cleaning.",
   social: {
-    instagram: "https://www.instagram.com/servicestriplesr?xtok=a2R4aWptYXI5eHFw",
-    facebook: "https://www.facebook.com/share/1F8SsdzSqZ/",
+    instagram: "https://www.instagram.com/triplesrcommercialcleaning/",
+    facebook: "https://www.facebook.com/profile.php?id=61596344594660",
   },
 
   googleProfile: "https://www.google.com/search?q=triple+sr+services#lrd=0x4ff9a269be8bed0f:0x36e7f556a36a4983,1,,,,",
