@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/config/site";
 import { Check, Phone } from "@/components/Icons";
+import { GoogleAdsConversion } from "@/components/GoogleAdsConversion";
 
 export const metadata: Metadata = { title: "Thank you | Triple SR Commercial Cleaning", robots: { index: false, follow: false } };
 
 export default function ThankYou() {
   return (
     <section className="py-20">
+      <GoogleAdsConversion />
       <div className="container-x max-w-2xl text-center">
         <span className="mx-auto grid h-20 w-20 place-items-center rounded-full bg-green text-white shadow-xl"><Check className="h-10 w-10" /></span>
         <h1 className="mt-6 text-4xl font-extrabold">Thanks. We've got your request.</h1>

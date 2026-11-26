@@ -12,6 +12,9 @@ export const site = {
   // WhatsApp click-to-chat (international format, digits only) and the pre-filled opening message
   whatsappNumber: "61427724809",
   whatsappMessage: "Hi Triple SR Commercial Cleaning, I'd like a free quote for commercial cleaning.",
+  // Google Ads tag. formConversionLabel is the part after "/" in the conversion's event snippet
+  // (send_to: "AW-XXXXXXXXXX/<label>"); the thank-you page only fires the conversion once it is set.
+  googleAds: { id: "AW-17276966516", formConversionLabel: "pEUpCNDNnsAdEPSspq5A" },
   social: {
     instagram: "https://www.instagram.com/triplesrcommercialcleaning/",
     facebook: "https://www.facebook.com/profile.php?id=61596344594660",
